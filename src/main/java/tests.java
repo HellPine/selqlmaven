@@ -55,6 +55,8 @@ public class tests {
   		
   static String separator="<p>\n------------------------------------------------------------------------------------------</p>\n\n";
   public static String result="";
+  public static String overall="";
+  public static String result2="";
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -86,20 +88,16 @@ public class tests {
 	public int failed=0;
 	
 	
-	public String hola(){
 		
-		return "ola k ase?";
-	}
-	
 	public void readdatabase() throws Exception {
 		
 		String tkind;
 		String tid;
 		timesta=timesta%1000000000;
 		File file = new File("reports/"+timesta+".html");
-		//File file2=new File("repor.txt");
+		File file2=new File("reports/result.html");
 		file.delete();
-		//file2.delete();
+		file2.delete();
 		//System.out.println(new Timestamp(date.getTime()));
 		
 		try{
@@ -193,9 +191,10 @@ public class tests {
 		rs.beforeFirst();
 		
 		FileWriter write = new FileWriter(file,true);
-		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>Report for |||" +baseUrl+"||| </FONT></strong></p>\n</body>\n</html>\n";
+		FileWriter write2 = new FileWriter(file2,true);
+		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p></FONT></strong></p>";
 		write.write(header);
-		
+		write2.write(header);
 		while(s != n){
 			
 			if (rs.next()){
@@ -218,7 +217,7 @@ public class tests {
 			
 			if(ls.getString("testkind").equals("l1test")){
 				
-				result=result+"<p><H1>L1 Registering Test-----"+ls.getString("testid")+"</H1><p>";
+				//result=result+"<p><H1>L1 Registering Test-----"+ls.getString("testid")+"</H1><p>";
 				//System.out.println(ls.getString("testkind"));	
 				l1test(ls.getString("testid"));
 			
@@ -233,8 +232,16 @@ public class tests {
 		//write.write(header);
     	//write.write("<p>"+result+"<p>");
     	//write.write(footer);
-    	write.write(result);
-		write.close();
+    	//write.write("<p> OVERALL STATUS= "+ overall +" <p>");
+    	write2.write("<p> OVERALL STATUS= "+ overall +" <p>");
+    	write2.write("<p><p><p><p><table border="+(char)34+"1"+(char)34+"><tr><th>TEST</th><th>STATUS</th></tr>");
+    	//write.write((<p><p><p><p><<table border="1"><tr><th>TEST</th><th>STATUS</th></tr>);
+		write.write(result);
+    	write2.write(result2);
+		write2.write("<p></p> Please follow this to <a href="+(char)34+ timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
+    	
+    	write.close();
+		write2.close();
 		ls.close();
 		rs.close();
 		con.close();
@@ -305,6 +312,8 @@ public class tests {
 		
 		boolean succesful=true;
 		result=result+"<p><h3>" + testid + " Field Validation</h3></p><p></p>";
+		result2=result2+"<td>"+ testid+"</td>";
+		
 		String[] charstouse = new String[invchars.length()];
 		String character="";
 		charstouse=invchars.split("¬");
@@ -335,7 +344,12 @@ public class tests {
 		if(succesful){
 			
 			result=result+"<p>Field validation OK</p><p>------------</p>";
+			result2=result2+"<td>PASS</td>";
+			overall="PASS";
 			
+		}else{
+			result2=result2+"<td>FAILED</td>";
+			overall="FAILED";
 		}
 	}
 	
@@ -346,6 +360,7 @@ public class tests {
 				
 		boolean success=true;
 		int find=0;
+		result2=result2+"<td>"+testid+"</td>";
 		
 			//try{
 			
@@ -473,7 +488,9 @@ public class tests {
 				System.out.println("This not");
 				//Control different spelling for Contact Us Link
 				if(z==count-1){
-				System.out.println("Register Link not found");	
+				System.out.println("Register Link not found");
+				result2=result2+"<td>FAILED</td>";
+				overall="FAILED";
 	    		}
 				//result=(result + "<p><FONT COLOR="+(char)34+"red"+(char)34+">"+ss.getString("tofind")+" Not Finded</FONT><p>");} 
 	       		//If no Contact Us 
@@ -637,7 +654,7 @@ public class tests {
 	    			driver.findElement(By.cssSelector(repassword)).clear(); 
 		    		driver.findElement(By.cssSelector(repassword)).sendKeys("111111");
 	    		}catch(Exception e){
-	    			System.out.println(e);
+	    			//System.out.println(e);
 	    		}
 	    		
 	    		driver.findElement(By.cssSelector(eighteen)).click();
@@ -670,7 +687,7 @@ public class tests {
 	    		
 	    		
 	    		//String currentURL=driver.getCurrentUrl();
-    			
+    			//driver.wait(500);
 	    		if(driver.getPageSource().contains(genlogin)){
     				//System.out.println("User " + genlogin + " with email "+ genmail + " succesfully registered as level 1 user");
 	    		
@@ -679,20 +696,25 @@ public class tests {
     				System.out.println("User " + genlogin + " with email "+ genmail + " succesfully registered as level 1 user");
     				
     				String screenshot = "screenshots/screenshot" + timesta + ".png";
+    				
     				try {
-
     	                
     					File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
     	                FileUtils.copyFile(scrFile, new File(screenshot));
     	            } catch (IOException e1) {
-    	                e1.printStackTrace();
+    	                System.out.println("Screenshot Failed");
     	            }
     				
     				result=result+"<p>USER="+genlogin+"----"+"E-Mail="+genmail+"-------"+"Level=1<p>-------Succesfully Registered";
     				result=result+"<p> Click on the screenshot to see it larger <a href=../"+screenshot+"><img SRC=../"+screenshot+" width=100 height=100></a><p>";
+    				result2=result2+"<td>PASS</td>";
+    				overall="PASS";
+    				//System.out.println(result + "------"+ result2);
     			}else{
     				
     				result=result+"<p>Something Fails in L1 registration<p>";
+    				result2=result2+"<td>FAILED</td>";
+    				overall="FAILED";
     			}
 	    		
 	    		
