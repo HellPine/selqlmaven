@@ -238,7 +238,8 @@ public class tests {
     	//write.write((<p><p><p><p><<table border="1"><tr><th>TEST</th><th>STATUS</th></tr>);
 		write.write(result);
     	write2.write(result2);
-		write2.write("<p></p> Please follow this to <a href="+(char)34+ timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
+    	write2.write("</tr></table>");
+		write2.write("<p></p> Please follow this <a href="+(char)34+ timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
     	
     	write.close();
 		write2.close();
