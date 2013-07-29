@@ -86,6 +86,11 @@ public class tests {
 	public int failed=0;
 	
 	
+	public String hola(){
+		
+		return "ola k ase?";
+	}
+	
 	public void readdatabase() throws Exception {
 		
 		String tkind;
