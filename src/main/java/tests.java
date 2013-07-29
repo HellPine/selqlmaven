@@ -54,7 +54,7 @@ import java.net.*;
 public class tests {
   		
   static String separator="<p>\n------------------------------------------------------------------------------------------</p>\n\n";
-  static String result="";
+  public static String result="";
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -165,7 +165,7 @@ public class tests {
 	    try{ //Try to bypass company privacy policy
 	    	driver.findElement(By.linkText("Click here to accept this statement and access the Internet.")).click();
 	    }catch (Exception e){
-	    	System.out.println(e);
+	    	
 	    }
 						
 		//System.out.println(rs.getString("url"));
@@ -175,7 +175,7 @@ public class tests {
 	    try{
 	    	driver.switchTo().alert().accept();
 	    }catch (Exception e){  //Sometimes a pop up appears when launching site
-	    	System.out.println(e);
+	    	//System.out.println(e);
 	    }
 	    
 		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
@@ -338,7 +338,7 @@ public class tests {
 		
 		String fname,lname,email,day,month,year,next,eighteen,accept,login,password,repassword,fun,realbutton,screen;
 		int count=0;
-		
+				
 		boolean success=true;
 		int find=0;
 		
@@ -450,6 +450,7 @@ public class tests {
 		System.out.println(z);
 		do{
 			
+			if(find==0){
 			System.out.println(z+"======"+count);
 			try {
 			
@@ -463,15 +464,18 @@ public class tests {
 				
 			} catch (NoSuchElementException e1){
 	    		
-				success=false;					//Control different spelling for Contact Us Link
-				if(z==count){
-				System.out.println("Register Link not found");}	
-	    		//result=(result + "<p><FONT COLOR="+(char)34+"red"+(char)34+">"+ss.getString("tofind")+" Not Finded</FONT><p>");} 
+				success=false;
+				System.out.println("This not");
+				//Control different spelling for Contact Us Link
+				if(z==count-1){
+				System.out.println("Register Link not found");	
+	    		}
+				//result=(result + "<p><FONT COLOR="+(char)34+"red"+(char)34+">"+ss.getString("tofind")+" Not Finded</FONT><p>");} 
 	       		//If no Contact Us 
 	    	
 			} finally{
 	    	
-				if (success & find==0){
+				if (success){
 	    		
 	    		//Random rand = new Random();
 	    		
@@ -492,6 +496,7 @@ public class tests {
 	    		
 	    		
 	    		System.out.println("Register Clicked");
+	    		find=1;
 	    		//Thread.sleep(500);
 	    		//sendkeys();
 	    			    		
@@ -699,7 +704,7 @@ public class tests {
 				}}
 		//driver.close();
 		//driver.quit();
-			z=z+1;
+			}z=z+1;
 	    }while(z!=count);
 //	}
 	
