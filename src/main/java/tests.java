@@ -162,6 +162,11 @@ public class tests {
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    //driver.get(baseUrl);
 	    driver.navigate().to(baseUrl);
+	    try{ //Try to bypass company privacy policy
+	    	driver.findElement(By.linkText("Click here to accept this statement and access the Internet.")).click();
+	    }catch (Exception e){
+	    	System.out.println(e);
+	    }
 						
 		//System.out.println(rs.getString("url"));
 		//driver = new FirefoxDriver();
