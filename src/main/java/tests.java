@@ -55,7 +55,7 @@ public class tests {
   		
   static String separator="<p>\n------------------------------------------------------------------------------------------</p>\n\n";
   public static String result="";
-  public static String overall="";
+  public static String overall="PASSED";
   public static String result2="";
   private WebDriver driver;
   private String baseUrl;
@@ -314,7 +314,7 @@ public class tests {
 		
 		boolean succesful=true;
 		result=result+"<p><h3>" + testid + " Field Validation</h3></p><p></p>";
-		result2=result2+"<td>"+ testid+"</td>";
+		result2=result2+"<tr><td>"+ testid+"</td>";
 		
 		String[] charstouse = new String[invchars.length()];
 		String character="";
@@ -346,11 +346,11 @@ public class tests {
 		if(succesful){
 			
 			result=result+"<p>Field validation OK</p><p>------------</p>";
-			result2=result2+"<td>PASS</td>";
-			overall="PASS";
+			result2=result2+"<td>PASS</td></tr>";
+			//overall="PASS";
 			
 		}else{
-			result2=result2+"<td>FAILED</td>";
+			result2=result2+"<td>FAILED</td></tr>";
 			overall="FAILED";
 		}
 	}
@@ -710,7 +710,7 @@ public class tests {
     				result=result+"<p>USER="+genlogin+"----"+"E-Mail="+genmail+"-------"+"Level=1<p>-------Succesfully Registered";
     				result=result+"<p> Click on the screenshot to see it larger <a href=../"+screenshot+"><img SRC=../"+screenshot+" width=100 height=100></a><p>";
     				result2=result2+"<td>PASS</td>";
-    				overall="PASS";
+    				//overall="PASS";
     				//System.out.println(result + "------"+ result2);
     			}else{
     				
