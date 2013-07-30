@@ -362,7 +362,7 @@ public class tests {
 				
 		boolean success=true;
 		int find=0;
-		result2=result2+"<td>"+testid+"</td>";
+		
 		
 			//try{
 			
@@ -491,7 +491,8 @@ public class tests {
 				//Control different spelling for Contact Us Link
 				if(z==count-1){
 				System.out.println("Register Link not found");
-				result2=result2+"<td>FAILED</td>";
+				result2=result2+"<tr><td>"+testid+"</td>";
+				result2=result2+"<td>FAILED</td></tr>";
 				overall="FAILED";
 	    		}
 				//result=(result + "<p><FONT COLOR="+(char)34+"red"+(char)34+">"+ss.getString("tofind")+" Not Finded</FONT><p>");} 
@@ -709,13 +710,15 @@ public class tests {
     				
     				result=result+"<p>USER="+genlogin+"----"+"E-Mail="+genmail+"-------"+"Level=1<p>-------Succesfully Registered";
     				result=result+"<p> Click on the screenshot to see it larger <a href=../"+screenshot+"><img SRC=../"+screenshot+" width=100 height=100></a><p>";
-    				result2=result2+"<td>PASS</td>";
+    				result2=result2+"<tr><td>"+testid+"</td>";
+    				result2=result2+"<td>PASS</td></tr>";
     				//overall="PASS";
     				//System.out.println(result + "------"+ result2);
     			}else{
     				
     				result=result+"<p>Something Fails in L1 registration<p>";
-    				result2=result2+"<td>FAILED</td>";
+    				result2=result2+"<tr><td>"+testid+"</td>";
+    				result2=result2+"<td>FAILED</td></tr>";
     				overall="FAILED";
     			}
 	    		
