@@ -685,7 +685,7 @@ public class tests {
 	    		
 	    		try{
 	    			
-	    			driver.findElement(By.cssSelector(enterbutton)).click(); //handle if a message appears vefore screen name
+	    			driver.findElement(By.xpath(enterbutton)).click(); //handle if a message appears vefore screen name
 	    		}catch (Exception e){
 	    			
 	    			System.out.println(e);
