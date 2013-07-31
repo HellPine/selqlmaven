@@ -719,12 +719,19 @@ public class tests {
     				
     				String screenshot = "screenshots/screenshot" + timesta + ".png";
     				
-    				if(screenpresent==1){
-    				for(int i=0;i==1000;i++){
+    				while(screenpresent==1){
+    				
+    					try{
+    						
+    						if(driver.findElement(By.xpath(screen)).isDisplayed()){ 
+    						screenpresent=1;}else{screenpresent=0;}
+    						
+    					}catch(NoSuchElementException e1){
+    						
+    						screenpresent=0;
+    					}
     					
-    					i=i=1;
-    					
-    				}}
+    				}
     				
     				try {
     	                
