@@ -701,7 +701,7 @@ public class tests {
 		    		driver.findElement(By.xpath(screen)).sendKeys(screenname); //Handle Screen name
 		    		driver.findElement(By.xpath(enterbutton)).click();
 		    		screenpresent=1;
-	    		}catch (Exception e){
+	    		}catch (NoSuchElementException e){
 	    			
 	    			System.out.println("No screen name required");
 	    			
