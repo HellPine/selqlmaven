@@ -97,7 +97,7 @@ public class tests {
 		File file = new File("reports/"+timesta+".html");
 		File file2=new File("reports/result.html");
 		file.delete();
-		file2.delete();
+		//file2.delete();
 		//System.out.println(new Timestamp(date.getTime()));
 		
 		try{
@@ -162,7 +162,7 @@ public class tests {
 		//ffprofile.setAcceptUntrustedCertificates(true);
 		//ffprofile.setAssumeUntrustedCertificateIssuer(false);
 		//driver = new FirefoxDriver(ffprofile);
-	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	    //driver.get(baseUrl);
 	    driver.navigate().to(baseUrl);
 	    try{ //Try to bypass company privacy policy
@@ -181,7 +181,7 @@ public class tests {
 	    	//System.out.println(e);
 	    }
 	    
-		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 		
 		//System.out.println(rs.getRow());
 		rs.last();
@@ -206,7 +206,7 @@ public class tests {
 			ls.first();
 			//System.out.println(ls.getString("testkind"));
 			
-			System.out.println(ls.getString("testid")+"    "+ls.getString("testkind"));	
+			//System.out.println(ls.getString("testid")+"    "+ls.getString("testkind"));	
 			//System.out.println(ls.getString("testkind"));
 			s=s+1;
 			if(ls.getString("testkind").equals("single")){
@@ -316,18 +316,24 @@ public class tests {
 		result=result+"<p><h3>" + testid + " Field Validation</h3></p><p></p>";
 		result2=result2+"<tr><td>"+ testid+"</td>";
 		
+		//invchars=invchars.trim();
 		String[] charstouse = new String[invchars.length()];
 		String character="";
 		charstouse=invchars.split("¬");
-		
+		//System.out.println(xpath+"    "+invchars+"    "+testid);
 		for(int x=0;x<charstouse.length;x++){
 			
-			character="";
+			System.out.println("Begin");
+			character="aaa";
 			character=character+(char)Integer.parseInt(charstouse[x]);
+			System.out.println(character);
 			driver.findElement(By.cssSelector(xpath)).clear();
-			driver.findElement(By.cssSelector(xpath)).sendKeys("aaa");
+			//driver.findElement(By.cssSelector(xpath)).sendKeys("aaa");
+			System.out.println(character);
 			driver.findElement(By.cssSelector(xpath)).sendKeys(character);
-			if(x<=0){driver.findElement(By.cssSelector(xpath)).sendKeys(Keys.TAB);}
+			//System.out.println(character);
+			if(x<=0){driver.findElement(By.cssSelector(xpath)).sendKeys(Keys.ENTER);System.out.println(character);}
+				
 			
 			
 			
@@ -335,12 +341,14 @@ public class tests {
 				
 				
 				succesful=false;
-				result=result+"<p>Character ==>" + (char)Integer.parseInt(charstouse[x]) +"<== has failed validation on TEST " + testid +"</p>";
-				System.out.println((char)Integer.parseInt(charstouse[x])+" Failed to verify");
+				result=result+"<p>Character ==>" + (char)Integer.parseInt(charstouse[x]) +"<== has failed validation on TEST " + testid +" Char Code=" + charstouse[x]+"</p>";
+				//System.out.println((char)Integer.parseInt(charstouse[x])+" Failed to verify");
 				
 			}
 			
-					
+			if (x==charstouse.length-1){driver.findElement(By.cssSelector(xpath)).clear();
+			driver.findElement(By.cssSelector(xpath)).sendKeys("aaa");}
+			
 		}
 		
 		if(succesful){
@@ -510,7 +518,7 @@ public class tests {
 				try{
 	    		
 	    			
-	    			
+				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    		driver.findElement(By.cssSelector(link[z])).click();
 	    		//String linkurl = clicklink.getAttribute("href");
 	    		//linkurl=linkurl.replace("http://","https://4646:4646@");
@@ -521,7 +529,8 @@ public class tests {
 	    		
 	    		
 	    		System.out.println("Register Clicked");
-	    		find=1;
+	    		
+	    		
 	    		//Thread.sleep(500);
 	    		//sendkeys();
 	    			    		
@@ -529,8 +538,9 @@ public class tests {
 	    			System.out.println(e);
 	    			success=false;
 	    		}
-	    		
-	    		if (success){
+				if(driver.getCurrentUrl().toString().contains("registration")){
+					find=1;	
+				if (success){
 	    		//List<WebElement> emailerror = driver.findElements(By.xpath("//div[@id='registration_colA']/div[@id='regerrors'][1]"));
 	    		
 	    		//String genmail="Daniel@hh.com";
@@ -540,6 +550,7 @@ public class tests {
 	    		System.out.println("Sigue");
 	    		System.out.println(driver.getCurrentUrl().toString());
 	    		String txtxpath;
+	    		
 	    		
 	    		stat2.clearBatch();
 	    		l1rs2=stat2.executeQuery(" select testid from batch where batchid='"+ batchid +"'");
@@ -581,6 +592,7 @@ public class tests {
 	    		driver.findElement(By.cssSelector(email)).clear(); 
 	    		driver.findElement(By.cssSelector(email)).sendKeys(genmail);
 	    		System.out.println("email");
+	    		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	    		//while(driver.findElement(By.xpath("//div[@id='registration_colA']/div[@id='regerrors'][1]")).isDisplayed()){ //Check if the e-mail is already registered
 	    		
 	    		    			
@@ -622,12 +634,15 @@ public class tests {
 	    		//yeardrop.selectByVisibleText("1977");
 	    		yeardrop.selectByIndex(10);
 	    		
+	    		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    		driver.findElement(By.cssSelector(next)).click();
 	    		
+	    		Thread.sleep(1000);
 	    		String genlogin="mrt"+timesta;
 	    		//genlogin="okbingo7";
 	    		driver.findElement(By.cssSelector(login)).clear(); 
 	    		driver.findElement(By.cssSelector(login)).sendKeys(genlogin);
+	    		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	    		
 	    		driver.findElement(By.cssSelector(password)).clear(); 
 	    		//driver.findElement(by.cssSelector(password)).sendKeys("111111");
@@ -677,15 +692,19 @@ public class tests {
 	    		}
 	    		
 	    		
+	    		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    		int screenpresent=0;
 	    		try{
 	    			String screenname=genlogin.replace("mrt", "");
 	    			
 	    			driver.findElement(By.xpath(screen)).clear(); 
 		    		driver.findElement(By.xpath(screen)).sendKeys(screenname); //Handle Screen name
 		    		driver.findElement(By.xpath(enterbutton)).click();
+		    		screenpresent=1;
 	    		}catch (Exception e){
 	    			
 	    			System.out.println("No screen name required");
+	    			
 	    		}
 	    		
 	    		
@@ -699,6 +718,13 @@ public class tests {
     				System.out.println("User " + genlogin + " with email "+ genmail + " succesfully registered as level 1 user");
     				
     				String screenshot = "screenshots/screenshot" + timesta + ".png";
+    				
+    				if(screenpresent==1){
+    				while(driver.findElement(By.xpath(screen)).isDisplayed()){
+    					
+    					//System.out.println("Waiting for screenshot");
+    					
+    				}}
     				
     				try {
     	                
@@ -723,6 +749,7 @@ public class tests {
     			}
 	    		
 	    		
+	    		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	    		//driver.findElement(By.xpath(month)).selectByVisibleText("jun");
 	    		
 	    		//driver.findElement(By.xpath(year)).selectByVisibleText("1977");
@@ -733,10 +760,10 @@ public class tests {
 
 	    		
 	    	}
-				}}
+				break;	}}
 		//driver.close();
 		//driver.quit();
-			}z=z+1;
+				}}z=z+1;
 	    }while(z!=count);
 //	}
 	
