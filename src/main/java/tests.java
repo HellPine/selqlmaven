@@ -323,13 +323,13 @@ public class tests {
 		//System.out.println(xpath+"    "+invchars+"    "+testid);
 		for(int x=0;x<charstouse.length;x++){
 			
-			System.out.println("Begin");
+			//System.out.println("Begin");
 			character="aaa";
 			character=character+(char)Integer.parseInt(charstouse[x]);
-			System.out.println(character);
+			//System.out.println(character);
 			driver.findElement(By.cssSelector(xpath)).clear();
 			//driver.findElement(By.cssSelector(xpath)).sendKeys("aaa");
-			System.out.println(character);
+			//System.out.println(character);
 			driver.findElement(By.cssSelector(xpath)).sendKeys(character);
 			//System.out.println(character);
 			if(x<=0){driver.findElement(By.cssSelector(xpath)).sendKeys(Keys.ENTER);System.out.println(character);}
