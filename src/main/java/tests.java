@@ -720,9 +720,9 @@ public class tests {
     				String screenshot = "screenshots/screenshot" + timesta + ".png";
     				
     				if(screenpresent==1){
-    				while(driver.findElement(By.xpath(screen)).isDisplayed()){
+    				for(int i=0;i==1000;i++){
     					
-    					System.out.println("Waiting for screenshot");
+    					i=i=1;
     					
     				}}
     				
