@@ -722,7 +722,7 @@ public class tests {
     				if(screenpresent==1){
     				while(driver.findElement(By.xpath(screen)).isDisplayed()){
     					
-    					//System.out.println("Waiting for screenshot");
+    					System.out.println("Waiting for screenshot");
     					
     				}}
     				
