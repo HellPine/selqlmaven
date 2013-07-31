@@ -756,7 +756,7 @@ public class tests {
     			}
 	    		
 	    		
-	    		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	    		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	    		//driver.findElement(By.xpath(month)).selectByVisibleText("jun");
 	    		
 	    		//driver.findElement(By.xpath(year)).selectByVisibleText("1977");
