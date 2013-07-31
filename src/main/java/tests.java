@@ -518,7 +518,7 @@ public class tests {
 				try{
 	    		
 	    			
-				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	    		driver.findElement(By.cssSelector(link[z])).click();
 	    		//String linkurl = clicklink.getAttribute("href");
 	    		//linkurl=linkurl.replace("http://","https://4646:4646@");
