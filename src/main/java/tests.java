@@ -155,6 +155,7 @@ public class tests {
 		 //profile.addExtension("autoauth-2.1-fx+fn.xpi");
 		 //driver = new FirefoxDriver(profile);
 		 driver = new FirefoxDriver();
+		 driver.manage().deleteAllCookies();
 		
 		//FirefoxProfile ffprofile = new FirefoxProfile("c:\");
 		//ffprofile.setPreference("network.automatic-ntlm-auth.trusted-uris", "stminver-demo.com");
@@ -680,22 +681,30 @@ public class tests {
 	    		
 	    		driver.findElement(By.cssSelector(fun)).click();
 	    		
+	    		Thread.sleep(1000);
+	    		
 	    		
 	    		String enterbutton="/html/body/div[@id='nicknameDialog']/form[@id='nicknameform']/p[@id='nicknameform_txt']/input[@id='nicknameform_bt']";
 	    		
-	    		try{
+	    		//try{
 	    			
-	    			driver.findElement(By.xpath(enterbutton)).click(); //handle if a message appears vefore screen name
-	    		}catch (Exception e){
+	    			//driver.findElement(By.xpath(enterbutton)).click(); //handle if a message appears vefore screen name
+	    		//}catch (Exception e){
 	    			
-	    			System.out.println(e);
-	    		}
+	    			//System.out.println(e);
+	    		//}
 	    		
 	    		
 	    		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    		int screenpresent=0;
+	    		
+	    		
+	    		
 	    		try{
-	    			String screenname=genlogin.replace("mrt", "");
+	    			
+	    			
+	    			//driver.switchTo().alert().dismiss();
+	    	    	String screenname=genlogin.replace("mrt", "");
 	    			
 	    			driver.findElement(By.xpath(screen)).clear(); 
 		    		driver.findElement(By.xpath(screen)).sendKeys(screenname); //Handle Screen name
@@ -704,6 +713,7 @@ public class tests {
 	    		}catch (NoSuchElementException e){
 	    			
 	    			System.out.println("No screen name required");
+	    			screenpresent=0;
 	    			
 	    		}
 	    		
@@ -721,13 +731,9 @@ public class tests {
     				
     				while(screenpresent==1){
     				
-    					try{
     						
-    						if(driver.findElement(By.xpath(screen)).isDisplayed()){ 
-    						screenpresent=1;}else{screenpresent=0;}
-    						
-    					}catch(NoSuchElementException e1){
-    						
+    					if(driver.findElement(By.xpath(screen)).isDisplayed()){ 
+    						screenpresent=1;}else{    						
     						screenpresent=0;
     					}
     					
