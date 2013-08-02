@@ -152,10 +152,10 @@ public class tests {
 		
 		baseUrl=(url);
 		 //FirefoxBinary binary = new FirefoxBinary();  
-		 File firefoxProfileFolder = new 
-		 File("profile");
-		 FirefoxProfile profile = new FirefoxProfile(firefoxProfileFolder);
-		 profile.setAcceptUntrustedCertificates(true);
+		 //File firefoxProfileFolder = new 
+		 //File("profile");
+		 //FirefoxProfile profile = new FirefoxProfile(firefoxProfileFolder);
+		 //profile.setAcceptUntrustedCertificates(true);
 		 //profile.addExtension("autoauth-2.1-fx+fn.xpi");
 		 //driver = new FirefoxDriver(profile);
 		 driver = new FirefoxDriver();
