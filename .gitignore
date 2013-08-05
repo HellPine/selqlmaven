@@ -8,7 +8,6 @@
 bin/
 tmp/
 reports/
-target/
 screenshots/
 *.tmp
 *.bak
