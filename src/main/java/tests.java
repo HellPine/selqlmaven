@@ -98,6 +98,12 @@ public class tests {
 		String tkind;
 		String tid;
 		timesta=timesta%1000000000;
+		File folder=new File("target/reports");
+		File folder2=new File("target/screenshots");
+		
+		if(!folder.exists()){folder.mkdirs();}
+		if(!folder2.exists()){folder2.mkdirs();}
+		
 		File file = new File("target/reports/"+timesta+".html");
 		File file2=new File("target/reports/result.html");
 		file.delete();
@@ -840,7 +846,7 @@ public class tests {
 			success=false;
 		}
 		
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		
 		if(driver.getPageSource().contains(logname)){
 			
@@ -856,6 +862,8 @@ public class tests {
 		}else{
 			
 			System.out.println("UserName not showed in deposit page");
+			success=false;
+			result=result+"<p> User Name Not displayed in deposit page</p>";
 		}}
 		
 		if(what.equals("checkonly")){
