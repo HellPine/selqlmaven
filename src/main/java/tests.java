@@ -756,7 +756,11 @@ public class tests {
 				
 				//String source=driver.getPageSource().toLowerCase();
 				//System.out.println(source);
+				try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(merchant)));
+				}catch(Exception e){
+	    			
+	    		}
 				
 				if(driver.findElement(By.xpath(merchant)).isDisplayed() && driver.findElement(By.xpath(merchant)).getText().toLowerCase().contains("merchant name")){
 					
@@ -857,7 +861,11 @@ public class tests {
 					System.out.println("-----------------------------------");
 					
 					//Thread.sleep(1000);
-					wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("BODY")));					
+					try{
+					wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("BODY")));
+					}catch(Exception e){
+		    			
+		    		}
 					//System.out.println(driver.getCurrentUrl().toString());
 					if(driver.getCurrentUrl().toString().contains("lobby")){
 						
@@ -1021,7 +1029,11 @@ public class tests {
 		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(phonecss)));
+		}catch(Exception e){
+			
+		}
 		try{
 			
 			driver.findElement(By.cssSelector(phonecss)).clear();
@@ -1145,7 +1157,11 @@ public class tests {
 			success=false;
 		}
 		
+		try{
 		wait.until(ExpectedConditions.textToBePresentInElement(By.cssSelector("BODY"),logname));
+		}catch(Exception e){
+			
+		}
 		
 		if(driver.getPageSource().contains(logname)){
 			
@@ -1712,8 +1728,11 @@ public class tests {
 	    			
 	    		
 	    		
-	    		
+	    		try{
 	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(email)));
+	    		}catch(Exception e){
+	    			
+	    		}
 	    		String genmail="QAautomation"+timesta+"@gtech.com";
 	    		driver.findElement(By.cssSelector(email)).clear(); 
 	    		driver.findElement(By.cssSelector(email)).sendKeys(genmail);
@@ -1766,8 +1785,11 @@ public class tests {
 	    		System.out.println("L1 Step1 Completed");
 	    		System.out.println("-----------------------------------");
 	    		
-	    		
+	    		try{
 	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(login)));
+	    		}catch(Exception e){
+	    			
+	    		}
 	    		String genlogin="mrt"+timesta;
 	    		//genlogin="okbingo7";
 	    		Thread.sleep(1000);
