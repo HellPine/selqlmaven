@@ -455,6 +455,7 @@ public class tests {
 					result2=result2+"<td>FAILED</td></tr>";
 					System.out.println("Withdrawl Test Failed");
 					System.out.println("-----------------------------------");
+					overall="FAILED";
 				}
 				
 	}
@@ -930,6 +931,7 @@ public class tests {
 			ibnwithdrawl(paymentcss,logname);
 		}else{
 			result2=result2+"<td>FAILED</td></tr>";
+			overall="FAILED";
 		}
 	}
 	
@@ -1676,6 +1678,7 @@ public class tests {
 	    		}catch(Exception e){
 	    			System.out.println(e);
 	    			success=1;
+	    			
 	    		}
 				if(driver.getCurrentUrl().toString().contains("registration")){
 					find=1;	
