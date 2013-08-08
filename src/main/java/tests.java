@@ -109,6 +109,7 @@ public class tests {
 		
 	public void readdatabase() throws Exception {
 		
+		String buildurl=String.valueOf(System.getProperty("buildurl"));
 		String tkind;
 		String tid;
 		timesta=timesta%1000000000;
@@ -309,7 +310,17 @@ public class tests {
 		//Desktop.getDesktop().open(file);
 		//Desktop.getDesktop().open(file2);
 		System.out.println("-----------------------------------");
-		System.out.println("All Tests Finished, please refer to email to see the report");
+		
+		if(!buildurl.equals(NULL)){
+		
+			System.out.println("All Tests Finished, please refer to " + buildurl +"/artifact/target/reports/result.html to see the report");
+		
+		}else{
+		
+			System.out.println("All Tests Finished, please refer to email to see the report");
+			
+		}
+		
 		System.out.println("-----------------------------------");
 
 		driver.close();
