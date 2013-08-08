@@ -568,7 +568,7 @@ public class tests {
 		
 				
 		System.out.println("Starting IBN Deposit");
-		System.out.println("Payment Method Selected====>"+ paymentcss);
+		//System.out.println("Payment Method Selected====>"+ paymentcss);
 		System.out.println("-----------------------------------");
 		
 		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
