@@ -465,12 +465,13 @@ public class tests {
 		System.out.println("Checking ====>"+payment+"<===== communication");
 		System.out.println("-----------------------------------");
 		
-		String mb1,mb2,uk1,uk2,nt1,nt2,nt3,button;
+		String mb1,mb2,uk1,uk2,uke,nt1,nt2,nt3,button;
 		
 		mb1="html body div#wrapper div#full_col div#main_col div#contentPanel div.innerpanelContainer div.innerpanel div#cmsPayContainer div#submitTrack form#moneybookerdepositform fieldset div input#pay_from_email.cmsPayInputField";
 		mb2="html body div#wrapper div#full_col div#main_col div#contentPanel div.innerpanelContainer div.innerpanel div#cmsPayContainer div#submitTrack form#moneybookerdepositform fieldset div input#amount.cmsPayInputField";
 		uk1="input[name='voucherNumber']";
 		uk2="input[name='voucherValue']";
+		uke="//fieldset/div[@id='regerrors']/span";
 		nt1="input[name='accountId']";
 		nt2="input[name='secureId']";
 		nt3="input[name='amount']";
@@ -478,6 +479,84 @@ public class tests {
 		String Loadmask="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/div[@class='loadmask-msg']/div";
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		if(payment.equals("ukash")){
+			
+			try{
+				driver.findElement(By.cssSelector(uk1)).clear();
+				driver.findElement(By.cssSelector(uk1)).sendKeys("6337180355029426806");
+				driver.findElement(By.cssSelector(uk2)).clear();
+				driver.findElement(By.cssSelector(uk2)).sendKeys("200");
+				driver.findElement(By.cssSelector(button)).click();
+				
+										
+					try{
+			
+						while(driver.findElement(By.xpath(Loadmask)).isDisplayed()){
+						
+							System.out.println("Waiting for server response");
+							//Thread.sleep(1000);
+						}	
+					
+					}catch(NoSuchElementException e1){
+						
+					}
+					
+					try{
+						
+						
+						while(!driver.findElement(By.xpath(uke)).isDisplayed()){
+							System.out.println("Waiting for error message");
+							//Thread.sleep(1000);
+							
+						}
+						//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
+					
+					}catch(NoSuchElementException e1){
+						
+						
+					}
+					//System.out.println("Continue");
+					try{
+					
+						String response= driver.findElement(By.xpath(uke)).getText();
+						//System.out.println(response);
+				
+						if(response.contains("Technical Mistake. Please get in contact with Ukash Merchant Support")){
+						
+							//System.out.println("Neteller Commuication Confirmed");
+							result=result+"<p>UKASH Commuication Confirmed<p>";
+							System.out.println("-----------------------------------");
+											
+						}else{
+						
+							System.out.println("UKASH Commuication Failed");
+							System.out.println("-----------------------------------");
+							result=result+"<p>UKASH Commuication Failed<p>";
+							success=false;
+						
+						}
+				
+					}catch(NoSuchElementException e1){
+					
+						System.out.println("Error Message not found");
+						System.out.println("-----------------------------------");
+						success=false;
+					
+					}
+					
+			}catch(NoSuchElementException e1){
+				
+				System.out.println("Something wrong happens in the check");
+				System.out.println("-----------------------------------");
+				success=false;
+			}
+				
+		
+			
+	
+			
+		}
 		
 		if(payment.equals("neteller")){	
 			
@@ -1781,9 +1860,18 @@ public class tests {
 	    			
 	    			try{
 		    			
-		    			
+		    			int p=0;
 	    				//driver.switchTo().alert().dismiss();
-	    				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(screen)));
+	    				//wait.until(ExpectedConditions.elementToBeClickable(By.xpath(enterbutton)));
+	    				try{
+	    					
+	    					while(!driver.findElement(By.xpath(screen)).isDisplayed()){
+	    						
+	    						p=1;
+	    					}
+	    				}catch(Exception e){
+	    					
+	    				}
 	    				String screenname=genlogin.replace("mrt", "");
 	    			
 	    				driver.findElement(By.xpath(screen)).clear(); 
@@ -1840,8 +1928,18 @@ public class tests {
 	    			}
 	    			
 	    			try{
-	    			
-	    			
+	    				    				
+	    				int p=0;
+	    				
+	    				try{
+	    					
+	    					while(!driver.findElement(By.xpath(screen)).isDisplayed()){
+	    						
+	    						p=1;
+	    					}
+	    				}catch(Exception e){
+	    					
+	    				}
 	    				//driver.switchTo().alert().dismiss();
 	    				String screenname=genlogin.replace("mrt", "");
 	    				
