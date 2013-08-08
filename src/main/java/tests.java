@@ -300,8 +300,11 @@ public class tests {
     	write2.write(result2);
     	write2.write("</tr></table>");
     	//String currentDir = System.getProperty("user.dir");
-    	write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
-    	
+    	if(!buildurl.equals(null)){
+    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"/artifact/target/reports/"+timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
+    	}else{
+    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
+    	}
     	write.close();
 		write2.close();
 		ls.close();
