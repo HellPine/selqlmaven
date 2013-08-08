@@ -311,7 +311,7 @@ public class tests {
 		//Desktop.getDesktop().open(file2);
 		System.out.println("-----------------------------------");
 		
-		if(!buildurl.equals(NULL)){
+		if(!buildurl.equals(null)){
 		
 			System.out.println("All Tests Finished, please refer to " + buildurl +"/artifact/target/reports/result.html to see the report");
 		
