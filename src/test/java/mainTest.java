@@ -25,6 +25,8 @@ import javax.swing.*;
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTML.Tag;
 import java.net.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import main.java.tests;
 import main.java.juega1;
@@ -82,7 +84,7 @@ public String hola(){
 				String[] options=new String[1];
 				options[0]="nothing";
 				test.setUp(options);
-			
+				
 		}
 		
 		
@@ -93,7 +95,12 @@ public String hola(){
 		//call to tests class and run it.
 	}
 		
-	
+	 @After
+	 public void tearDown() throws Exception {
+		 main.java.tests test = new main.java.tests();
+		 System.out.println("After en main");
+		 tests.driver.quit();
+	 }
 
 }
 

@@ -66,7 +66,7 @@ public class tests {
   public static String result="";
   public static String overall="PASSED";
   public static String result2="";
-  private WebDriver driver;
+  public static WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
@@ -105,7 +105,8 @@ public class tests {
 	public int total=0;
 	public int failed=0;
 	
-	
+
+	@Test
 		
 	public void readdatabase() throws Exception {
 		
@@ -300,7 +301,7 @@ public class tests {
     	write2.write(result2);
     	write2.write("</tr></table>");
     	//String currentDir = System.getProperty("user.dir");
-    	if(!buildurl.equals(null)){
+    	if(!buildurl.equals("null")){
     		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"artifact/target/reports/"+timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
     	}else{
     		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
@@ -314,7 +315,7 @@ public class tests {
 		//Desktop.getDesktop().open(file2);
 		System.out.println("-----------------------------------");
 		
-		if(!buildurl.equals(null)){
+		if(!buildurl.equals("null")){
 		
 			System.out.println("All Tests Finished, please refer to " + buildurl +"artifact/target/reports/result.html to see the report");
 		
@@ -335,7 +336,7 @@ public class tests {
 		
 	//}
   
-	
+
 	public void ibnwithdrawl(String paymentcss,String logname) throws Exception{
 		
 		
@@ -1509,6 +1510,7 @@ public class tests {
 		}
 	}
 	
+	@Test
 	public void l1test(String testid) throws Exception{
 		
 		
@@ -1762,7 +1764,7 @@ public class tests {
 	    		}
 	    		String genmail="QAautomation"+timesta+"@gtech.com";
 	    		driver.findElement(By.cssSelector(email)).clear(); 
-	    		driver.findElement(By.cssSelector(email)).sendKeys(genmail);
+	    		driver.findElement(By.cssSelector(email+"d")).sendKeys(genmail);
 	    		//System.out.println("email");
 	    		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	    		//while(driver.findElement(By.xpath("//div[@id='registration_colA']/div[@id='regerrors'][1]")).isDisplayed()){ //Check if the e-mail is already registered
@@ -2469,10 +2471,12 @@ public class tests {
   
 	
 	
-  @Test
+  
    
    public void test() throws Exception {
 	  
+	  driver.quit();
+	  	  
   }
 	  	  
 	  
