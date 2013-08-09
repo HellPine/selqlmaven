@@ -116,13 +116,15 @@ public String hola(){
 			FileWriter write2 = new FileWriter(file2,true);
 			System.out.println("Generating Reports");
 		    System.out.println("-----------------------------------");
-			write2.write("<p> OVERALL STATUS= "+ test.overall +" <p>");
+			
 	    	write2.write("<p><p><p><p><table border="+(char)34+"1"+(char)34+"><tr><th>TEST</th><th>STATUS</th></tr>");
 	    	
 	    	write.write(test.result);
 	    	write2.write(test.result2);
 	    	
 	    	write2.write("</tr></table>");
+	    	
+	    	write2.write("<p> OVERALL STATUS= "+ test.overall +" <p>");
 	    	
 	    	if(!buildurl.equals("null")){
 	    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"artifact/target/reports/"+test.timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
