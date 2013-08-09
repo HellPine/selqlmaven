@@ -1182,6 +1182,13 @@ public class tests {
 		try{
 			
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(paymentcss)));
+			
+		}catch(Exception e){
+			
+		}
+	
+		try{
+			
 			driver.findElement(By.cssSelector(paymentcss)).click();
 						
 		}catch(NoSuchElementException e1){
@@ -1214,8 +1221,24 @@ public class tests {
 			System.out.println("UserName not showed in deposit page");
 			System.out.println("-----------------------------------");
 			success=1;
+			overall="FAILED";
 			result=result+"<p> User Name Not displayed in deposit page</p>";
-		}}
+			
+		}
+		
+		if(success==1){
+			
+			System.out.println("-----------------------------------");
+			System.out.println("L2 Step1 Failed");
+			System.out.println("-----------------------------------");
+			
+			result=result+"<p>L2 Step1 FAILED";
+			result2=result2+"<td>FAILED</td></tr>";
+			overall="FAILED";
+			}
+		
+		
+		}
 		
 		if(what.equals("checkonly") && success==0){
 			
@@ -1335,7 +1358,7 @@ public class tests {
 						//	result2=result2+"<td>FAILED</td></tr>";
 							overall="FAILED";
 							success=1;
-							result=result+"<p> Depposti button failed in "+chktext+" payment method</p>";
+							result=result+"<p> Depossit button failed in "+chktext+" payment method</p>";
 						}
 				
 					}else{
@@ -1427,6 +1450,7 @@ public class tests {
 							System.out.println("-----------------------------------");
 							result=result+"<p> ICON Not displayed for "+chktext+" payment method</p>";
 						}
+												
 					}
 			
 				}catch(NoSuchElementException e1){
@@ -1437,6 +1461,16 @@ public class tests {
 					overall="FAILED";
 					success=1;
 					result=result+"<p> Somethin went wrong in "+chktext+" payment method</p>";
+					if(success==1){
+						
+						System.out.println("-----------------------------------");
+						System.out.println("L2 Step1 Failed");
+						System.out.println("-----------------------------------");
+						
+						result=result+"<p>L2 Step1 FAILED";
+						result2=result2+"<td>FAILED</td></tr>";
+						overall="FAILED";
+						}
 				}
 		
 			driver.navigate().back();
