@@ -110,19 +110,19 @@ public class tests {
 		
 	public void readdatabase() throws Exception {
 		
-		String buildurl=String.valueOf(System.getProperty("buildurl"));
+		
 		String tkind;
 		String tid;
 		timesta=timesta%1000000000;
-		File folder=new File("target/reports");
-		File folder2=new File("target/screenshots");
+		//File folder=new File("target/reports");
+		//File folder2=new File("target/screenshots");
 		
-		if(!folder.exists()){folder.mkdirs();}
-		if(!folder2.exists()){folder2.mkdirs();}
+		//if(!folder.exists()){folder.mkdirs();}
+		//if(!folder2.exists()){folder2.mkdirs();}
 		
-		File file = new File("target/reports/"+timesta+".html");
-		File file2=new File("target/reports/result.html");
-		file.delete();
+		//File file = new File("target/reports/"+timesta+".html");
+		//File file2=new File("target/reports/result.html");
+		//file.delete();
 		//file2.delete();
 		//System.out.println(new Timestamp(date.getTime()));
 		
@@ -246,11 +246,11 @@ public class tests {
 		s=0;
 		rs.beforeFirst();
 		
-		FileWriter write = new FileWriter(file,true);
-		FileWriter write2 = new FileWriter(file2,true);
+		//FileWriter write = new FileWriter(file,true);
+		//FileWriter write2 = new FileWriter(file2,true);
 		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p></FONT></strong></p>";
-		write.write(header);
-		write2.write(header);
+		result=result+header;
+		result2=result2+header;
 		System.out.println("Adquiring tests from batch");
 	    System.out.println("-----------------------------------");
 		
@@ -292,22 +292,22 @@ public class tests {
     	//write.write("<p>"+result+"<p>");
     	//write.write(footer);
     	//write.write("<p> OVERALL STATUS= "+ overall +" <p>");
-		System.out.println("Generating Reports");
-	    System.out.println("-----------------------------------");
-		write2.write("<p> OVERALL STATUS= "+ overall +" <p>");
-    	write2.write("<p><p><p><p><table border="+(char)34+"1"+(char)34+"><tr><th>TEST</th><th>STATUS</th></tr>");
+		//System.out.println("Generating Reports");
+	    //System.out.println("-----------------------------------");
+		//result=result+"<p> OVERALL STATUS= "+ overall +" <p>";
+    	//result2=result2+"<p><p><p><p><table border="+(char)34+"1"+(char)34+"><tr><th>TEST</th><th>STATUS</th></tr>";
     	//write.write((<p><p><p><p><<table border="1"><tr><th>TEST</th><th>STATUS</th></tr>);
-		write.write(result);
-    	write2.write(result2);
-    	write2.write("</tr></table>");
+		//write.write(result);
+    	//write2.write(result2);
+    	//write2.write("</tr></table>");
     	//String currentDir = System.getProperty("user.dir");
-    	if(!buildurl.equals("null")){
-    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"artifact/target/reports/"+timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
-    	}else{
-    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
-    	}
-    	write.close();
-		write2.close();
+    	//if(!buildurl.equals("null")){
+    		//result2=result2+"<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"artifact/target/reports/"+timesta + ".html"+(char)34+"> LINK </a> for a full report<p>";
+    	//}else{
+    		//result2=result2+"<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ timesta + ".html"+(char)34+"> LINK </a> for a full report<p>";
+    	//}
+    //	write.close();
+		//write2.close();
 		ls.close();
 		rs.close();
 		con.close();
@@ -315,17 +315,17 @@ public class tests {
 		//Desktop.getDesktop().open(file2);
 		System.out.println("-----------------------------------");
 		
-		if(!buildurl.equals("null")){
+		//if(!buildurl.equals("null")){
 		
-			System.out.println("All Tests Finished, please refer to " + buildurl +"artifact/target/reports/result.html to see the report");
+			//System.out.println("All Tests Finished, please refer to " + buildurl +"artifact/target/reports/result.html to see the report");
 		
-		}else{
+		//}else{
 		
-			System.out.println("All Tests Finished, please refer to email to see the report");
+			//System.out.println("All Tests Finished, please refer to email to see the report");
 			
-		}
+		//}
 		
-		System.out.println("-----------------------------------");
+		//System.out.println("-----------------------------------");
 
 		driver.close();
 		driver.quit();
@@ -1166,7 +1166,18 @@ public class tests {
 		System.out.println("L2 Step1 Completed");
 		System.out.println("-----------------------------------");
 		
-		if (what.equals("YES")){
+		if(success==1){
+		
+		System.out.println("-----------------------------------");
+		System.out.println("L2 Step1 Failed");
+		System.out.println("-----------------------------------");
+		
+		result=result+"<p>L2 Step1 FAILED";
+		result2=result2+"<td>FAILED</td></tr>";
+		
+		}
+				
+		if (what.equals("YES") && success==0){
 		
 		try{
 			
@@ -1206,7 +1217,7 @@ public class tests {
 			result=result+"<p> User Name Not displayed in deposit page</p>";
 		}}
 		
-		if(what.equals("checkonly")){
+		if(what.equals("checkonly") && success==0){
 			
 			
 			//Start payment methods present and functional
@@ -1663,6 +1674,7 @@ public class tests {
 				System.out.println("-----------------------------------");
 				result2=result2+"<tr><td>"+testid+"</td>";
 				result2=result2+"<td>FAILED</td></tr>";
+				result=result+"<p>FAILED<p>";
 				overall="FAILED";
 	    		}
 				//result=(result + "<p><FONT COLOR="+(char)34+"red"+(char)34+">"+ss.getString("tofind")+" Not Finded</FONT><p>");} 
@@ -1760,11 +1772,17 @@ public class tests {
 	    		try{
 	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(email)));
 	    		}catch(Exception e){
-	    			
+	    			success=1;
 	    		}
 	    		String genmail="QAautomation"+timesta+"@gtech.com";
+	    		try{
 	    		driver.findElement(By.cssSelector(email)).clear(); 
-	    		driver.findElement(By.cssSelector(email+"d")).sendKeys(genmail);
+	    		driver.findElement(By.cssSelector(email)).sendKeys(genmail);
+	    		}catch(Exception e){
+	    		
+	    			success=1;		
+	    			
+	    		}
 	    		//System.out.println("email");
 	    		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	    		//while(driver.findElement(By.xpath("//div[@id='registration_colA']/div[@id='regerrors'][1]")).isDisplayed()){ //Check if the e-mail is already registered
@@ -1779,53 +1797,91 @@ public class tests {
 	    			//emailerror = driver.findElements(By.xpath("//div[@id='registration_colA']/div[@id='regerrors'][1]"));
 	    			//System.out.println("Email already registered");
 	    		//}
-	    		
+	    		try{
 	    		driver.findElement(By.cssSelector(fname)).clear(); 
 	    		driver.findElement(By.cssSelector(fname)).sendKeys("Daniel");
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
 	    	    //driver.findElement(By.cssSelector("input[name=\'newPlayer.firstName\']")).clear();
 	    	    //driver.findElement(By.cssSelector("input[name=\'newPlayer.firstName\']")).sendKeys("Daniel");
 	    		//System.out.println("FName");
+	    		try{
 	    		driver.findElement(By.cssSelector(lname)).clear(); 
 	    		driver.findElement(By.cssSelector(lname)).sendKeys("Prado");
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
 	    		//System.out.println("LName");
 	    		
 	    		
 	    		
 	    		//driver.findElement(By.xpath(day))
+	    		try{
 	    		Select daydrop = new Select(driver.findElement(By.cssSelector(day)));
-  		
 	    		//daydrop.deselectAll();
 	    		//daydrop.selectByVisibleText("18");
 	    		daydrop.selectByIndex(18);
 	    		//System.out.println("Day");
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
+	    		try{
 	    		Select monthdrop = new Select(driver.findElement(By.cssSelector(month)));
 	    		//daydrop.deselectAll();
 	    		//monthdrop.selectByVisibleText("Jun");
 	    		monthdrop.selectByIndex(6);
 	    		//System.out.println("Month");
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
+	    		try{
 	    		Select yeardrop = new Select(driver.findElement(By.cssSelector(year)));
 	    		//daydrop.deselectAll();
 	    		//yeardrop.selectByVisibleText("1977");
 	    		yeardrop.selectByIndex(10);
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
 	    		
 	    		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    		try{
 	    		driver.findElement(By.cssSelector(next)).click();
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
 
+	    		if(success==0){
 	    		System.out.println("L1 Step1 Completed");
 	    		System.out.println("-----------------------------------");
+	    		}else{
+	    			
+	    			System.out.println("Something failed in L1 Step1");
+		    		System.out.println("-----------------------------------");
+		    		result2=result2+"<tr><td>"+testid+"</td>";
+    				result2=result2+"<td>FAILED</td></tr>";
+    				result=result+"<p>L1 Step 1 FAILED<p>";
+    				overall="FAILED";
+    				
+	    		}
 	    		
 	    		try{
 	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(login)));
 	    		}catch(Exception e){
-	    			
+	    			success=1;
 	    		}
 	    		String genlogin="mrt"+timesta;
 	    		//genlogin="okbingo7";
 	    		Thread.sleep(1000);
+	    		try{
 	    		driver.findElement(By.cssSelector(login)).clear(); 
 	    		driver.findElement(By.cssSelector(login)).sendKeys(genlogin);
 	    		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
 	    		
+	    		try{
 	    		driver.findElement(By.cssSelector(password)).clear(); 
 	    		//driver.findElement(by.cssSelector(password)).sendKeys("111111");
 	    		
@@ -1848,6 +1904,9 @@ public class tests {
 	    		
 	    		driver.findElement(By.cssSelector(password)).clear(); 
 	    		driver.findElement(By.cssSelector(password)).sendKeys("111111");
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
 	    		
 	    		try{ //In case that the site have a Retype Password
 	    			
@@ -1857,8 +1916,12 @@ public class tests {
 	    			//System.out.println(e);
 	    		}
 	    		
+	    		try{
 	    		driver.findElement(By.cssSelector(eighteen)).click();
 	    		driver.findElement(By.cssSelector(accept)).click();
+	    		}catch(Exception e){
+	    			success=1;
+	    		}
 	    		
 	    		String l2test="";
 	    		String l2present="NO";
@@ -1897,9 +1960,21 @@ public class tests {
 	    		
 	    		if(l2present.equals("YES")||l2present.equals("checkonly")){
 	    			driver.findElement(By.cssSelector(realbutton)).click();
-	    			System.out.println("L1 Step2 Completed");
-		    		System.out.println("-----------------------------------");
-	    			Thread.sleep(1000);
+	    			if(success==0){
+	    				System.out.println("L1 Step2 Completed");
+	    				System.out.println("-----------------------------------");
+	    				Thread.sleep(1000);
+	    			}else{
+	    				
+	    				System.out.println("Something failed in L1 Step2");
+			    		System.out.println("-----------------------------------");
+			    		//result2=result2+"<tr><td>"+testid+"</td>";
+	    				//result2=result2+"<td>FAILED</td></tr>";
+	    				//result=result+"<p>L1 Step 2 FAILED<p>";
+	    				overall="FAILED";
+		    				
+	    			}
+	    			
 	    			
 	    			try{
 	    				
@@ -1937,19 +2012,36 @@ public class tests {
 	    			
 	    			}
 	    			
-	    			System.out.println("USER="+genlogin+"----"+"E-Mail="+genmail+"-------"+"Level=1-------Succesfully Registered");
-	    			System.out.println("-----------------------------------");
-	    			result=result+"<p>USER="+genlogin+"----"+"E-Mail="+genmail+"-------"+"Level=1<p>-------Succesfully Registered";
+	    			
     				//result=result+"<p> Click on the screenshot to see it larger <a href=../"+screenshot+"><img SRC=../"+screenshot+" width=100 height=100></a><p>";
     				result2=result2+"<tr><td>"+testid+"</td>";
+    				if(success==0){
     				result2=result2+"<td>PASS</td></tr>";
+    				System.out.println("USER="+genlogin+"----"+"E-Mail="+genmail+"-------"+"Level=1-------Succesfully Registered");
+	    			System.out.println("-----------------------------------");
+	    			result=result+"<p>USER="+genlogin+"----"+"E-Mail="+genmail+"-------"+"Level=1<p>-------Succesfully Registered";
 	    			ibnl2(genlogin,genmail,l2test);
+    				}else{
+    					result2=result2+"<td>FAILED</td></tr>";
+    					result=result+"<p>L1 Step 2 FAILED<p>";
+    					overall="FAILED";
+    				}
 	    			
 	    		}else{
 	    			
+	    			if(success==0){
 	    			System.out.println("L1 Step2 Completed");
 		    		System.out.println("-----------------------------------");
 	    			driver.findElement(By.cssSelector(fun)).click();
+	    			}else{
+	    				
+	    				System.out.println("Something Failed in L1 Step2");
+			    		System.out.println("-----------------------------------");
+	    				overall="FAILED";
+	    				result2=result2+"<td>FAILED</td></tr>";
+    					result=result+"<p>L1 Step 2 FAILED<p>";
+	    				
+	    			}
 				
 	    		
 	    		
@@ -2052,6 +2144,7 @@ public class tests {
     				result=result+"<p>Something Fails in L1 registration<p>";
     				result2=result2+"<tr><td>"+testid+"</td>";
     				result2=result2+"<td>FAILED</td></tr>";
+    				result=result+"<p>L1 Registration FAILED<p>";
     				overall="FAILED";
     			}}
 	    		

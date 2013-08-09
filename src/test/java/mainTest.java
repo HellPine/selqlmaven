@@ -97,8 +97,59 @@ public String hola(){
 		
 	 @After
 	 public void tearDown() throws Exception {
-		 main.java.tests test = new main.java.tests();
-		 System.out.println("After en main");
+		 	
+		 	main.java.tests test = new main.java.tests();
+		 	String buildurl=String.valueOf(System.getProperty("buildurl"));
+		 	
+		 
+		 	File folder=new File("target/reports");
+			File folder2=new File("target/screenshots");
+			
+			if(!folder.exists()){folder.mkdirs();}
+			if(!folder2.exists()){folder2.mkdirs();}
+			
+			File file = new File("target/reports/"+test.timesta+".html");
+			File file2=new File("target/reports/result.html");
+			file.delete();
+			
+			FileWriter write = new FileWriter(file,true);
+			FileWriter write2 = new FileWriter(file2,true);
+			System.out.println("Generating Reports");
+		    System.out.println("-----------------------------------");
+			write2.write("<p> OVERALL STATUS= "+ test.overall +" <p>");
+	    	write2.write("<p><p><p><p><table border="+(char)34+"1"+(char)34+"><tr><th>TEST</th><th>STATUS</th></tr>");
+	    	
+	    	write.write(test.result);
+	    	write2.write(test.result2);
+	    	
+	    	write2.write("</tr></table>");
+	    	
+	    	if(!buildurl.equals("null")){
+	    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"artifact/target/reports/"+test.timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
+	    	}else{
+	    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ test.timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
+	    	}
+	    	
+	    	if(!buildurl.equals("null")){
+	    		
+				System.out.println("All Tests Finished, please refer to " + buildurl +"artifact/target/reports/result.html to see the report");
+			
+			}else{
+			
+				System.out.println("All Tests Finished, please refer to email to see the report");
+				
+			}
+			
+	    	
+	    	
+			System.out.println("-----------------------------------");
+	    	
+	    		    	
+			write.close();
+			write2.close();
+						
+			
+			
 		 tests.driver.quit();
 	 }
 
