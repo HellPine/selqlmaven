@@ -1510,7 +1510,7 @@ public class tests {
 				System.out.println("Payment Checking Failed");
 				System.out.println("-----------------------------------");
 				
-				result2=result2+"<td>FAILED</td></tr>";
+				//result2=result2+"<td>FAILED</td></tr>";
 			}
 			
 		
