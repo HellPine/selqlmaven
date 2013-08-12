@@ -467,13 +467,13 @@ public class tests {
 				
 				if (success==0){
 					
-					result2=result2+"<td>PASS</td></tr>";
+					//result2=result2+"<td>PASS</td></tr>";
 					System.out.println("Withdrawl Test Passed");
 					System.out.println("-----------------------------------");
 					
 				}else{
 					
-					result2=result2+"<td>FAILED</td></tr>";
+					//result2=result2+"<td>FAILED</td></tr>";
 					System.out.println("Withdrawl Test Failed");
 					System.out.println("-----------------------------------");
 					overall="FAILED";
