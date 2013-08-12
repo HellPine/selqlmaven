@@ -1243,10 +1243,10 @@ public class tests {
 		if(success==1){
 			
 			System.out.println("-----------------------------------");
-			System.out.println("L2 Step1 Failed");
+			System.out.println("L2 Step2 Failed");
 			System.out.println("-----------------------------------");
 			
-			result=result+"<p>L2 Step1 FAILED";
+			result=result+"<p>L2 Step2 FAILED";
 			result2=result2+"<td>FAILED</td></tr>";
 			overall="FAILED";
 			}
@@ -1473,7 +1473,7 @@ public class tests {
 			
 				}catch(NoSuchElementException e1){
 				
-					System.out.println("Something went wrong");
+					System.out.println("Something went wrong in "+chktext+" payment method");
 					System.out.println("-----------------------------------");
 					//result2=result2+"<td>FAILED</td></tr>";
 					overall="FAILED";
@@ -1482,10 +1482,10 @@ public class tests {
 					if(success==1){
 						
 						System.out.println("-----------------------------------");
-						System.out.println("L2 Step1 Failed");
+						System.out.println("L2 Step2 Failed");
 						System.out.println("-----------------------------------");
 						
-						result=result+"<p>L2 Step1 FAILED";
+						result=result+"<p>L2 Step2 FAILED";
 						result2=result2+"<td>FAILED</td></tr>";
 						overall="FAILED";
 						}
