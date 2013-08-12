@@ -203,7 +203,7 @@ public class tests {
 		//ffprofile.setAcceptUntrustedCertificates(true);
 		//ffprofile.setAssumeUntrustedCertificateIssuer(false);
 		//driver = new FirefoxDriver(ffprofile);
-	    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    //driver.get(baseUrl);
 	    driver.navigate().to(baseUrl);
 	    try{ //Try to bypass company privacy policy
@@ -487,7 +487,7 @@ public class tests {
 		System.out.println("Checking ====>"+payment+"<===== communication");
 		System.out.println("-----------------------------------");
 		
-		String mb1,mb2,uk1,uk2,uke,nt1,nt2,nt3,button;
+		String mb1,mb2,uk1,uk2,uke,nt1,nt2,nt3,button,button2;
 		
 		mb1="html body div#wrapper div#full_col div#main_col div#contentPanel div.innerpanelContainer div.innerpanel div#cmsPayContainer div#submitTrack form#moneybookerdepositform fieldset div input#pay_from_email.cmsPayInputField";
 		mb2="html body div#wrapper div#full_col div#main_col div#contentPanel div.innerpanelContainer div.innerpanel div#cmsPayContainer div#submitTrack form#moneybookerdepositform fieldset div input#amount.cmsPayInputField";
@@ -498,6 +498,7 @@ public class tests {
 		nt2="input[name='secureId']";
 		nt3="input[name='amount']";
 		button="#submit > span";
+		button2="a#submit.btn";
 		String Loadmask="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/div[@class='loadmask-msg']/div";
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -509,8 +510,12 @@ public class tests {
 				driver.findElement(By.cssSelector(uk1)).sendKeys("6337180355029426806");
 				driver.findElement(By.cssSelector(uk2)).clear();
 				driver.findElement(By.cssSelector(uk2)).sendKeys("200");
-				driver.findElement(By.cssSelector(button)).click();
 				
+				try{
+					driver.findElement(By.cssSelector(button)).click();
+				}catch(Exception e){
+					driver.findElement(By.cssSelector(button2)).click();
+				}
 										
 					try{
 			
@@ -563,14 +568,16 @@ public class tests {
 					
 						System.out.println("Error Message not found");
 						System.out.println("-----------------------------------");
+						result=result+"<p>UKASH error message not found<p>";
 						success=1;
 					
 					}
 					
 			}catch(NoSuchElementException e1){
 				
-				System.out.println("Something wrong happens in the check");
+				System.out.println("Something wrong happens in UKASH check");
 				System.out.println("-----------------------------------");
+				result=result+"<p>Some Field/button not found while UKASH Commuication check<p>";
 				success=1;
 			}
 				
@@ -591,7 +598,12 @@ public class tests {
 					driver.findElement(By.cssSelector(nt2)).sendKeys("123456");
 					driver.findElement(By.cssSelector(nt3)).clear();
 					driver.findElement(By.cssSelector(nt3)).sendKeys("10");
-					driver.findElement(By.cssSelector(button)).click();
+					
+					try{
+						driver.findElement(By.cssSelector(button)).click();
+					}catch(Exception e){
+						driver.findElement(By.cssSelector(button2)).click();
+					}
 					
 											
 						try{
@@ -645,6 +657,7 @@ public class tests {
 						
 							System.out.println("Error Message not found");
 							System.out.println("-----------------------------------");
+							result=result+"<p>Neteller error message not found<p>";
 							success=1;
 						
 						}
@@ -653,6 +666,7 @@ public class tests {
 					
 					System.out.println("Something wrong happens in the check");
 					System.out.println("-----------------------------------");
+					result=result+"<p>Some Field/button not found while Neteller Commuication check<p>";
 					success=1;
 				}
 					
@@ -1326,7 +1340,11 @@ public class tests {
 						                System.out.println("-----------------------------------");
 						            }
 									
+									if(success==0){
 									result=result+"<p>"+chktext+" Payment OK</p>";
+									}else{
+										result=result+"<p>"+chktext+" Payment FAILED</p>";
+									}
 									
 								
 								}else{
@@ -1460,7 +1478,7 @@ public class tests {
 					//result2=result2+"<td>FAILED</td></tr>";
 					overall="FAILED";
 					success=1;
-					result=result+"<p> Somethin went wrong in "+chktext+" payment method</p>";
+					result=result+"<p> Something went wrong in "+chktext+" payment method</p>";
 					if(success==1){
 						
 						System.out.println("-----------------------------------");
@@ -1478,7 +1496,7 @@ public class tests {
 			}
 			
 			//System.out.println(success);
-			
+		}
 			if(success==0){
 				
 				System.out.println("-----------------------------------");
@@ -1494,7 +1512,7 @@ public class tests {
 				
 				result2=result2+"<td>FAILED</td></tr>";
 			}
-			}
+			
 		
 
 		}
@@ -1804,7 +1822,10 @@ public class tests {
 	    		
 	    		
 	    		try{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(email)));
+	    		//IWait<IWebDriver> wait2 = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(30.00));
+
+	    		//wait2.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+	    		//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(email)));
 	    		}catch(Exception e){
 	    			success=1;
 	    		}
@@ -1818,7 +1839,8 @@ public class tests {
 	    			
 	    		}
 	    		//System.out.println("email");
-	    		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	    		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    		
 	    		//while(driver.findElement(By.xpath("//div[@id='registration_colA']/div[@id='regerrors'][1]")).isDisplayed()){ //Check if the e-mail is already registered
 	    		
 	    		    			
@@ -2538,9 +2560,9 @@ public class tests {
 		if(option[0].equals("getcode")){
 		
 		driver = new FirefoxDriver();
-	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    driver.get(option[1]);
-		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 		
 		File file2=new File("repor.txt");
 		file2.delete();
