@@ -1486,7 +1486,7 @@ public class tests {
 						System.out.println("-----------------------------------");
 						
 						result=result+"<p>L2 Step2 FAILED";
-						result2=result2+"<td>FAILED</td></tr>";
+						
 						overall="FAILED";
 						}
 				}
@@ -1509,6 +1509,7 @@ public class tests {
 				System.out.println("-----------------------------------");
 				System.out.println("Payment Checking Failed");
 				System.out.println("-----------------------------------");
+				result2=result2+"<td>FAILED</td></tr>";
 				
 				//result2=result2+"<td>FAILED</td></tr>";
 			}
