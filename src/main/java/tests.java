@@ -350,8 +350,9 @@ public class tests {
 		String [][] wdmethod={{"input[name='withdrawalAmount']","text","10"},{"#submit > span","button",""}};
 		
 		int success=0;
-
-		for(int i=0;i==wdlink.length-1;i++){
+		int i=0;
+		
+		while(i<wdlink.length){
 			
 			try{
 				
@@ -363,6 +364,7 @@ public class tests {
 				
 			}catch(NoSuchElementException e1){
 				
+				if(i>=wdlink.length){
 				System.out.println("Withdrawl Link not found");
 				System.out.println("-----------------------------------");
 				result=result+"<p>Withdrawl Link not Found<p>";
@@ -378,13 +380,13 @@ public class tests {
 				} catch (IOException e2) {
 					System.out.println("Screenshot Failed");
 					System.out.println("-----------------------------------");
-				}
-
-			}}
+				}}
+				
+			}i=i+1;}
 			
 				if (success==0){				
 				
-										
+					
 					int j=0;
 					while(j<=wdmethod.length-1){
 					
