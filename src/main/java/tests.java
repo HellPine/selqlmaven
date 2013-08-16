@@ -245,7 +245,7 @@ public class tests {
 		//ffprofile.setAssumeUntrustedCertificateIssuer(false);
 		//driver = new FirefoxDriver(ffprofile);
 		
-		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		 driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	    //driver.get(baseUrl);
 	    driver.get(baseUrl);
 	    try{ //Try to bypass company privacy policy
