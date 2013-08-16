@@ -108,6 +108,8 @@ public class tests {
 	public int total=0;
 	public int failed=0;
 	
+	public String browser;
+	
 
 	@Test
 		
@@ -189,7 +191,7 @@ public class tests {
 	
 		//System.out.println(url);
 		
-		String browser=String.valueOf(System.getProperty("browser"));
+		browser=String.valueOf(System.getProperty("browser"));
 		baseUrl=(url);
 		 //FirefoxBinary binary = new FirefoxBinary();  
 		 //File firefoxProfileFolder = new 
@@ -575,8 +577,8 @@ public class tests {
 		mb2="html body div#wrapper div#full_col div#main_col div#contentPanel div.innerpanelContainer div.innerpanel div#cmsPayContainer div#submitTrack form#moneybookerdepositform fieldset div input#amount.cmsPayInputField";
 		uk1="input[name='voucherNumber']";
 		uk2="input[name='voucherValue']";
-		uke="//fieldset/div[@id='regerrors']/span";
-		uke=uke.toUpperCase();
+		uke="#regerrors span";
+		//uke=uke.toUpperCase();
 		nt1="input[name='accountId']";
 		nt2="input[name='secureId']";
 		nt3="input[name='amount']";
@@ -615,7 +617,7 @@ public class tests {
 					try{
 						
 						
-						while(!driver.findElement(By.xpath(uke)).isDisplayed()){
+						while(!driver.findElement(By.cssSelector(uke)).isDisplayed()){
 							System.out.println("Waiting for error message");
 							//Thread.sleep(1000);
 							
@@ -629,7 +631,7 @@ public class tests {
 					//System.out.println("Continue");
 					try{
 					
-						String response= driver.findElement(By.xpath(uke)).getText();
+						String response= driver.findElement(By.cssSelector(uke)).getText();
 						//System.out.println(response);
 				
 						if(response.contains("Technical Mistake. Please get in contact with Ukash Merchant Support")){
@@ -704,10 +706,10 @@ public class tests {
 						try{
 							
 							
-							String error="//fieldset/div[@id='regerrors']";
-							error=error.toUpperCase();
+							//String error="//fieldset/div[@id='regerrors']";
+							//error=error.toUpperCase();
 							
-							while(!driver.findElement(By.xpath(error)).isDisplayed()){
+							while(!driver.findElement(By.cssSelector("#regerrors span")).isDisplayed()){
 								System.out.println("Waiting for error message");
 								//Thread.sleep(1000);
 								
@@ -721,9 +723,9 @@ public class tests {
 						//System.out.println("Continue");
 						try{
 						
-							String errmsg="//fieldset/div[@id='regerrors']";
-							errmsg=errmsg.toUpperCase();
-							String response= driver.findElement(By.xpath(errmsg)).getText();
+							//String errmsg="//fieldset/div[@id='regerrors']";
+							//errmsg=errmsg.toUpperCase();
+							String response= driver.findElement(By.cssSelector("#regerrors span")).getText();
 							//System.out.println(response);
 					
 							if(response.contains("No client has been found for the specified net_account variable.")){
@@ -785,26 +787,27 @@ public class tests {
 		String surname="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[13]/label";
 		String ttype="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[15]/label";
 		String tid="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[17]/label";
-		merchant=merchant.toUpperCase();
-		email=email.toUpperCase();
-		auth=auth.toUpperCase();
-		trans=trans.toUpperCase();
-		tdate=tdate.toUpperCase();
-		surname=surname.toUpperCase();
-		ttype=ttype.toUpperCase();
-		tid=tid.toUpperCase();
+		if(browser.equals("ie")){
+			merchant=merchant.toUpperCase();
+			email=email.toUpperCase();
+			auth=auth.toUpperCase();
+			trans=trans.toUpperCase();
+			tdate=tdate.toUpperCase();
+			surname=surname.toUpperCase();
+			ttype=ttype.toUpperCase();
+			tid=tid.toUpperCase();}
 		
-		//String[][] paymethod ={ 	{"input[name='accountId']","458591047553","text"}, //Stage
-			//					{"input[name='secureId']","411392","text"},
-				//				{"input[name='amount']","10","text"},
-					//			{"#submit > span","","button"},
-						//		{"a#submit.btn","","button"}
+		String[][] paymethod ={ 	{"input[name='accountId']","458591047553","text"}, //Stage
+								{"input[name='secureId']","411392","text"},
+								{"input[name='amount']","10","text"},
+								{"#submit > span","","button"},
+								{"a#submit.btn","","button"}
 		
-		String[][] paymethod ={ 	{"input[name='accountId']","453523465418","text"}, //Live
-							{"input[name='secureId']","664902","text"},
-							{"input[name='amount']","10","text"},
-							{"#submit > span","","button"},
-							{"a#submit.btn","","button"}
+		//String[][] paymethod ={ 	{"input[name='accountId']","453523465418","text"}, //Live
+			//				{"input[name='secureId']","664902","text"},
+				//			{"input[name='amount']","10","text"},
+					//		{"#submit > span","","button"},
+						//	{"a#submit.btn","","button"}
 		
 		};
 		
@@ -1616,7 +1619,7 @@ public class tests {
 				
 					if(!chkbutton.contains("//")){
 						
-						chkbutton=chkbutton.toUpperCase();
+						
 						if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 					
 						try{
@@ -1763,6 +1766,7 @@ public class tests {
 					
 					}else{
 						
+						chkbutton=chkbutton.toUpperCase();
 						if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 							
 							try{
@@ -2119,10 +2123,10 @@ public class tests {
 		realbutton=l1rs.getString("realbutton");
 		realbutton=realbutton.replaceAll("¬","'");
 		//System.out.println(realbutton);
-		screen="//div[@id='nicknameDialog']/form[@id='nicknameform']/p[@id='nicknameform_txt']/input[@id='nicknameform_input']";
-		screen=screen.toUpperCase();
-		String enterbutton="/html/body/div[@id='nicknameDialog']/form[@id='nicknameform']/p[@id='nicknameform_txt']/input[@id='nicknameform_bt']";
-		enterbutton=enterbutton.toUpperCase();
+		screen="input[id='nicknameform_input']";
+		//screen=screen.toUpperCase();
+		String enterbutton="input[id='nicknameform_bt']";
+		//enterbutton=enterbutton.toUpperCase();
 		//System.out.println(link + "\n"+fname+ "\n"+lname+ "\n"+email+ "\n"+day+ "\n"+month+ "\n"+year+ "\n"+next+ "\n"+eighteen+ "\n"+accept+ "\n"+login+ "\n"+password+ "\n"+fun+ "\n"+realbutton);
 
 		
@@ -2479,7 +2483,7 @@ public class tests {
 	    				//wait.until(ExpectedConditions.elementToBeClickable(By.xpath(enterbutton)));
 	    				try{
 	    					
-	    					while(!driver.findElement(By.xpath(screen)).isDisplayed()){
+	    					while(!driver.findElement(By.cssSelector(screen)).isDisplayed()){
 	    						
 	    						p=1;
 	    					}
@@ -2488,9 +2492,9 @@ public class tests {
 	    				}
 	    				String screenname=genlogin.replace("mrt", "");
 	    			
-	    				driver.findElement(By.xpath(screen)).clear(); 
-	    				driver.findElement(By.xpath(screen)).sendKeys(screenname); //Handle Screen name
-	    				driver.findElement(By.xpath(enterbutton)).click();
+	    				driver.findElement(By.cssSelector(screen)).clear(); 
+	    				driver.findElement(By.cssSelector(screen)).sendKeys(screenname); //Handle Screen name
+	    				driver.findElement(By.cssSelector(enterbutton)).click();
 	    				
 	    			}catch (NoSuchElementException e){
 	    			
@@ -2566,7 +2570,7 @@ public class tests {
 	    				
 	    				try{
 	    					
-	    					while(!driver.findElement(By.xpath(screen)).isDisplayed()){
+	    					while(!driver.findElement(By.cssSelector(screen)).isDisplayed()){
 	    						
 	    						p=1;
 	    					}
@@ -2576,9 +2580,9 @@ public class tests {
 	    				//driver.switchTo().alert().dismiss();
 	    				String screenname=genlogin.replace("mrt", "");
 	    				
-	    				driver.findElement(By.xpath(screen)).clear(); 
-	    				driver.findElement(By.xpath(screen)).sendKeys(screenname); //Handle Screen name
-	    				driver.findElement(By.xpath(enterbutton)).click();
+	    				driver.findElement(By.cssSelector(screen)).clear(); 
+	    				driver.findElement(By.cssSelector(screen)).sendKeys(screenname); //Handle Screen name
+	    				driver.findElement(By.cssSelector(enterbutton)).click();
 	    				screenpresent=1;
 	    			}catch (NoSuchElementException e){
 	    			
