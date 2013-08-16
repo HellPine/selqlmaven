@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.java.mainTest" time="3.309" tests="2" errors="2" skipped="0" failures="0">
+<testsuite name="test.java.mainTest" time="3.379" tests="2" errors="2" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_21\jre\bin"/>
@@ -62,9 +62,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="main" classname="test.java.mainTest" time="1.654">
-    <error message="Unexpected error launching Internet Explorer. Protected Mode settings are not the same for all zones. Enable Protected Mode must be set to the same value (enabled or disabled) for all zones. (WARNING: The server did not provide any stacktrace information)&#10;Command duration or timeout: 1.15 seconds&#10;Build info: version: &apos;2.34.0&apos;, revision: &apos;11cd0ef93615408e0b6b3bfa28defe125906461a&apos;, time: &apos;2013-08-06 11:43:14&apos;&#10;System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_21&apos;&#10;Driver info: org.openqa.selenium.ie.InternetExplorerDriver" type="org.openqa.selenium.remote.SessionNotFoundException"><![CDATA[org.openqa.selenium.remote.SessionNotFoundException: Unexpected error launching Internet Explorer. Protected Mode settings are not the same for all zones. Enable Protected Mode must be set to the same value (enabled or disabled) for all zones. (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 1.15 seconds
+  <testcase name="main" classname="test.java.mainTest" time="1.689">
+    <error message="Unexpected error launching Internet Explorer. Protected Mode settings are not the same for all zones. Enable Protected Mode must be set to the same value (enabled or disabled) for all zones. (WARNING: The server did not provide any stacktrace information)&#10;Command duration or timeout: 1.17 seconds&#10;Build info: version: &apos;2.34.0&apos;, revision: &apos;11cd0ef93615408e0b6b3bfa28defe125906461a&apos;, time: &apos;2013-08-06 11:43:14&apos;&#10;System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_21&apos;&#10;Driver info: org.openqa.selenium.ie.InternetExplorerDriver" type="org.openqa.selenium.remote.SessionNotFoundException"><![CDATA[org.openqa.selenium.remote.SessionNotFoundException: Unexpected error launching Internet Explorer. Protected Mode settings are not the same for all zones. Enable Protected Mode must be set to the same value (enabled or disabled) for all zones. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.17 seconds
 Build info: version: '2.34.0', revision: '11cd0ef93615408e0b6b3bfa28defe125906461a', time: '2013-08-06 11:43:14'
 System info: os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_21'
 Driver info: org.openqa.selenium.ie.InternetExplorerDriver
@@ -81,7 +81,7 @@ Driver info: org.openqa.selenium.ie.InternetExplorerDriver
 	at org.openqa.selenium.ie.InternetExplorerDriver.<init>(InternetExplorerDriver.java:174)
 	at org.openqa.selenium.ie.InternetExplorerDriver.<init>(InternetExplorerDriver.java:143)
 	at main.java.tests.readdatabase(tests.java:221)
-	at main.java.tests.setUp(tests.java:3026)
+	at main.java.tests.setUp(tests.java:3043)
 	at test.java.mainTest.main(mainTest.java:80)
 ]]></error>
     <system-out>-----------------------------------
@@ -103,10 +103,10 @@ All Tests Finished, please refer to email to see the report
 </system-out>
     <system-err>Started InternetExplorerDriver server (64-bit)
 2.35.1.0
-Listening on port 2570
+Listening on port 12808
 </system-err>
   </testcase>
-  <testcase name="main" classname="test.java.mainTest" time="1.655">
+  <testcase name="main" classname="test.java.mainTest" time="1.69">
     <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
 	at test.java.mainTest.tearDown(mainTest.java:155)
 </error>

@@ -722,7 +722,7 @@ public class tests {
 						try{
 						
 							String errmsg="//fieldset/div[@id='regerrors']";
-							srrmsg=errmsg.toUpperCase();
+							errmsg=errmsg.toUpperCase();
 							String response= driver.findElement(By.xpath(errmsg)).getText();
 							//System.out.println(response);
 					
