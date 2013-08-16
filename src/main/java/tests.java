@@ -38,6 +38,8 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.KeyDownAction;
@@ -50,6 +52,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 
@@ -186,6 +189,7 @@ public class tests {
 	
 		//System.out.println(url);
 		
+		String browser=String.valueOf(System.getProperty("browser"));
 		baseUrl=(url);
 		 //FirefoxBinary binary = new FirefoxBinary();  
 		 //File firefoxProfileFolder = new 
@@ -194,8 +198,43 @@ public class tests {
 		 //profile.setAcceptUntrustedCertificates(true);
 		 //profile.addExtension("autoauth-2.1-fx+fn.xpi");
 		 //driver = new FirefoxDriver(profile);
-		 driver = new FirefoxDriver();
-		 driver.manage().deleteAllCookies();
+		 //driver = new FirefoxDriver();
+		
+		//System.out.println(browser);
+		
+		if(!browser.equals("null")){
+			
+		
+			if(browser.equals("chrome")){
+				
+				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+				capabilities.setCapability("chrome.switches", Arrays.asList("--disable-loggin"));
+				System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+				driver = new ChromeDriver(capabilities);
+			
+			}
+			
+			if(browser.equals("ie")){
+				
+				File file = new File("IEDriverServer.exe");
+				System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+				driver = new InternetExplorerDriver();
+			
+			}
+		
+		
+			
+			if(browser.equals("firefox")){
+			
+				driver = new FirefoxDriver();
+			}
+			
+		}else{
+			
+			driver = new FirefoxDriver();
+		}
+		
+		//driver.manage().deleteAllCookies();
 		
 		//FirefoxProfile ffprofile = new FirefoxProfile("c:\");
 		//ffprofile.setPreference("network.automatic-ntlm-auth.trusted-uris", "stminver-demo.com");
@@ -203,9 +242,10 @@ public class tests {
 		//ffprofile.setAcceptUntrustedCertificates(true);
 		//ffprofile.setAssumeUntrustedCertificateIssuer(false);
 		//driver = new FirefoxDriver(ffprofile);
+		
 		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    //driver.get(baseUrl);
-	    driver.navigate().to(baseUrl);
+	    driver.get(baseUrl);
 	    try{ //Try to bypass company privacy policy
 	    	driver.findElement(By.linkText("Click here to accept this statement and access the Internet.")).click();
 	    }catch (Exception e){
