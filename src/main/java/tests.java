@@ -576,13 +576,14 @@ public class tests {
 		uk1="input[name='voucherNumber']";
 		uk2="input[name='voucherValue']";
 		uke="//fieldset/div[@id='regerrors']/span";
+		uke=uke.toUpperCase();
 		nt1="input[name='accountId']";
 		nt2="input[name='secureId']";
 		nt3="input[name='amount']";
 		button="#submit > span";
 		button2="a#submit.btn";
 		String Loadmask="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/div[@class='loadmask-msg']/div";
-		
+		Loadmask=Loadmask.toUpperCase();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		
 		if(payment.equals("ukash")){
@@ -703,7 +704,10 @@ public class tests {
 						try{
 							
 							
-							while(!driver.findElement(By.xpath("//fieldset/div[@id='regerrors']")).isDisplayed()){
+							String error="//fieldset/div[@id='regerrors']";
+							error=error.toUpperCase();
+							
+							while(!driver.findElement(By.xpath(error)).isDisplayed()){
 								System.out.println("Waiting for error message");
 								//Thread.sleep(1000);
 								
@@ -717,7 +721,9 @@ public class tests {
 						//System.out.println("Continue");
 						try{
 						
-							String response= driver.findElement(By.xpath("//fieldset/div[@id='regerrors']")).getText();
+							String errmsg="//fieldset/div[@id='regerrors']";
+							srrmsg=errmsg.toUpperCase();
+							String response= driver.findElement(By.xpath(errmsg)).getText();
 							//System.out.println(response);
 					
 							if(response.contains("No client has been found for the specified net_account variable.")){
@@ -779,7 +785,14 @@ public class tests {
 		String surname="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[13]/label";
 		String ttype="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[15]/label";
 		String tid="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[17]/label";
-		
+		merchant=merchant.toUpperCase();
+		email=email.toUpperCase();
+		auth=auth.toUpperCase();
+		trans=trans.toUpperCase();
+		tdate=tdate.toUpperCase();
+		surname=surname.toUpperCase();
+		ttype=ttype.toUpperCase();
+		tid=tid.toUpperCase();
 		
 		//String[][] paymethod ={ 	{"input[name='accountId']","458591047553","text"}, //Stage
 			//					{"input[name='secureId']","411392","text"},
@@ -1602,7 +1615,9 @@ public class tests {
 				try{
 				
 					if(!chkbutton.contains("//")){
-					if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
+						
+						chkbutton=chkbutton.toUpperCase();
+						if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 					
 						try{
 						
@@ -1959,8 +1974,8 @@ public class tests {
 				
 			
 			
-			
-			if(!driver.findElement(By.xpath("//div[@class='regerrors']")).isDisplayed()){
+			String regerr="//div[@class='regerrors']";
+			if(!driver.findElement(By.xpath(regerr)).isDisplayed()){
 				
 				
 				succesful=false;
@@ -2105,7 +2120,9 @@ public class tests {
 		realbutton=realbutton.replaceAll("¬","'");
 		//System.out.println(realbutton);
 		screen="//div[@id='nicknameDialog']/form[@id='nicknameform']/p[@id='nicknameform_txt']/input[@id='nicknameform_input']";
+		screen=screen.toUpperCase();
 		String enterbutton="/html/body/div[@id='nicknameDialog']/form[@id='nicknameform']/p[@id='nicknameform_txt']/input[@id='nicknameform_bt']";
+		enterbutton=enterbutton.toUpperCase();
 		//System.out.println(link + "\n"+fname+ "\n"+lname+ "\n"+email+ "\n"+day+ "\n"+month+ "\n"+year+ "\n"+next+ "\n"+eighteen+ "\n"+accept+ "\n"+login+ "\n"+password+ "\n"+fun+ "\n"+realbutton);
 
 		
