@@ -1,14 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: test.java.mainTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 81.509 sec <<< FAILURE! - in test.java.mainTest
-main(test.java.mainTest)  Time elapsed: 81.461 sec  <<< ERROR!
-org.openqa.selenium.remote.SessionNotFoundException: no such session: 336af26505fda165753617e7652b3047
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 79.318 sec <<< FAILURE! - in test.java.mainTest
+main(test.java.mainTest)  Time elapsed: 79.273 sec  <<< ERROR!
+org.openqa.selenium.remote.SessionNotFoundException: no such session: 624e1c54575c6a9d36ec4955076b265d
   (Driver info: chromedriver=2.0,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 1.02 seconds
+Command duration or timeout: 1.01 seconds
 Build info: version: '2.34.0', revision: '11cd0ef93615408e0b6b3bfa28defe125906461a', time: '2013-08-06 11:43:14'
 System info: os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_21'
-Session ID: 336af26505fda165753617e7652b3047
+Session ID: 624e1c54575c6a9d36ec4955076b265d
 Driver info: org.openqa.selenium.chrome.ChromeDriver
 Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={chromedriverVersion=2.0}, rotatable=false, locationContextEnabled=true, version=28.0.1500.72, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, applicationCacheEnabled=false, takesScreenshot=true}]
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)

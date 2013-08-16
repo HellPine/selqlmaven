@@ -108,7 +108,7 @@ public class tests {
 	public int total=0;
 	public int failed=0;
 	
-	public String browser;
+	public static String browser;
 	
 
 	@Test
@@ -787,15 +787,15 @@ public class tests {
 		String surname="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[13]/label";
 		String ttype="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[15]/label";
 		String tid="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/fieldset/div[17]/label";
-		if(browser.equals("ie")){
-			merchant=merchant.toUpperCase();
-			email=email.toUpperCase();
-			auth=auth.toUpperCase();
-			trans=trans.toUpperCase();
-			tdate=tdate.toUpperCase();
-			surname=surname.toUpperCase();
-			ttype=ttype.toUpperCase();
-			tid=tid.toUpperCase();}
+		//if(browser.equals("ie")){
+			//merchant=merchant.toUpperCase();
+			//email=email.toUpperCase();
+			//auth=auth.toUpperCase();
+			//trans=trans.toUpperCase();
+			//tdate=tdate.toUpperCase();
+			//surname=surname.toUpperCase();
+			//ttype=ttype.toUpperCase();
+			//tid=tid.toUpperCase();}
 		
 		String[][] paymethod ={ 	{"input[name='accountId']","458591047553","text"}, //Stage
 								{"input[name='secureId']","411392","text"},
