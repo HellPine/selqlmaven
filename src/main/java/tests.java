@@ -53,6 +53,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.Augmenter;
 
 
 
@@ -413,12 +414,8 @@ public class tests {
 				success=1;
 				try {
 	                
-					File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-					FileUtils.copyFile(scrFile, new File(screenshot));
+					takesc(screenshot);
 					result=result+"<p>Error Screenshot  <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
-					//System.out.println("Deposit correctly placed");
-					//result2=result2+"<td>PASS</td></tr>";
-            
 				} catch (IOException e2) {
 					System.out.println("Screenshot Failed");
 					System.out.println("-----------------------------------");
@@ -450,8 +447,8 @@ public class tests {
 								result=result+"<p>WithDrawl: Some field not found<p>";
 								try {
 					                
-									File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-									FileUtils.copyFile(scrFile, new File(screenshot));
+									takesc(screenshot);
+									
 									result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 									//System.out.println("Deposit correctly placed");
 									//result2=result2+"<td>PASS</td></tr>";
@@ -504,8 +501,7 @@ public class tests {
 										
 										try {
 					                
-											File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-											FileUtils.copyFile(scrFile, new File(screenshot));
+											takesc(screenshot);
 											result=result+"<p>Screenshot for Withdrawl <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 											//System.out.println("Deposit correctly placed");
 											//result2=result2+"<td>PASS</td></tr>";
@@ -530,8 +526,7 @@ public class tests {
 								result=result+"<p>Withdrawl: Button not found<P>";
 								try {
 					                
-									File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-									FileUtils.copyFile(scrFile, new File(screenshot));
+									takesc(screenshot);
 									result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 									//System.out.println("Deposit correctly placed");
 									//result2=result2+"<td>PASS</td></tr>";
@@ -866,8 +861,7 @@ public class tests {
 					System.out.println("-----------------------------------");
 					try {
 		                
-						File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-						FileUtils.copyFile(scrFile, new File(screenshot));
+						takesc(screenshot);
 						result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 						//System.out.println("Deposit correctly placed");
 						//result2=result2+"<td>PASS</td></tr>";
@@ -936,8 +930,7 @@ public class tests {
 											
 											try {
 								                
-												File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-								                FileUtils.copyFile(scrFile, new File(screenshot));
+												takesc(screenshot);
 								                result=result+"<p>Screenshot for the deposit <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 								                System.out.println("Deposit correctly placed");
 								                System.out.println("-----------------------------------");
@@ -956,8 +949,7 @@ public class tests {
 											result=result+"<p>Transaction Id not present in Receipt<p>";
 											try {
 								                
-												File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-												FileUtils.copyFile(scrFile, new File(screenshot));
+												takesc(screenshot);
 												result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 												//System.out.println("Deposit correctly placed");
 												//result2=result2+"<td>PASS</td></tr>";
@@ -975,8 +967,7 @@ public class tests {
 											
 											try {
 								                
-												File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-												FileUtils.copyFile(scrFile, new File(screenshot));
+												takesc(screenshot);
 												result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 												//System.out.println("Deposit correctly placed");
 												//result2=result2+"<td>PASS</td></tr>";
@@ -994,8 +985,7 @@ public class tests {
 										result=result+"<p>Surname not present in Receipt<p>";
 										try {
 							                
-											File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-											FileUtils.copyFile(scrFile, new File(screenshot));
+											takesc(screenshot);
 											result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 											//System.out.println("Deposit correctly placed");
 											//result2=result2+"<td>PASS</td></tr>";
@@ -1014,8 +1004,7 @@ public class tests {
 									result=result+"<p>transaction Date not present in Receipt<p>";
 									try {
 						                
-										File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-										FileUtils.copyFile(scrFile, new File(screenshot));
+										takesc(screenshot);
 										result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 										//System.out.println("Deposit correctly placed");
 										//result2=result2+"<td>PASS</td></tr>";
@@ -1033,8 +1022,7 @@ public class tests {
 								result=result+"<p>Transaction Amount not present in Receipt<p>";
 								try {
 					                
-									File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-									FileUtils.copyFile(scrFile, new File(screenshot));
+									takesc(screenshot);
 									result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 									//System.out.println("Deposit correctly placed");
 									//result2=result2+"<td>PASS</td></tr>";
@@ -1053,8 +1041,7 @@ public class tests {
 							result=result+"<p>Authorisation Code not present in Receipt<p>";
 							try {
 				                
-								File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-								FileUtils.copyFile(scrFile, new File(screenshot));
+								takesc(screenshot);
 								result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 								//System.out.println("Deposit correctly placed");
 								//result2=result2+"<td>PASS</td></tr>";
@@ -1073,8 +1060,7 @@ public class tests {
 						result=result+"<p>e-mail not present in Receipt<p>";
 						try {
 			                
-							File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-							FileUtils.copyFile(scrFile, new File(screenshot));
+							takesc(screenshot);
 							result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 							//System.out.println("Deposit correctly placed");
 							//result2=result2+"<td>PASS</td></tr>";
@@ -1093,8 +1079,7 @@ public class tests {
 					result=result+"<p>Merchant Name not present in Receipt<p>";
 					try {
 		                
-						File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-						FileUtils.copyFile(scrFile, new File(screenshot));
+						takesc(screenshot);
 						result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 						//System.out.println("Deposit correctly placed");
 						//result2=result2+"<td>PASS</td></tr>";
@@ -1115,8 +1100,7 @@ public class tests {
 					result=result+"<p>IBNDeposit: Payment Button not found<p>";
 					try {
 		                
-						File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-						FileUtils.copyFile(scrFile, new File(screenshot));
+						takesc(screenshot);
 						result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 						//System.out.println("Deposit correctly placed");
 						//result2=result2+"<td>PASS</td></tr>";
@@ -1153,8 +1137,7 @@ public class tests {
 						
 						try {
 			                
-							File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			                FileUtils.copyFile(scrFile, new File(screenshot));
+							takesc(screenshot);
 			                result=result+"<p>Screenshot for the redirection <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 			                System.out.println("Deposit correctly placed");
 			                System.out.println("-----------------------------------");
@@ -1174,8 +1157,7 @@ public class tests {
 							result=result+"<p>User Name not present in Lobby<p>";
 							try {
 				                
-								File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-								FileUtils.copyFile(scrFile, new File(screenshot));
+								takesc(screenshot);
 								result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 								//System.out.println("Deposit correctly placed");
 								//result2=result2+"<td>PASS</td></tr>";
@@ -1195,8 +1177,7 @@ public class tests {
 						result=result+"<p>Surname not present in Receipt<p>";
 						try {
 			                
-							File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-							FileUtils.copyFile(scrFile, new File(screenshot));
+							takesc(screenshot);
 							result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 							//System.out.println("Deposit correctly placed");
 							//result2=result2+"<td>PASS</td></tr>";
@@ -1247,6 +1228,37 @@ public class tests {
 		}
 	}
 	
+	
+	public void takesc(String screenshot) throws Exception{
+		
+		
+	
+		try {
+	        WebDriver augmentedDriver = new Augmenter().augment(driver);
+	        File source = ((TakesScreenshot)augmentedDriver).getScreenshotAs(OutputType.FILE);
+	        FileUtils.copyFile(source, new File(screenshot)); 
+	    }
+	    catch(IOException e) {
+	        System.out.println("Failed to capture screenshot: " + e.getMessage());
+	    }
+	    
+		/*
+		if (browser.equals("ie")){
+			
+			Screenshot sc = ((InternetExplorerDriver)driver).GetScreenshot();
+			sc.SaveAsFile(screenshot, ImageFormat.Png);
+			
+		}else{
+			
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(scrFile, new File(screenshot));
+		
+		}*/
+		
+		//result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+	
+	
+	}
 	
 	public void ibnl2(String logname,String email,String l2test) throws Exception{
 		
