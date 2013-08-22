@@ -1262,13 +1262,13 @@ public class tests {
 		
 		
 		started=started+1;
-		
+		/*
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		   Rectangle screenRectangle = new Rectangle(screenSize);
 		   Robot robot = new Robot();
 		   BufferedImage image = robot.createScreenCapture(screenRectangle);
-		   ImageIO.write(image, "png", new File(screenshot));
-		/*
+		   ImageIO.write(image, "png", new File(screenshot));*/
+		
 		try {
 	        WebDriver augmentedDriver = new Augmenter().augment(driver);
 	        File source = ((TakesScreenshot)augmentedDriver).getScreenshotAs(OutputType.FILE);
@@ -1276,7 +1276,7 @@ public class tests {
 	    }
 	    catch(IOException e) {
 	        System.out.println("Failed to capture screenshot: " + e.getMessage());
-	    }*/
+	    }
 	    
 		/*
 		if (browser.equals("ie")){
