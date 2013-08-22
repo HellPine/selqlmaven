@@ -1268,7 +1268,7 @@ public class tests {
 		   Robot robot = new Robot();
 		   BufferedImage image = robot.createScreenCapture(screenRectangle);
 		   ImageIO.write(image, "png", new File(screenshot));*/
-		
+		/*
 		try {
 	        WebDriver augmentedDriver = new Augmenter().augment(driver);
 	        File source = ((TakesScreenshot)augmentedDriver).getScreenshotAs(OutputType.FILE);
@@ -1276,7 +1276,7 @@ public class tests {
 	    }
 	    catch(IOException e) {
 	        System.out.println("Failed to capture screenshot: " + e.getMessage());
-	    }
+	    }*/
 	    
 		/*
 		if (browser.equals("ie")){
@@ -1285,11 +1285,11 @@ public class tests {
 			sc.SaveAsFile(screenshot, ImageFormat.Png);
 			
 		}else{
-			
+			*/
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(scrFile, new File(screenshot));
 		
-		}*/
+		//}
 		
 		//result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 	
