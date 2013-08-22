@@ -141,7 +141,7 @@ public String hola(){
 	    	
 	    	if(!buildurl.equals("null")){
 	    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"artifact/target/reports/"+test.timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
-	    		write2.write("<p></p><p></p><p>Console Output can be found <a href="+(char)34+ buildurl+"console/"+(char)34+"> HERE </a></p>");
+	    		write2.write("<p></p><p></p><p>Console Output can be found <a href="+(char)34+ buildurl+"console"+(char)34+"> HERE </a></p>");
 	    	}else{
 	    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ test.timesta + ".html"+(char)34+"> LINK </a> for a full report<p>");
 	    	}
