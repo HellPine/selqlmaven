@@ -16,6 +16,9 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Robot;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import javax.imageio.ImageIO;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,6 +34,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
+import java.awt.image.BufferedImage;
 import org.junit.*;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
@@ -69,6 +73,7 @@ public class tests {
   static String separator="<p>\n------------------------------------------------------------------------------------------</p>\n\n";
   public static String result="";
   public static String overall="PASSED";
+  public static int steps=0; //Control Variable 
   public static String result2="";
   public static WebDriver driver;
   private String baseUrl;
@@ -172,8 +177,23 @@ public class tests {
 		stat.clearBatch();
 		rs= stat.executeQuery("select * from batch where batchid='"+batchid+"'");
 		//System.out.println(rs.getString("testid"));
+		//rs.beforeFirst();
+		String url="";
+		if(!rs.next()){
+			
+			result=result+"<p>BATCHID is not correct<p>";
+			overall="FAILED";
+			System.out.println("Batchid Not found");
+			//System.exit(0);
+		}else{
+		
 		rs.first();
-		String url=rs.getString("url");
+		url=rs.getString("url");
+		
+		}
+		
+		if(!url.equals("")){
+
 		System.out.println("Data Successfully Adquired");
 		System.out.println("-----------------------------------");
 		System.out.println("Opening Site To Test");
@@ -205,8 +225,7 @@ public class tests {
 		
 		//System.out.println(browser);
 		
-		if(!browser.equals("null")){
-			
+			if(!browser.equals("null")){			
 		
 			if(browser.equals("chrome")){
 				
@@ -246,9 +265,10 @@ public class tests {
 		//ffprofile.setAssumeUntrustedCertificateIssuer(false);
 		//driver = new FirefoxDriver(ffprofile);
 		
-		 driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    //driver.get(baseUrl);
 	    driver.get(baseUrl);
+	    driver.manage().window().maximize();
 	    try{ //Try to bypass company privacy policy
 	    	driver.findElement(By.linkText("Click here to accept this statement and access the Internet.")).click();
 	    }catch (Exception e){
@@ -291,7 +311,8 @@ public class tests {
 		
 		//FileWriter write = new FileWriter(file,true);
 		//FileWriter write2 = new FileWriter(file2,true);
-		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p></FONT></strong></p>";
+		Date date = new Date();
+		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p><p>Date and Time:"+date+"</p></FONT></strong></p>";
 		result=result+header;
 		result2=result2+header;
 		System.out.println("Adquiring tests from batch");
@@ -370,9 +391,9 @@ public class tests {
 		
 		//System.out.println("-----------------------------------");
 
-		driver.close();
-		driver.quit();
-			
+		//driver.close();
+		//driver.quit();
+		}// if !url="" end
 		}
 		
 		
@@ -383,6 +404,7 @@ public class tests {
 	public void ibnwithdrawl(String paymentcss,String logname) throws Exception{
 		
 		
+		steps=steps+1;
 		String screenshot = "target/screenshots/withdrawl" + timesta + ".png";
 		System.out.println("Launching Withdrawl Test");
 	    System.out.println("-----------------------------------");
@@ -563,6 +585,7 @@ public class tests {
 	
 	public int paymenterrorcheck(String payment,int success) throws Exception{
 		
+		steps=steps+1;
 		System.out.println("Checking ====>"+payment+"<===== communication");
 		System.out.println("-----------------------------------");
 		
@@ -767,7 +790,7 @@ public class tests {
 		
 	public void ibndeposit(String paymentcss,String logname) throws Exception{
 		
-				
+		steps=steps+1;		
 		System.out.println("Starting IBN Deposit");
 		//System.out.println("Payment Method Selected====>"+ paymentcss);
 		System.out.println("-----------------------------------");
@@ -1232,7 +1255,14 @@ public class tests {
 	public void takesc(String screenshot) throws Exception{
 		
 		
-	
+		steps=steps+1;
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		   Rectangle screenRectangle = new Rectangle(screenSize);
+		   Robot robot = new Robot();
+		   BufferedImage image = robot.createScreenCapture(screenRectangle);
+		   ImageIO.write(image, "png", new File(screenshot));
+		/*
 		try {
 	        WebDriver augmentedDriver = new Augmenter().augment(driver);
 	        File source = ((TakesScreenshot)augmentedDriver).getScreenshotAs(OutputType.FILE);
@@ -1240,7 +1270,7 @@ public class tests {
 	    }
 	    catch(IOException e) {
 	        System.out.println("Failed to capture screenshot: " + e.getMessage());
-	    }
+	    }*/
 	    
 		/*
 		if (browser.equals("ie")){
@@ -1262,6 +1292,7 @@ public class tests {
 	
 	public void ibnl2(String logname,String email,String l2test) throws Exception{
 		
+		steps=steps+1;
 		System.out.println("-----------------------------------");
 		System.out.println("Starting IBN L2 Test");
 		System.out.println("-----------------------------------");
@@ -1966,6 +1997,7 @@ public class tests {
 		
 		//System.out.println(xpath+"    "+invchars+"    "+testid);
 		
+		steps=steps+1;
 		boolean succesful=true;
 		result=result+"<p><h3>" + testid + " Field Validation</h3></p><p></p>";
 		result2=result2+"<tr><td>"+ testid+"</td>";
@@ -2021,12 +2053,13 @@ public class tests {
 	public void l1test(String testid) throws Exception{
 		
 		
+		steps=steps+1;
 		System.out.println("-----------------------------------");
 		System.out.println("IBN L1 Registration Test");
 		System.out.println("-----------------------------------");
 		
 		
-		
+		String screenshot = "target/screenshots/screenshot" + timesta + ".png";
 		String fname,lname,email,day,month,year,next,eighteen,accept,login,password,repassword,fun,realbutton,screen;
 		int count=0;
 				
@@ -2174,7 +2207,9 @@ public class tests {
 				System.out.println("-----------------------------------");
 				result2=result2+"<tr><td>"+testid+"</td>";
 				result2=result2+"<td>FAILED</td></tr>";
-				result=result+"<p>FAILED<p>";
+				result=result+"<p>Registration Link FAILED<p>";
+				takesc(screenshot);
+				result=result+"<p> Click on the screenshot to see it larger <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 				overall="FAILED";
 	    		}
 				//result=(result + "<p><FONT COLOR="+(char)34+"red"+(char)34+">"+ss.getString("tofind")+" Not Finded</FONT><p>");} 
@@ -2616,7 +2651,7 @@ public class tests {
     				System.out.println("User " + genlogin + " with email "+ genmail + " succesfully registered as level 1 user");
     				System.out.println("-----------------------------------");
     				
-    				String screenshot = "target/screenshots/screenshot" + timesta + ".png";
+    				screenshot = "target/screenshots/screenshot" + timesta + ".png";
     				
     				while(screenpresent==1){
     				
@@ -2676,6 +2711,7 @@ public class tests {
 	
 	public void single(String testid) throws Exception{
 		
+		steps=steps+1;
 		result="";
 		
 		stat3= con.createStatement();
@@ -3005,6 +3041,12 @@ public class tests {
 		//System.out.println(option.length);
 		//for(int i=0;i<option.length;i++){ System.out.println(i+"  "+option[i]);}
 		
+		File folder=new File("target/reports");
+		File folder2=new File("target/screenshots");
+		
+		if(!folder.exists()){folder.mkdirs();}
+		if(!folder2.exists()){folder2.mkdirs();}
+		
 		if(option[0].equals("getcode")){
 		
 		driver = new FirefoxDriver();
@@ -3044,13 +3086,13 @@ public class tests {
 		   }finally{
     	    	
 		   		write2.write(contsource);
-    	    	driver.close();	
+    	    	//driver.close();	
     	    	write2.close();}
     	
     	Desktop.getDesktop().open(file2);
     		
-    	driver.close();
-    	driver.quit();
+    	//driver.close();
+    	//driver.quit();
     	System.exit(0);
 		
 		
