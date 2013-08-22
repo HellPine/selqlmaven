@@ -315,7 +315,7 @@ public class tests {
 		//FileWriter write = new FileWriter(file,true);
 		//FileWriter write2 = new FileWriter(file2,true);
 		Date date = new Date();
-		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p><p>Date and Time:"+date+"</p></FONT></strong></p>";
+		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p><p>Date and Time:"+date+"</p><p></p><p>Browser=" + browser + "</FONT></strong></p>";
 		result=result+header;
 		result2=result2+header;
 		System.out.println("Adquiring tests from batch");
