@@ -73,7 +73,8 @@ public class tests {
   static String separator="<p>\n------------------------------------------------------------------------------------------</p>\n\n";
   public static String result="";
   public static String overall="PASSED";
-  public static int steps=0; //Control Variable 
+  public static int started=0; //Control Variable
+  public static int finished=0;//Control Variable
   public static String result2="";
   public static WebDriver driver;
   private String baseUrl;
@@ -184,6 +185,8 @@ public class tests {
 			result=result+"<p>BATCHID is not correct<p>";
 			overall="FAILED";
 			System.out.println("Batchid Not found");
+			Date date = new Date();
+			result2=result2+"<p><p>Date and time of running: "+date;
 			//System.exit(0);
 		}else{
 		
@@ -404,7 +407,7 @@ public class tests {
 	public void ibnwithdrawl(String paymentcss,String logname) throws Exception{
 		
 		
-		steps=steps+1;
+		started=started+1;
 		String screenshot = "target/screenshots/withdrawl" + timesta + ".png";
 		System.out.println("Launching Withdrawl Test");
 	    System.out.println("-----------------------------------");
@@ -579,13 +582,13 @@ public class tests {
 					System.out.println("-----------------------------------");
 					overall="FAILED";
 				}
-				
+				finished=finished+1;
 	}
 	
 	
 	public int paymenterrorcheck(String payment,int success) throws Exception{
 		
-		steps=steps+1;
+		started=started+1;
 		System.out.println("Checking ====>"+payment+"<===== communication");
 		System.out.println("-----------------------------------");
 		
@@ -784,13 +787,15 @@ public class tests {
 		
 				
 		if(success==1){ overall="FAILED";}
+		finished=finished+1;
 		return(success);
+		
 	}
 		
 		
 	public void ibndeposit(String paymentcss,String logname) throws Exception{
 		
-		steps=steps+1;		
+		started=started+1;		
 		System.out.println("Starting IBN Deposit");
 		//System.out.println("Payment Method Selected====>"+ paymentcss);
 		System.out.println("-----------------------------------");
@@ -1249,13 +1254,14 @@ public class tests {
 			result2=result2+"<td>FAILED</td></tr>";
 			overall="FAILED";
 		}
+		finished=finished+1;
 	}
 	
 	
 	public void takesc(String screenshot) throws Exception{
 		
 		
-		steps=steps+1;
+		started=started+1;
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		   Rectangle screenRectangle = new Rectangle(screenSize);
@@ -1287,12 +1293,12 @@ public class tests {
 		
 		//result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 	
-	
+		   finished=finished+1;
 	}
 	
 	public void ibnl2(String logname,String email,String l2test) throws Exception{
 		
-		steps=steps+1;
+		started=started+1;
 		System.out.println("-----------------------------------");
 		System.out.println("Starting IBN L2 Test");
 		System.out.println("-----------------------------------");
@@ -1817,6 +1823,7 @@ public class tests {
 						
 						//result=result+"<p>L2 Step2 FAILED";
 						takesc(screenshot);	
+						result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 						overall="FAILED";
 						}
 				}
@@ -1850,7 +1857,7 @@ public class tests {
 				//result2=result2+"<td>FAILED</td></tr>";
 			}
 			
-		
+			finished=finished+1;
 
 		}
 	
@@ -1859,7 +1866,7 @@ public class tests {
 		
 		//System.out.println(xpath+"    "+invchars+"    "+testid);
 		
-		steps=steps+1;
+		started=started+1;
 		boolean succesful=true;
 		result=result+"<p><h3>" + testid + " Field Validation</h3></p><p></p>";
 		result2=result2+"<tr><td>"+ testid+"</td>";
@@ -1909,13 +1916,14 @@ public class tests {
 			result2=result2+"<td>FAILED</td></tr>";
 			overall="FAILED";
 		}
+		finished=finished+1;
 	}
 	
 	@Test
 	public void l1test(String testid) throws Exception{
 		
 		
-		steps=steps+1;
+		started=started+1;
 		System.out.println("-----------------------------------");
 		System.out.println("IBN L1 Registration Test");
 		System.out.println("-----------------------------------");
@@ -2560,13 +2568,13 @@ public class tests {
 				}}z=z+1;
 	    }while(z!=count);
 //	}
-	
+		finished=finished+1;
 }
 	
 	
 	public void single(String testid) throws Exception{
 		
-		steps=steps+1;
+		started=started+1;
 		result="";
 		
 		stat3= con.createStatement();
@@ -2874,7 +2882,7 @@ public class tests {
 		    }}}}
 	    		
 	    		
-	
+		finished=finished+1;
 		}
 		  
 	    		

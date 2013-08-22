@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: test.java.mainTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 195.576 sec - in test.java.mainTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 626.164 sec - in test.java.mainTest

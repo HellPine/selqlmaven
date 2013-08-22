@@ -101,7 +101,8 @@ public String hola(){
 		 	
 		 	main.java.tests test = new main.java.tests();	
 		 
-		 	if(test.steps==0){test.overall="FAILED";}
+		 	if(test.started==0){test.overall="FAILED";}
+		 	if(test.started!=test.finished){test.overall="FAILED";}
 		 	
 		 	String color="";
 	    	
