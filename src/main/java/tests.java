@@ -787,7 +787,8 @@ public class tests {
 				
 		}
 		
-				
+		System.out.println(payment+" Communication Finished");		
+		System.out.println("-----------------------------------");
 		if(success==1){ overall="FAILED";}
 		finished=finished+1;
 		return(success);
