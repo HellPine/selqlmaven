@@ -1641,6 +1641,9 @@ public class tests {
 					if(!chkbutton.contains("//")){
 						
 						
+						try{
+							
+						
 						if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 							System.out.println("looking icon");
 					
@@ -1727,9 +1730,12 @@ public class tests {
 						takesc(screenshot);
 						result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 					}
-					
+						}catch(Exception e2){
+							
+						}
 					}else{
 						
+						try{
 						//chkbutton=chkbutton.toUpperCase();
 						if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 							
@@ -1807,6 +1813,8 @@ public class tests {
 							result=result+"<p> ICON Not displayed for "+chktext+" payment method</p>";
 							takesc(screenshot);
 							result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+							
+						}}catch(Exception e2){
 							
 						}
 												
