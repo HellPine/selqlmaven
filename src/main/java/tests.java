@@ -1712,6 +1712,7 @@ public class tests {
 					}
 						}catch(Exception e2){
 							overall="FAILED";
+							result=result+"<p> ICON CHECKING FAILED <p>";
 						}
 					}else{
 						
@@ -1796,6 +1797,7 @@ public class tests {
 							
 						}}catch(Exception e2){
 							overall="FAILED";
+							result=result+"<p> ICON CHECKING FAILED <p>";
 						}
 												
 					}
