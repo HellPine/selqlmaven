@@ -121,6 +121,7 @@ public class mainTest {
 		 		retry=1;
 		 		String[] options=new String[1];
 				options[0]="nothing";
+				test.driver.close();
 				test.setUp(options);
 		 		
 		 	}
