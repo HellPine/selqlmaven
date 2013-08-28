@@ -1642,10 +1642,12 @@ public class tests {
 						
 						
 						if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
+							System.out.println("looking icon");
 					
 						try{
 						
 							driver.findElement(By.cssSelector(chkbutton)).click();
+							System.out.println("looking button");
 							Thread.sleep(1000);
 						
 							String source=driver.getPageSource().toLowerCase();
