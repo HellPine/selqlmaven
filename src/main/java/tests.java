@@ -1732,7 +1732,7 @@ public class tests {
 						
 						try{
 						//chkbutton=chkbutton.toUpperCase();
-							wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(chkbutton)));
+							wait.until(ExpectedConditions.elementToBeClickable(By.xpath(chkbutton)));
 							if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 							
 							try{
