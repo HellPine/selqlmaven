@@ -651,7 +651,7 @@ public class tests {
 						
 						String response="";
 						int it=0;
-						while(!response.contains("No client has been found for the specified net_account variable.")){
+						while(!response.contains("Technical Mistake. Please get in contact with Ukash Merchant Support")){
 							if(it>=4){break;}
 							response= driver.findElement(By.cssSelector("#regerrors span")).getText();
 							//System.out.println(response);
