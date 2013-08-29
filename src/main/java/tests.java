@@ -1727,7 +1727,8 @@ public class tests {
 						
 						try{
 						//chkbutton=chkbutton.toUpperCase();
-						if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
+							wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(chkbutton)));
+							if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 							
 							try{
 							
