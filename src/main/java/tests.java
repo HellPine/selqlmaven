@@ -1,6 +1,8 @@
 //package main.java;
 
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -404,6 +406,9 @@ public class tests {
 	//}
   
 
+	
+
+	
 	public void ibnwithdrawl(String paymentcss,String logname) throws Exception{
 		
 		
@@ -430,7 +435,7 @@ public class tests {
 				
 				Thread.sleep(1000);
 				
-			}catch(NoSuchElementException e1){
+			}catch(Exception e1){
 				
 				if(i>=wdlink.length){
 				System.out.println("Withdrawl Link not found");
@@ -461,7 +466,7 @@ public class tests {
 								//System.out.println("Withdrawl field found and filled");
 								
 							
-							}catch(NoSuchElementException e1){
+							}catch(Exception e1){
 							
 								System.out.println("Withdrawl field not found");
 								success=1;
@@ -498,7 +503,7 @@ public class tests {
 										//System.out.println("Alert present and confirmed");
 										Thread.sleep(1000);
 							
-									}catch(NoSuchElementException e1){
+									}catch(Exception e1){
 								
 										//System.out.println("Alert not present");
 									}
@@ -509,7 +514,7 @@ public class tests {
 										//System.out.println("Alert present and confirmed");
 										Thread.sleep(1000);
 							
-									}catch(NoSuchElementException e1){
+									}catch(Exception e1){
 								
 										//System.out.println("Alert not present");
 									}
@@ -539,7 +544,7 @@ public class tests {
 										success=1;
 									}
 														
-							}catch(NoSuchElementException e1){
+							}catch(Exception e1){
 							
 								System.out.println("Withdrawl button not found");
 								System.out.println("-----------------------------------");
@@ -873,7 +878,7 @@ public class tests {
 				//System.out.println("Payment Field found and filled");
 				//System.out.println("-----------------------------------");
 				
-				}catch(NoSuchElementException e1){
+				}catch(Exception e1){
 					
 					//System.out.println("Field not found");
 					success=1;
@@ -912,7 +917,7 @@ public class tests {
 					
 				}
 				
-				}catch(NoSuchElementException e1){
+				}catch(Exception e1){
 										
 				}
 					
@@ -1099,7 +1104,7 @@ public class tests {
 				
 				}
 				
-				}catch(NoSuchElementException e1){
+				}catch(Exception e1){
 				
 					if(i==paymethod.length){
 					System.out.println("Something wrong with payment button");
@@ -1201,7 +1206,7 @@ public class tests {
 				
 						
 					
-				}catch(NoSuchElementException e1){
+				}catch(Exception e1){
 					
 					System.out.println("Something wrong with Play Now button");
 					System.out.println("-----------------------------------");
@@ -1385,7 +1390,7 @@ public class tests {
 			driver.findElement(By.cssSelector(phonecss)).clear();
 			driver.findElement(By.cssSelector(phonecss)).sendKeys(phone);
 			
-		}catch(NoSuchElementException e1){
+		}catch(Exception e1){
 			
 			System.out.println("phone field not found");
 			System.out.println("-----------------------------------");
@@ -1400,7 +1405,7 @@ public class tests {
 			driver.findElement(By.cssSelector(streetcss)).clear();
 			driver.findElement(By.cssSelector(streetcss)).sendKeys(street);
 			
-		}catch(NoSuchElementException e1){
+		}catch(Exception e1){
 			
 			System.out.println("street field not found");
 			System.out.println("-----------------------------------");
@@ -1414,7 +1419,7 @@ public class tests {
 			driver.findElement(By.cssSelector(housecss)).clear();
 			driver.findElement(By.cssSelector(housecss)).sendKeys(house);
 			
-		}catch(NoSuchElementException e1){
+		}catch(Exception e1){
 			
 			System.out.println("House field not found");
 			System.out.println("-----------------------------------");
@@ -1428,7 +1433,7 @@ public class tests {
 			driver.findElement(By.cssSelector(postcodecss)).clear();
 			driver.findElement(By.cssSelector(postcodecss)).sendKeys(postcode);
 			
-		}catch(NoSuchElementException e1){
+		}catch(Exception e1){
 			
 			System.out.println("postcode field not found");
 			System.out.println("-----------------------------------");
@@ -1442,7 +1447,7 @@ public class tests {
 			driver.findElement(By.cssSelector(citycss)).clear();
 			driver.findElement(By.cssSelector(citycss)).sendKeys(city);
 			
-		}catch(NoSuchElementException e1){
+		}catch(Exception e1){
 			
 			System.out.println("city field not found");
 			System.out.println("-----------------------------------");
@@ -1456,7 +1461,7 @@ public class tests {
 			driver.findElement(By.cssSelector(answercss)).clear();
 			driver.findElement(By.cssSelector(answercss)).sendKeys(answer);
 			//System.out.println("answer");
-		}catch(NoSuchElementException e1){
+		}catch(Exception e1){
 			
 			System.out.println("answer field not found");
 			System.out.println("-----------------------------------");
@@ -1471,7 +1476,7 @@ public class tests {
 			
 			driver.findElement(By.cssSelector(nextbuttoncss)).click();
 			//System.out.println("Boton");			
-		}catch(NoSuchElementException e1){
+		}catch(Exception e1){
 			
 			System.out.println("Next Button not found");
 			System.out.println("-----------------------------------");
@@ -1516,7 +1521,7 @@ public class tests {
 			
 			driver.findElement(By.cssSelector(paymentcss)).click();
 						
-		}catch(NoSuchElementException e1){
+		}catch(Exception e1){
 			
 			System.out.println("Payment Button not found");
 			System.out.println("-----------------------------------");
@@ -1688,7 +1693,7 @@ public class tests {
 								
 						
 						
-						}catch(NoSuchElementException e1){
+						}catch(Exception e1){
 					
 							System.out.println(chktext+" Deposit button error");
 							System.out.println("-----------------------------------");
@@ -1713,6 +1718,10 @@ public class tests {
 						}catch(Exception e2){
 							overall="FAILED";
 							result=result+"<p> ICON CHECKING FAILED <p>";
+							success=1;
+							takesc(screenshot);
+							result=result+"<p>Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+							
 						}
 					}else{
 						
@@ -1773,7 +1782,7 @@ public class tests {
 									
 							
 							
-							}catch(NoSuchElementException e1){
+							}catch(Exception e1){
 						
 								System.out.println(chktext+" Deposit button error");
 								System.out.println("-----------------------------------");
@@ -1802,7 +1811,7 @@ public class tests {
 												
 					}
 			
-				}catch(NoSuchElementException e1){
+				}catch(Exception e1){
 				
 					System.out.println("Something went wrong in "+chktext+" payment method");
 					System.out.println("-----------------------------------");
@@ -2065,7 +2074,7 @@ public class tests {
 				
 				
 				
-			} catch (NoSuchElementException e1){
+			} catch (Exception e1){
 	    		
 				success=1;
 				//System.out.println("This not");
@@ -2412,7 +2421,7 @@ public class tests {
 	    				driver.findElement(By.cssSelector(screen)).sendKeys(screenname); //Handle Screen name
 	    				driver.findElement(By.cssSelector(enterbutton)).click();
 	    				
-	    			}catch (NoSuchElementException e){
+	    			}catch (Exception e){
 	    			
 	    				//System.out.println("No screen name required");
 	    				//System.out.println("-----------------------------------");
@@ -2500,7 +2509,7 @@ public class tests {
 	    				driver.findElement(By.cssSelector(screen)).sendKeys(screenname); //Handle Screen name
 	    				driver.findElement(By.cssSelector(enterbutton)).click();
 	    				screenpresent=1;
-	    			}catch (NoSuchElementException e){
+	    			}catch (Exception e){
 	    			
 	    				//System.out.println("No screen name required");
 	    				//System.out.println("-----------------------------------");
@@ -2618,7 +2627,7 @@ public class tests {
 			success=0;
 			cus=ss.getString("tofind");
 			driver.findElement(By.linkText(cus));
-	    } catch (NoSuchElementException e1){
+	    } catch (Exception e1){
 	    		success=1;					//Control different spelling for Contact Us Link
 	    		
 	    		if(ss.isLast() & nolink<=0){
@@ -2672,7 +2681,7 @@ public class tests {
 	    				rxpath=rxpath.replaceAll("¬","'");
 	    				System.out.println(rxpath);
 	    				driver.findElement(By.xpath(rxpath));
-	    		    } catch (NoSuchElementException e1){
+	    		    } catch (Exception e1){
 	    		    		success2=false;			//Control different spelling for Contact Us Link
     			    		    	
 	    		    }
@@ -2983,10 +2992,7 @@ public class tests {
 	  
  
 
-  @After
-public void tearDown() throws Exception {
- driver.quit();
-}
+
 
 }
 
