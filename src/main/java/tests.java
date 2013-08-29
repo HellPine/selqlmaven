@@ -1381,7 +1381,7 @@ public class tests {
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		try{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(phonecss)));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(nextbuttoncss)));
 		}catch(Exception e){
 			
 		}
@@ -1511,7 +1511,7 @@ public class tests {
 		
 		try{
 			
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(paymentcss)));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(paymentcss)));
 			
 		}catch(Exception e){
 			
@@ -1628,8 +1628,8 @@ public class tests {
 						
 						try{
 							
-						
-						if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
+							wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(chkbutton)));
+							if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 							System.out.println("looking icon");
 					
 						try{
@@ -2181,7 +2181,7 @@ public class tests {
 	    		
 	    			
 	    		
-	    		
+	    		/*
 	    		try{
 	    		//IWait<IWebDriver> wait2 = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(30.00));
 
@@ -2189,7 +2189,8 @@ public class tests {
 	    		//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(email)));
 	    		}catch(Exception e){
 	    			success=1;
-	    		}
+	    		}*/
+	    		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(next)));
 	    		String genmail="QAautomation"+timesta+"@gtech.com";
 	    		try{
 	    		driver.findElement(By.cssSelector(email)).clear(); 
@@ -2283,7 +2284,7 @@ public class tests {
 	    		}
 	    		
 	    		try{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(login)));
+	    			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(realbutton)));
 	    		}catch(Exception e){
 	    			success=1;
 	    		}
