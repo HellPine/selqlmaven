@@ -646,25 +646,40 @@ public class tests {
 						
 					}
 					//System.out.println("Continue");
-					try{
 					
-						String response= driver.findElement(By.cssSelector(uke)).getText();
+					try{
+						
+						String response="";
+						int it=0;
+						while(!response.contains("No client has been found for the specified net_account variable.")){
+							if(it>=4){break;}
+							response= driver.findElement(By.cssSelector("#regerrors span")).getText();
+							//System.out.println(response);
+							response= driver.findElement(By.cssSelector(uke)).getText();
 						//System.out.println(response);
 				
-						if(response.contains("Technical Mistake. Please get in contact with Ukash Merchant Support")){
-						
-							//System.out.println("Neteller Commuication Confirmed");
-							result=result+"<p>UKASH Commuication Confirmed<p>";
-							System.out.println("-----------------------------------");
+							if(response.contains("Technical Mistake. Please get in contact with Ukash Merchant Support")){
+														
+								result=result+"<p>UKASH Commuication Confirmed<p>";
+								System.out.println("-----------------------------------");
 											
-						}else{
+							}else{
+								
+								success=1;
+								it=it+1;
+							
 						
+							}}
+						
+						if(success==1){
+							
 							System.out.println("UKASH Commuication Failed");
 							System.out.println("-----------------------------------");
 							result=result+"<p>UKASH Commuication Failed<p>";
-							success=1;
-						
+							
 						}
+						
+						
 				
 					}catch(Exception e1){
 					
@@ -743,23 +758,36 @@ public class tests {
 						
 							//String errmsg="//fieldset/div[@id='regerrors']";
 							//errmsg=errmsg.toUpperCase();
-							String response= driver.findElement(By.cssSelector("#regerrors span")).getText();
-							//System.out.println(response);
+							String response="";
+							int it=0;
+							while(!response.contains("No client has been found for the specified net_account variable.")){
+								if(it>=4){break;}
+								response= driver.findElement(By.cssSelector("#regerrors span")).getText();
+								//System.out.println(response);
 					
-							if(response.contains("No client has been found for the specified net_account variable.")){
+								if(response.contains("No client has been found for the specified net_account variable.")){
 							
-								//System.out.println("Neteller Commuication Confirmed");
-								result=result+"<p>Neteller Commuication Confirmed<p>";
-								System.out.println("-----------------------------------");
-												
-							}else{
+									//System.out.println("Neteller Commuication Confirmed");
+									result=result+"<p>Neteller Commuication Confirmed<p>";
+									System.out.println("-----------------------------------");
+									success=0;
+									break;
+								}else{
+								
+									success=1;
+									it=it+1;
+								
 							
+								}}
+							
+							if(success==1){
+								
 								System.out.println("Neteller Commuication Failed");
 								System.out.println("-----------------------------------");
 								result=result+"<p>Neteller Commuication Failed<p>";
-								success=1;
-							
+								
 							}
+							
 					
 						}catch(Exception e1){
 						
