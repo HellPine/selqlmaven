@@ -419,7 +419,7 @@ public class tests {
 	    
 		result2=result2+"<tr><td>Withdrawl</td>";
 		
-		String[] wdlink = {"a.button_withdraw","#log_account_buttons a.button_withdraw"};
+		String[] wdlink = {"[qa='withdrawal']","a.button_withdraw","#log_account_buttons a.button_withdraw"};
 		String [][] wdmethod={{"input[name='withdrawalAmount']","text","10"},{"#submit > span","button",""}};
 		
 		int success=0;
