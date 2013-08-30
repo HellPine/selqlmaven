@@ -588,7 +588,7 @@ public class tests {
 		System.out.println("Checking ====>"+payment+"<===== communication");
 		System.out.println("-----------------------------------");
 		
-		String mb1,mb2,uk1,uk2,uke,nt1,nt2,nt3,button,button2;
+		String mb1,mb2,uk1,uk2,uke,nt1,nt2,nt3,nte,button,button2;
 		
 		mb1="html body div#wrapper div#full_col div#main_col div#contentPanel div.innerpanelContainer div.innerpanel div#cmsPayContainer div#submitTrack form#moneybookerdepositform fieldset div input#pay_from_email.cmsPayInputField";
 		mb2="html body div#wrapper div#full_col div#main_col div#contentPanel div.innerpanelContainer div.innerpanel div#cmsPayContainer div#submitTrack form#moneybookerdepositform fieldset div input#amount.cmsPayInputField";
@@ -599,11 +599,19 @@ public class tests {
 		nt1="input[name='accountId']";
 		nt2="input[name='secureId']";
 		nt3="input[name='amount']";
+		nte="#regerrors span";
 		button="#submit > span";
 		button2="a#submit.btn";
 		String Loadmask="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/div[@class='loadmask-msg']/div";
 		Loadmask=Loadmask.toUpperCase();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		if(batchid.contains("labels")){
+			
+			uke="[qa='depositerror']";
+			nte="[qa='depositerror']";
+		
+		}
 		
 		if(payment.equals("ukash")){
 			
@@ -653,7 +661,7 @@ public class tests {
 						int it=0;
 						while(!response.contains("Technical Mistake. Please get in contact with Ukash Merchant Support")){
 							if(it>=4){break;}
-							response= driver.findElement(By.cssSelector("#regerrors span")).getText();
+							//response= driver.findElement(By.cssSelector(uke)).getText();
 							//System.out.println(response);
 							response= driver.findElement(By.cssSelector(uke)).getText();
 						//System.out.println(response);
@@ -742,7 +750,7 @@ public class tests {
 							//String error="//fieldset/div[@id='regerrors']";
 							//error=error.toUpperCase();
 							
-							while(!driver.findElement(By.cssSelector("#regerrors span")).isDisplayed()){
+							while(!driver.findElement(By.cssSelector(nte)).isDisplayed()){
 								System.out.println("Waiting for error message");
 								//Thread.sleep(1000);
 								
@@ -762,7 +770,7 @@ public class tests {
 							int it=0;
 							while(!response.contains("No client has been found for the specified net_account variable.")){
 								if(it>=4){break;}
-								response= driver.findElement(By.cssSelector("#regerrors span")).getText();
+								response= driver.findElement(By.cssSelector(nte)).getText();
 								//System.out.println(response);
 					
 								if(response.contains("No client has been found for the specified net_account variable.")){
@@ -836,6 +844,19 @@ public class tests {
 		String surname="//div[13]/label";
 		String ttype="//div[15]/label";
 		String tid="//div[17]/label";
+		
+		if(batchid.contains("labels")){
+			
+			merchant="[qa='tmerchant']";
+			email="[qa='temail']";
+			auth="[qa='tacode']";
+			trans="[qa='ttamount']";
+			tdate="[qa='ttdate']";
+			surname="[qa='tsurname']";
+			ttype="[qa=tttype']";
+			tid="[qa='ttid']";
+			
+		}
 		//if(browser.equals("ie")){
 			//merchant=merchant.toUpperCase();
 			//email=email.toUpperCase();
@@ -972,6 +993,7 @@ public class tests {
 	    			
 	    		}*/
 				
+				if(!batchid.contains("labels")){
 				if(driver.findElement(By.xpath(merchant)).isDisplayed() && driver.findElement(By.xpath(merchant)).getText().toLowerCase().contains("merchant name")){
 					
 					if(driver.findElement(By.xpath(email)).isDisplayed() && driver.findElement(By.xpath(email)).getText().toLowerCase().contains("e-mail")){
@@ -1144,7 +1166,180 @@ public class tests {
 					}
 				
 				}
-				
+				}else{ //!contains labels
+					
+					if(driver.findElement(By.cssSelector(merchant)).isDisplayed() && driver.findElement(By.cssSelector(merchant)).getText().toLowerCase().contains("merchant name")){
+						
+						if(driver.findElement(By.cssSelector(email)).isDisplayed() && driver.findElement(By.cssSelector(email)).getText().toLowerCase().contains("e-mail")){
+							
+							if(driver.findElement(By.cssSelector(auth)).isDisplayed() && driver.findElement(By.cssSelector(auth)).getText().toLowerCase().contains("authorisation")){
+								
+								if(driver.findElement(By.cssSelector(trans)).isDisplayed() && driver.findElement(By.cssSelector(trans)).getText().toLowerCase().contains("transaction amount")){
+									
+									if(driver.findElement(By.cssSelector(tdate)).isDisplayed() && driver.findElement(By.cssSelector(tdate)).getText().toLowerCase().contains("transaction date")){
+								
+										if(driver.findElement(By.cssSelector(surname)).isDisplayed() && driver.findElement(By.cssSelector(surname)).getText().toLowerCase().contains("surname")){
+										
+											if(driver.findElement(By.cssSelector(ttype)).isDisplayed() && driver.findElement(By.cssSelector(ttype)).getText().toLowerCase().contains("transaction type")){
+											
+												if(driver.findElement(By.cssSelector(tid)).isDisplayed() && driver.findElement(By.cssSelector(tid)).getText().toLowerCase().contains("transaction id")){
+												
+												
+												
+									                
+													takesc(screenshot);
+									                result=result+"<p>Screenshot for the deposit <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+									                System.out.println("Deposit correctly placed");
+									                System.out.println("-----------------------------------");
+									    			//result2=result2+"<td>PASS</td></tr>";
+									                
+									           											
+																					
+												}else{
+												
+												System.out.println("Transaction Id not present in Receipt");
+												success=1;
+												result=result+"<p>Transaction Id not present in Receipt<p>";
+												
+									                
+													takesc(screenshot);
+													result=result+"<p>tid Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+													//System.out.println("Deposit correctly placed");
+													//result2=result2+"<td>PASS</td></tr>";
+							                
+												
+												}
+											}else{
+											
+												System.out.println("Transaction Type not present in Receipt");
+												success=1;
+												result=result+"<p>Transaction Type not present in Receipt<p>";
+												
+												try {
+									                
+													takesc(screenshot);
+													result=result+"<p>ttype Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+													//System.out.println("Deposit correctly placed");
+													//result2=result2+"<td>PASS</td></tr>";
+							                
+												} catch (IOException e1) {
+													System.out.println("Screenshot Failed");
+													System.out.println("-----------------------------------");
+												}
+											
+											}
+										}else{
+										
+											System.out.println("Surname not present in Receipt");
+											success=1;
+											result=result+"<p>Surname not present in Receipt<p>";
+											try {
+								                
+												takesc(screenshot);
+												result=result+"<p>surnme Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+												//System.out.println("Deposit correctly placed");
+												//result2=result2+"<td>PASS</td></tr>";
+						                
+											} catch (IOException e1) {
+												System.out.println("Screenshot Failed");
+												System.out.println("-----------------------------------");
+											}
+										
+										}
+										
+									}else{
+									
+										System.out.println("Transaction Date not present in Receipt");
+										success=1;
+										result=result+"<p>transaction Date not present in Receipt<p>";
+										try {
+							                
+											takesc(screenshot);
+											result=result+"<p>tdate Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+											//System.out.println("Deposit correctly placed");
+											//result2=result2+"<td>PASS</td></tr>";
+					                
+										} catch (IOException e1) {
+											System.out.println("Screenshot Failed");
+											System.out.println("-----------------------------------");
+										}
+									
+									}
+								}else{
+								
+									System.out.println("Transaction Amount not present in Receipt");
+									success=1;
+									result=result+"<p>Transaction Amount not present in Receipt<p>";
+									try {
+						                
+										takesc(screenshot);
+										result=result+"<p>tamo Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+										//System.out.println("Deposit correctly placed");
+										//result2=result2+"<td>PASS</td></tr>";
+				                
+									} catch (IOException e1) {
+										System.out.println("Screenshot Failed");
+										System.out.println("-----------------------------------");
+									}
+								
+								}
+								
+							}else{
+							
+								System.out.println("Authorisation Code not present in Receipt");
+								success=1;
+								result=result+"<p>Authorisation Code not present in Receipt<p>";
+								try {
+					                
+									takesc(screenshot);
+									result=result+"<p>authcode Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+									//System.out.println("Deposit correctly placed");
+									//result2=result2+"<td>PASS</td></tr>";
+			                
+								} catch (IOException e1) {
+									System.out.println("Screenshot Failed");
+									System.out.println("-----------------------------------");
+								}
+							
+							}
+							
+						}else{
+						
+							System.out.println("e-mail not present in Receipt");
+							success=1;
+							result=result+"<p>e-mail not present in Receipt<p>";
+							try {
+				                
+								takesc(screenshot);
+								result=result+"<p>temail Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+								//System.out.println("Deposit correctly placed");
+								//result2=result2+"<td>PASS</td></tr>";
+		                
+							} catch (IOException e1) {
+								System.out.println("Screenshot Failed");
+								System.out.println("-----------------------------------");
+							}
+						
+						}
+					
+					}else{
+					
+						System.out.println("Merchant Name not present in Receipt");
+						success=1;
+						result=result+"<p>Merchant Name not present in Receipt<p>";
+						try {
+			                
+							takesc(screenshot);
+							result=result+"<p>mname Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+							//System.out.println("Deposit correctly placed");
+							//result2=result2+"<td>PASS</td></tr>";
+	                
+						} catch (IOException e1) {
+							System.out.println("Screenshot Failed");
+							System.out.println("-----------------------------------");
+						}
+					}
+				}
 				}catch(Exception e1){
 				
 					if(i==paymethod.length){
@@ -1883,11 +2078,16 @@ public class tests {
 						}
 				}
 		
+			if(batchid.contains("labels")){
 			try{
 				driver.findElement(By.cssSelector("[qa='paymentback']")).click();
 			}catch(Exception e23){
 				
 			}
+			
+			}else
+				
+				driver.navigate().back();
 			
 			}
 			
