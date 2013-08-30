@@ -847,19 +847,29 @@ public class tests {
 			//tid=tid.toUpperCase();}
 		
 		
-		String[][] paymethod ={ 	{"input[name='accountId']","458591047553","text"}, //Stage
-								{"input[name='secureId']","411392","text"},
-								{"input[name='amount']","10","text"},
-								{"#submit > span","","button"},
-								{"a#submit.btn","","button"}
+		String[][] paymethod ={	{"input[name='accountId']","458591047553","text"}, //Stage
+				{"input[name='secureId']","411392","text"},
+				{"input[name='amount']","10","text"},
+				{"#submit > span","","button"},
+				{"a#submit.btn","","button"}
+		};
 		
+								
+		if(batchid.contains("labels")){
+			
+			paymethod[0][0] ="[qa='nanumber']";
+			paymethod[1][0]="[qa='nsnumber']";
+			paymethod[2][0]="[qa='namount']";
+			paymethod[3][0]="[qa='dbutton']";
+						 
+		}
 		//String[][] paymethod ={ 	{"input[name='accountId']","453523465418","text"}, //Live
 			//				{"input[name='secureId']","664902","text"},
 				//			{"input[name='amount']","10","text"},
 					//		{"#submit > span","","button"},
 						//	{"a#submit.btn","","button"}
 		
-		};
+		//};
 		
 		String[][] arr= new String[15][3];
 		
@@ -1158,7 +1168,14 @@ public class tests {
 				}
 				
 				try{
-					driver.findElement(By.cssSelector(paymethod[i][0])).click();
+					
+					if(!batchid.contains("labels")){
+						driver.findElement(By.cssSelector(paymethod[i][0])).click();
+					}else{
+						driver.findElement(By.cssSelector("[qa='tplaynow']")).click();
+						//driver.findElement(By.cssSelector("[id='submit']")).click();
+					}
+					
 					System.out.println("Play Now Button Clicked");
 					System.out.println("-----------------------------------");
 					
@@ -1866,7 +1883,11 @@ public class tests {
 						}
 				}
 		
-			driver.navigate().back();
+			try{
+				driver.findElement(By.cssSelector("[qa='paymentback']")).click();
+			}catch(Exception e23){
+				
+			}
 			
 			}
 			
