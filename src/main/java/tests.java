@@ -1541,15 +1541,16 @@ public class tests {
 		String testtoget="";
 		String testid="";
 		
-		result=result+"<p><h3>" + l2test + " IBN L2 TEST</h3></p><p></p>";
-		
+		//result=result+"<p><h3>" + l2test + " IBN L2 TEST</h3></p><p></p>";
+		result=result+"<p><h3>IBN L2 TEST</h3></p><p></p>";
 		String what="";
 		int success=0;
 		//System.out.println(l2test);
 		stat3= con.createStatement();
 		stat4=con.createStatement();
 		stat=con.createStatement();
-		result2=result2+"<tr><td>"+ l2test+"</td>";
+		//result2=result2+"<tr><td>"+ l2test+"</td>";
+		result2=result2+"<tr><td>L2 Step 1 Test</td>";
 		
 		l2rs1= stat3.executeQuery("select * from tests where testid='"+l2test+"'");
 		l2rs1.first();
@@ -1557,7 +1558,7 @@ public class tests {
 		String testk=l2rs1.getString("testkind");
 		//System.out.println(testk);
 				
-		if(testk.equals("ibnl2chk")){
+		if(testk.equals("ibnl2chk")||testk.equals("l2paycheck")){
 			
 			stat3.clearBatch();
 			l2rs1= stat3.executeQuery("select * from ibnl2paymentcheck where testid='"+l2test+"'");
@@ -1621,6 +1622,7 @@ public class tests {
 		Thread.sleep(1000);
 		
 		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		try{
@@ -1821,6 +1823,7 @@ public class tests {
 		
 		if(what.equals("checkonly") && success==0){
 			
+			result2=result2+"<td>PASS</td></tr>";
 			
 			//Start payment methods present and functional
 			
@@ -1828,7 +1831,23 @@ public class tests {
 			//String fname,sname,tname,foname,finame,siname;
 			String chkicon,chkbutton,chktext;
 			
-			l2rs3=stat2.executeQuery("select * from ibnl2paymentcheck where testid='" + testid +"'");
+			String testfbatch="";
+			String kindtest="";
+			l2rs2=stat.executeQuery("select * from batch where batchid='"+batchid+"'");
+			l2rs2.beforeFirst();
+			
+			while(l2rs2.next()){
+				testfbatch=l2rs2.getString("testid");
+				System.out.println(testfbatch);
+				l2rs1=stat3.executeQuery("select * from tests where testid='" + testfbatch +"'");
+				l2rs1.first();
+				kindtest=l2rs1.getString("testkind");
+				System.out.println(kindtest);
+				
+			if(kindtest.equals("l2paycheck")){
+			
+			result2=result2+"<tr><td>"+testfbatch+"</td>";
+			l2rs3=stat2.executeQuery("select * from ibnl2paymentcheck where testid='" + testfbatch +"'");
 			l2rs3.beforeFirst();
 			
 			while(l2rs3.next()){
@@ -1906,6 +1925,7 @@ public class tests {
 									if(success==0){
 									result=result+"<p>"+chktext+" Payment OK</p>";
 									result=result+"<p>Screenshot for this payment <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+									result2=result2+"<td>PASS<td></tr>";
 									}else{
 									result=result+"<p>"+chktext+" Payment FAILED</p>";
 									result=result+"<p>payfail Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
@@ -1997,6 +2017,7 @@ public class tests {
 										//result2=result2+"<td>PASS</td></tr>";
 										screenshot = "target/screenshots/" + chktext + timesta + ".png";
 										
+										result2=result2+"<td>PASS<td></tr>";
 										takesc(screenshot);
 										result=result+"<p>Screenshot for this payment <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 
@@ -2089,7 +2110,7 @@ public class tests {
 				
 				driver.navigate().back();
 			
-			}
+			}}}
 			
 			//System.out.println(success);
 		}
@@ -2098,7 +2119,7 @@ public class tests {
 				System.out.println("-----------------------------------");
 				System.out.println("IBN L2 Step 2 Completed");
 				System.out.println("-----------------------------------");
-				result2=result2+"<td>PASS</td></tr>";
+				//result2=result2+"<td>PASS</td></tr>";
 				result=result+"<p>L2 Step2 Successful<p>";
 				
 			}else{
