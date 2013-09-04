@@ -684,6 +684,7 @@ public class tests {
 							System.out.println("UKASH Commuication Failed");
 							System.out.println("-----------------------------------");
 							result=result+"<p>UKASH Commuication Failed<p>";
+							result2=result2+"<td>FAILED</td></tr>";
 							
 						}
 						
@@ -694,6 +695,7 @@ public class tests {
 						System.out.println("Error Message not found");
 						System.out.println("-----------------------------------");
 						result=result+"<p>UKASH error message not found<p>";
+						result2=result2+"<td>FAILED</td></tr>";
 						success=1;
 					
 					}
@@ -704,6 +706,7 @@ public class tests {
 				System.out.println("-----------------------------------");
 				result=result+"<p>Some Field/button not found while UKASH Commuication check<p>";
 				success=1;
+				result2=result2+"<td>FAILED</td></tr>";
 			}
 				
 		
@@ -793,6 +796,7 @@ public class tests {
 								System.out.println("Neteller Commuication Failed");
 								System.out.println("-----------------------------------");
 								result=result+"<p>Neteller Commuication Failed<p>";
+								result2=result2+"<td>FAILED</td></tr>";
 								
 							}
 							
@@ -802,6 +806,7 @@ public class tests {
 							System.out.println("Error Message not found");
 							System.out.println("-----------------------------------");
 							result=result+"<p>Neteller error message not found<p>";
+							result2=result2+"<td>FAILED</td></tr>";
 							success=1;
 						
 						}
@@ -811,6 +816,7 @@ public class tests {
 					System.out.println("Something wrong happens in the check");
 					System.out.println("-----------------------------------");
 					result=result+"<p>Some Field/button not found while Neteller Commuication check<p>";
+					result2=result2+"<td>FAILED</td></tr>";
 					success=1;
 				}
 					
@@ -2112,6 +2118,7 @@ public class tests {
 			if(batchid.contains("labels")){
 			try{
 				driver.findElement(By.cssSelector("[qa='paymentback']")).click();
+				driver.findElement(By.cssSelector("[id='paymentLink1']")).click();
 			}catch(Exception e23){
 				
 			}
