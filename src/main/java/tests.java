@@ -1940,6 +1940,7 @@ public class tests {
 									overall="FAILED";
 									success=1;
 									result=result+"<p> User Name Not displayed in "+chktext+" payment method</p>";
+									result2=result2+"<td>FAILED<td></tr>";
 									takesc(screenshot);
 									result=result+"<p>pchklogname Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";}
 								
@@ -1952,6 +1953,7 @@ public class tests {
 								overall="FAILED";
 								success=1;
 								result=result+"<p>Payment Name Not displayed in "+chktext+" payment method</p>";
+								result2=result2+"<td>FAILED<td></tr>";
 								takesc(screenshot);
 								result=result+"<p>pcheckpname Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 							}
@@ -1966,6 +1968,7 @@ public class tests {
 							overall="FAILED";
 							success=1;
 							result=result+"<p> Depossit button failed in "+chktext+" payment method</p>";
+							result2=result2+"<td>FAILED<td></tr>";
 							takesc(screenshot);
 							result=result+"<p>pchkdbutt Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 						}
@@ -1977,12 +1980,14 @@ public class tests {
 						System.out.println("Icon not displayed");
 						System.out.println("-----------------------------------");
 						result=result+"<p>ICON Not displayed for "+chktext+" payment method</p>";
+						result2=result2+"<td>FAILED<td></tr>";
 						takesc(screenshot);
 						result=result+"<p>pchkicon Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 					}
 						}catch(Exception e2){
 							overall="FAILED";
 							result=result+"<p> ICON CHECKING FAILED <p>";
+							result2=result2+"<td>FAILED<td></tr>";
 							success=1;
 							takesc(screenshot);
 							result=result+"<p>pchkicon2 Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
@@ -2031,6 +2036,7 @@ public class tests {
 										overall="FAILED";
 										success=1;
 										result=result+"<p> User Name Not displayed in "+chktext+" payment method</p>";
+										result2=result2+"<td>FAILED<td></tr>";
 										takesc(screenshot);
 										result=result+"<p>logname Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 									}
@@ -2043,6 +2049,7 @@ public class tests {
 									overall="FAILED";
 									success=1;
 									result=result+"<p> Payment Name Not displayed in "+chktext+" payment method</p>";
+									result2=result2+"<td>FAILED<td></tr>";
 									takesc(screenshot);
 									result=result+"<p>payname Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 								}
@@ -2057,6 +2064,7 @@ public class tests {
 								overall="FAILED";
 								success=1;
 								result=result+"<p> Deposit Button Failed in "+chktext+" payment method</p>";
+								result2=result2+"<td>FAILED<td></tr>";
 								takesc(screenshot);	
 								result=result+"<p>depbutt Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 							}
@@ -2068,12 +2076,14 @@ public class tests {
 							System.out.println("Payment ICON not displayed");
 							System.out.println("-----------------------------------");
 							result=result+"<p> ICON Not displayed for "+chktext+" payment method</p>";
+							result2=result2+"<td>FAILED<td></tr>";
 							takesc(screenshot);
 							result=result+"<p>payicon Error Screenshot <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 							
 						}}catch(Exception e2){
 							overall="FAILED";
 							result=result+"<p> ICON CHECKING FAILED <p>";
+							result2=result2+"<td>FAILED<td></tr>";
 						}
 												
 					}
