@@ -108,8 +108,7 @@ public class tests {
 	public long timesta=new Date().getTime()/1000;
 	public String batchid; 
 	public String language;
-	
-	
+	public boolean is64bit = false;
 	public static Statement stat=null;
 	public static Statement stat2=null;
 	public static Statement stat3=null;
@@ -139,6 +138,27 @@ public class tests {
 		//file.delete();
 		//file2.delete();
 		//System.out.println(new Timestamp(date.getTime()));
+		
+		if (System.getProperty("os.name").contains("Windows")) {
+		    is64bit = (System.getenv("ProgramFiles(x86)") != null);
+		} else {
+		    is64bit = (System.getProperty("os.arch").indexOf("64") != -1);
+		}
+		
+		if(is64bit=false){
+			
+			System.out.println("------------------------");
+			System.out.println("Running on 32 bit system");
+			System.out.println("------------------------");
+			
+		}else{
+			
+			System.out.println("------------------------");
+			System.out.println("Running on 64 bit system");
+			System.out.println("------------------------");
+			
+		}
+		
 		
 		try{
 			
@@ -1784,12 +1804,12 @@ public class tests {
 		}
 		
 		try{
-		wait.until(ExpectedConditions.textToBePresentInElement(By.cssSelector("BODY"),logname));
+		wait.until(ExpectedConditions.textToBePresentInElement(By.cssSelector("[id='the_usernameright']"),logname));
 		}catch(Exception e){
 			
 		}
 		
-		if(driver.getPageSource().contains(logname)){
+		if(driver.findElement(By.cssSelector("[id='the_usernameright']")).getText().equals(logname)){
 			
 			
 			ibndeposit(paymentcss,logname);
