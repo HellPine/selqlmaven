@@ -642,6 +642,19 @@ public class tests {
 				driver.findElement(By.cssSelector(uk2)).sendKeys("200");
 				
 				try{
+					
+					wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(button)));
+					
+				}catch(Exception e){
+					
+					try{
+						wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(button2)));
+					}catch(Exception e1){
+						
+					}
+				}
+				
+				try{
 					driver.findElement(By.cssSelector(button)).click();
 				}catch(Exception e){
 					driver.findElement(By.cssSelector(button2)).click();
@@ -683,6 +696,7 @@ public class tests {
 							if(it>=4){break;}
 							//response= driver.findElement(By.cssSelector(uke)).getText();
 							//System.out.println(response);
+							wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(nte)));
 							response= driver.findElement(By.cssSelector(uke)).getText();
 						//System.out.println(response);
 				
@@ -747,6 +761,18 @@ public class tests {
 					driver.findElement(By.cssSelector(nt3)).clear();
 					driver.findElement(By.cssSelector(nt3)).sendKeys("10");
 					
+					try{
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(button)));
+						
+					}catch(Exception e){
+						
+						try{
+							wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(button2)));
+						}catch(Exception e1){
+							
+						}
+					}
 					
 					try{
 						driver.findElement(By.cssSelector(button)).click();
@@ -793,6 +819,7 @@ public class tests {
 							int it=0;
 							while(!response.contains("No client has been found for the specified net_account variable.")){
 								if(it>=4){break;}
+								wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(nte)));
 								response= driver.findElement(By.cssSelector(nte)).getText();
 								//System.out.println(response);
 					
@@ -986,6 +1013,7 @@ public class tests {
 			if(paymethod[i][2].equals("button")){
 				
 				try{
+				
 				
 				driver.findElement(By.cssSelector(paymethod[i][0])).click();
 				System.out.println("Deposit button clicked");
