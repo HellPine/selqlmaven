@@ -440,7 +440,7 @@ public class tests {
 		result2=result2+"<tr><td>Withdrawl</td>";
 		
 		String[] wdlink = {"[qa='withdrawal']","a.button_withdraw","#log_account_buttons a.button_withdraw"};
-		String [][] wdmethod={{"input[name='withdrawalAmount']","text","10"},{"#submit > span","button",""}};
+		String [][] wdmethod={{"input[name='withdrawalAmount']","text","10"},{"[id='submit']","button",""}};
 		
 		int success=0;
 		int i=0;
@@ -539,7 +539,7 @@ public class tests {
 										//System.out.println("Alert not present");
 									}
 							
-									if(driver.getCurrentUrl().contains("lobby") && driver.getPageSource().contains(logname)){
+									if((driver.getCurrentUrl().contains("lobby")||driver.getCurrentUrl().contains("home")) && driver.findElement(By.cssSelector("[id='the_usernameright']")).getText().equals(logname)){
 								
 										System.out.println("Withdrawl complete and user correctly redirected to lobby");
 										System.out.println("-----------------------------------");
@@ -548,7 +548,7 @@ public class tests {
 										try {
 					                
 											takesc(screenshot);
-											result=result+"<p>Screenshot for Withdrawl <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
+											result=result+"<p>Screenshot for Withdrawal <a href=../../"+screenshot+"><img SRC=../../"+screenshot+" width=100 height=100></a><p>";
 											//System.out.println("Deposit correctly placed");
 											//result2=result2+"<td>PASS</td></tr>";
 					                
@@ -587,13 +587,13 @@ public class tests {
 				
 				if (success==0){
 					
-					//result2=result2+"<td>PASS</td></tr>";
+					result2=result2+"<td>PASS</td></tr>";
 					System.out.println("Withdrawl Test Passed");
 					System.out.println("-----------------------------------");
 					
 				}else{
 					
-					//result2=result2+"<td>FAILED</td></tr>";
+					result2=result2+"<td>FAILED</td></tr>";
 					System.out.println("Withdrawl Test Failed");
 					System.out.println("-----------------------------------");
 					overall="FAILED";
@@ -604,10 +604,10 @@ public class tests {
 	
 	public int paymenterrorcheck(String payment,int success) throws Exception{
 		
+		success=0;
 		started=started+1;
 		System.out.println("Checking ====>"+payment+"<===== communication");
 		System.out.println("-----------------------------------");
-		
 		String mb1,mb2,uk1,uk2,uke,nt1,nt2,nt3,nte,button,button2;
 		
 		mb1="html body div#wrapper div#full_col div#main_col div#contentPanel div.innerpanelContainer div.innerpanel div#cmsPayContainer div#submitTrack form#moneybookerdepositform fieldset div input#pay_from_email.cmsPayInputField";
@@ -630,6 +630,7 @@ public class tests {
 			
 			uke="[qa='depositerror']";
 			nte="[qa='depositerror']";
+			
 		
 		}
 		
@@ -821,7 +822,7 @@ public class tests {
 								if(it>=4){break;}
 								wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(nte)));
 								response= driver.findElement(By.cssSelector(nte)).getText();
-								//System.out.println(response);
+								System.out.println(response);
 					
 								if(response.contains("No client has been found for the specified net_account variable.")){
 							
@@ -1435,10 +1436,10 @@ public class tests {
 		    			
 		    		}
 					//System.out.println(driver.getCurrentUrl().toString());
-					if(driver.getCurrentUrl().toString().contains("lobby")){
+					if(driver.getCurrentUrl().toString().contains("lobby")||driver.getCurrentUrl().toString().contains("home")){
 						
-						if(driver.getPageSource().contains(logname)){
-							
+						//if(driver.getPageSource().contains(logname)){
+						if(driver.findElement(By.cssSelector("[id='the_usernameright']")).getText().equals(logname)){
 						
 						System.out.println("User successfully redirected to Lobby Page");
 						System.out.println("-----------------------------------");
