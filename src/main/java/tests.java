@@ -440,7 +440,7 @@ public class tests {
 		result2=result2+"<tr><td>Withdrawl</td>";
 		
 		String[] wdlink = {"[qa='withdrawal']","a.button_withdraw","#log_account_buttons a.button_withdraw"};
-		String [][] wdmethod={{"input[name='withdrawalAmount']","text","10"},{"[id='submit']","button",""}};
+		String [][] wdmethod={{"input[name='withdrawalAmount']","text","100"},{"[id='submit']","button",""}};
 		
 		int success=0;
 		int i=0;
@@ -625,6 +625,7 @@ public class tests {
 		String Loadmask="/html/body/div[@id='wrapper']/div[@id='full_col']/div[@id='main_col']/div[@id='contentPanel']/div[@class='innerpanelContainer']/div[@class='innerpanel']/div[@id='cmsPayContainer']/form[@id='netellerdepositform']/div[@class='loadmask-msg']/div";
 		Loadmask=Loadmask.toUpperCase();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		String message="";
 		
 		if(batchid.contains("labels")){
 			
@@ -691,9 +692,13 @@ public class tests {
 					
 					try{
 						
+						if(language.equals("swedish")){ message="Teknisk Misstag. Behaga komma i kontakt med Ukash Köpman Stöd";}
+						if(language.equals("english")){ message="Technical Mistake. Please get in contact with Ukash Merchant Support";}
+						if(language.equals("norwegian")){ message="";}
+						
 						String response="";
 						int it=0;
-						while(!response.contains("Technical Mistake. Please get in contact with Ukash Merchant Support")){
+						while(!response.contains(message)){
 							if(it>=4){break;}
 							//response= driver.findElement(By.cssSelector(uke)).getText();
 							//System.out.println(response);
@@ -701,7 +706,12 @@ public class tests {
 							response= driver.findElement(By.cssSelector(uke)).getText();
 						//System.out.println(response);
 				
-							if(response.contains("Technical Mistake. Please get in contact with Ukash Merchant Support")){
+											
+								
+								
+							}
+							
+							if(response.contains(message)){
 														
 								result=result+"<p>UKASH Commuication Confirmed<p>";
 								System.out.println("-----------------------------------");
@@ -712,7 +722,7 @@ public class tests {
 								it=it+1;
 							
 						
-							}}
+							}
 						
 						if(success==1){
 							
@@ -752,15 +762,20 @@ public class tests {
 		
 		if(payment.equals("neteller")){	
 			
+			String amount="";
 			
-			
+						
 				try{
 					driver.findElement(By.cssSelector(nt1)).clear();
 					driver.findElement(By.cssSelector(nt1)).sendKeys("458591047553");
 					driver.findElement(By.cssSelector(nt2)).clear();
 					driver.findElement(By.cssSelector(nt2)).sendKeys("123456");
 					driver.findElement(By.cssSelector(nt3)).clear();
-					driver.findElement(By.cssSelector(nt3)).sendKeys("10");
+					driver.findElement(By.cssSelector(nt3)).sendKeys("200");
+					
+					if(language.equals("swedish")){ message="Var vänlig kontakta NETeller";}
+					if(language.equals("english")){ message="No client has been found for the specified net_account variable.";}
+					if(language.equals("norwegian")){ message="Hvor vennlig at kontakte NETeller";}
 					
 					try{
 						
@@ -814,17 +829,20 @@ public class tests {
 						//System.out.println("Continue");
 						try{
 						
+																
+							
+							
 							//String errmsg="//fieldset/div[@id='regerrors']";
 							//errmsg=errmsg.toUpperCase();
 							String response="";
 							int it=0;
-							while(!response.contains("No client has been found for the specified net_account variable.")){
+							while(!response.contains(message)){
 								if(it>=4){break;}
 								wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(nte)));
 								response= driver.findElement(By.cssSelector(nte)).getText();
 								System.out.println(response);
 					
-								if(response.contains("No client has been found for the specified net_account variable.")){
+								if(response.contains(message)){
 							
 									//System.out.println("Neteller Commuication Confirmed");
 									result=result+"<p>Neteller Commuication Confirmed<p>";
@@ -899,6 +917,48 @@ public class tests {
 		String ttype="//div[15]/label";
 		String tid="//div[17]/label";
 		
+		String merchtxt="merchant name";
+		String emailtxt="e-mail";
+		String autcodtxt="authorisation";
+		String transamtxt="transaction amount";
+		String transdattxt="transaction date";
+		String surnatxt="surname";
+		String trantytxt="transaction type";
+		String transidtxt="transaction id";
+		
+		if(language.equals("swedish")){
+			merchtxt="namn";
+			emailtxt="e-post id";
+			autcodtxt="auktoriseringskod";
+			transamtxt="transaktionsbelopp";
+			transdattxt="transaktionsdatum";
+			surnatxt="efternamn";
+			trantytxt="transaktionstyp";
+			transidtxt="transaktions id";
+		}
+		
+		if(language.equals("norwegian")){
+			merchtxt="kundens navn";
+			emailtxt="e-post";
+			autcodtxt="autorisasjons kode";
+			transamtxt="transaksjonsbeløp";
+			transdattxt="transaksjonens dato";
+			surnatxt="etternavn";
+			trantytxt="transaksjons type";
+			transidtxt="transaksjons id";
+		}
+		
+	System.out.println(merchtxt);
+	System.out.println(emailtxt);
+	System.out.println(autcodtxt);
+	System.out.println(transamtxt);
+	System.out.println(transdattxt);
+	System.out.println(surnatxt);
+	System.out.println(trantytxt);
+	System.out.println(transidtxt);
+
+	
+		
 		if(batchid.contains("labels")){
 			
 			merchant="[qa='tmerchant']";
@@ -911,6 +971,16 @@ public class tests {
 			tid="[qa='ttid']";
 			
 		}
+		
+		System.out.println(merchant);
+		System.out.println(email);
+		System.out.println(auth);
+		System.out.println(trans);
+		System.out.println(tdate);
+		System.out.println(surname);
+		System.out.println(ttype);
+		System.out.println(tid);
+		
 		//if(browser.equals("ie")){
 			//merchant=merchant.toUpperCase();
 			//email=email.toUpperCase();
@@ -924,7 +994,7 @@ public class tests {
 		
 		String[][] paymethod ={	{"input[name='accountId']","458591047553","text"}, //Stage
 				{"input[name='secureId']","411392","text"},
-				{"input[name='amount']","10","text"},
+				{"input[name='amount']","100","text"},
 				{"#submit > span","","button"},
 				{"a#submit.btn","","button"}
 		};
@@ -1049,23 +1119,23 @@ public class tests {
 	    		}*/
 				
 				if(!batchid.contains("labels")){
-				if(driver.findElement(By.xpath(merchant)).isDisplayed() && driver.findElement(By.xpath(merchant)).getText().toLowerCase().contains("merchant name")){
+				if(driver.findElement(By.xpath(merchant)).isDisplayed() && driver.findElement(By.xpath(merchant)).getText().toLowerCase().contains(merchtxt)){
 					
-					if(driver.findElement(By.xpath(email)).isDisplayed() && driver.findElement(By.xpath(email)).getText().toLowerCase().contains("e-mail")){
+					if(driver.findElement(By.xpath(email)).isDisplayed() && driver.findElement(By.xpath(email)).getText().toLowerCase().contains(emailtxt)){
 						
-						if(driver.findElement(By.xpath(auth)).isDisplayed() && driver.findElement(By.xpath(auth)).getText().toLowerCase().contains("authorisation")){
+						if(driver.findElement(By.xpath(auth)).isDisplayed() && driver.findElement(By.xpath(auth)).getText().toLowerCase().contains(autcodtxt)){
 							
-							if(driver.findElement(By.xpath(trans)).isDisplayed() && driver.findElement(By.xpath(trans)).getText().toLowerCase().contains("transaction amount")){
+							if(driver.findElement(By.xpath(trans)).isDisplayed() && driver.findElement(By.xpath(trans)).getText().toLowerCase().contains(transamtxt)){
 								
-								if(driver.findElement(By.xpath(tdate)).isDisplayed() && driver.findElement(By.xpath(tdate)).getText().toLowerCase().contains("transaction date")){
+								if(driver.findElement(By.xpath(tdate)).isDisplayed() && driver.findElement(By.xpath(tdate)).getText().toLowerCase().contains(transdattxt)){
 							
-									if(driver.findElement(By.xpath(surname)).isDisplayed() && driver.findElement(By.xpath(surname)).getText().toLowerCase().contains("surname")){
+									if(driver.findElement(By.xpath(surname)).isDisplayed() && driver.findElement(By.xpath(surname)).getText().toLowerCase().contains(surnatxt)){
 									
-										if(driver.findElement(By.xpath(ttype)).isDisplayed() && driver.findElement(By.xpath(ttype)).getText().toLowerCase().contains("transaction type")){
+										if(driver.findElement(By.xpath(ttype)).isDisplayed() && driver.findElement(By.xpath(ttype)).getText().toLowerCase().contains(trantytxt)){
 										
-											if(driver.findElement(By.xpath(tid)).isDisplayed() && driver.findElement(By.xpath(tid)).getText().toLowerCase().contains("transaction id")){
+											if(driver.findElement(By.xpath(tid)).isDisplayed() && driver.findElement(By.xpath(tid)).getText().toLowerCase().contains(transidtxt)){
 											
-											
+												
 											
 								                
 												takesc(screenshot);
@@ -1223,23 +1293,23 @@ public class tests {
 				}
 				}else{ //!contains labels
 					
-					if(driver.findElement(By.cssSelector(merchant)).isDisplayed() && driver.findElement(By.cssSelector(merchant)).getText().toLowerCase().contains("merchant name")){
+					if(driver.findElement(By.cssSelector(merchant)).isDisplayed() && driver.findElement(By.cssSelector(merchant)).getText().toLowerCase().contains(merchtxt)){
 						
-						if(driver.findElement(By.cssSelector(email)).isDisplayed() && driver.findElement(By.cssSelector(email)).getText().toLowerCase().contains("e-mail")){
+						if(driver.findElement(By.cssSelector(email)).isDisplayed() && driver.findElement(By.cssSelector(email)).getText().toLowerCase().contains(emailtxt)){
 							
-							if(driver.findElement(By.cssSelector(auth)).isDisplayed() && driver.findElement(By.cssSelector(auth)).getText().toLowerCase().contains("authorisation")){
+							if(driver.findElement(By.cssSelector(auth)).isDisplayed() && driver.findElement(By.cssSelector(auth)).getText().toLowerCase().contains(autcodtxt)){
 								
-								if(driver.findElement(By.cssSelector(trans)).isDisplayed() && driver.findElement(By.cssSelector(trans)).getText().toLowerCase().contains("transaction amount")){
+								if(driver.findElement(By.cssSelector(trans)).isDisplayed() && driver.findElement(By.cssSelector(trans)).getText().toLowerCase().contains(transamtxt)){
 									
-									if(driver.findElement(By.cssSelector(tdate)).isDisplayed() && driver.findElement(By.cssSelector(tdate)).getText().toLowerCase().contains("transaction date")){
+									if(driver.findElement(By.cssSelector(tdate)).isDisplayed() && driver.findElement(By.cssSelector(tdate)).getText().toLowerCase().contains(transdattxt)){
 								
-										if(driver.findElement(By.cssSelector(surname)).isDisplayed() && driver.findElement(By.cssSelector(surname)).getText().toLowerCase().contains("surname")){
+										if(driver.findElement(By.cssSelector(surname)).isDisplayed() && driver.findElement(By.cssSelector(surname)).getText().toLowerCase().contains(surnatxt)){
 										
-											if(driver.findElement(By.cssSelector(ttype)).isDisplayed() && driver.findElement(By.cssSelector(ttype)).getText().toLowerCase().contains("transaction type")){
+											if(driver.findElement(By.cssSelector(ttype)).isDisplayed() && driver.findElement(By.cssSelector(ttype)).getText().toLowerCase().contains(trantytxt)){
 											
-												if(driver.findElement(By.cssSelector(tid)).isDisplayed() && driver.findElement(By.cssSelector(tid)).getText().toLowerCase().contains("transaction id")){
+												if(driver.findElement(By.cssSelector(tid)).isDisplayed() && driver.findElement(By.cssSelector(tid)).getText().toLowerCase().contains(transidtxt)){
 												
-												
+																																														
 												
 									                
 													takesc(screenshot);
