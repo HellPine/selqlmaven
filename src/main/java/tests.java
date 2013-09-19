@@ -1029,7 +1029,7 @@ public class tests {
 					
 				}
 				
-				if(driver.getCurrentUrl().contains("payment.pl")){
+				if(driver.getCurrentUrl().contains("moneybooker")||driver.getCurrentUrl().contains("skrill")){
 					
 					System.out.println("Skrill Communnication Confirmed");
 					result=result+"<p>SKRILL Commuication Confirmed<p>";
