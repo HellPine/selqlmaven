@@ -637,7 +637,7 @@ public class tests {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String message="";
 		
-		if(batchid.contains("labels")){
+		//if(batchid.contains("labels")){
 			
 			mb1="[qa='skemid']";
 			mb2="[qa='skamount']";
@@ -653,7 +653,7 @@ public class tests {
 			ct1="[qa='ctamount']";
 			button="[qa='dbutton']";
 					
-		}
+		//}
 		
 		String winHandleBefore = driver.getWindowHandle();
 		
@@ -1397,7 +1397,7 @@ public class tests {
 
 	
 		
-		if(batchid.contains("labels")){
+		//if(batchid.contains("labels")){
 			
 			merchant="[qa='tmerchant']";
 			email="[qa='temail']";
@@ -1408,7 +1408,7 @@ public class tests {
 			ttype="[qa=tttype']";
 			tid="[qa='ttid']";
 			
-		}
+		//}
 		
 		System.out.println(merchant);
 		System.out.println(email);
@@ -1438,14 +1438,14 @@ public class tests {
 		};
 		
 								
-		if(batchid.contains("labels")){
+		//if(batchid.contains("labels")){
 			
 			paymethod[0][0] ="[qa='nanumber']";
 			paymethod[1][0]="[qa='nsnumber']";
 			paymethod[2][0]="[qa='namount']";
 			paymethod[3][0]="[qa='dbutton']";
 						 
-		}
+		//}
 		
 		if(batchid.contains("live")){
 			
@@ -2206,6 +2206,8 @@ public class tests {
 		}catch(Exception e){
 			
 		}
+		
+		while(!driver.getCurrentUrl().contains("#")){
 		try{
 			
 			driver.findElement(By.cssSelector(phonecss)).clear();
@@ -2306,6 +2308,7 @@ public class tests {
 			result=result+"<p> Next Button Failed</p>";
 		}
 		
+		}//while page not contains # (That means that L2 Step1 is finished)
 		//if(overall.equals("FAILED")){result2=result2+"<td>FAILED</td></tr>";
 		//overall="FAILED";}
 		
@@ -2685,7 +2688,7 @@ public class tests {
 						}
 				}
 		
-			if(batchid.contains("labels")){
+			//if(batchid.contains("labels")){
 			
 				try{
 				
@@ -2697,7 +2700,7 @@ public class tests {
 				
 			}
 			
-			}else
+			/*}else
 				
 				try{
 					driver.findElement(By.cssSelector("[id='paymentLink1']")).click();
@@ -2705,7 +2708,7 @@ public class tests {
 				
 				}catch(Exception e){
 					
-				}
+				}*/
 				
 				
 				//driver.navigate().back();
