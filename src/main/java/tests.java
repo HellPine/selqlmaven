@@ -304,7 +304,7 @@ public class tests {
 	    System.out.println("Adquiring Site Language");
 	    System.out.println("-----------------------------------");
 	    
-	    if (source.contains("ontact")){ language="english";}
+	    if (source.contains("ontact")||source.contains("esponsible")){ language="english";}
 	    if (source.contains("ontakt")){ language="norwegian";}
 	    if (source.contains("ö")){ language="swedish";}
 	    
