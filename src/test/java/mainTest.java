@@ -28,6 +28,12 @@ import java.net.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+//AUTOMATION APPLICATION
+//VERSION 0.020
+
+
+
+
 //import tests;
 //import juega1;
 
