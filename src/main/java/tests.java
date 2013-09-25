@@ -2269,6 +2269,25 @@ public class tests {
 			
 		}
 		
+		int count=0;
+		String paystring ="";
+		if(language.equals("english")){
+			
+			paystring="payment";
+		}
+		
+		if(language.equals("norwegian")){
+			
+			paystring="betalingsmåte";
+		}
+		
+		if(language.equals("swedish")){
+			
+			paystring="BETALNINGSMETODER";
+		}
+		
+		paystring=paystring.toLowerCase();
+		
 		do{
 		try{
 			
@@ -2371,8 +2390,10 @@ public class tests {
 		}
 		
 		Thread.sleep(1000);
+		count++;
+		if(count==4){break;}
 		
-		}while(!driver.getPageSource().toLowerCase().contains("payment method"));//while page not contains # (That means that L2 Step1 is finished)
+		}while(!driver.getPageSource().toLowerCase().contains(paystring));//while page not contains # (That means that L2 Step1 is finished)
 		//if(overall.equals("FAILED")){result2=result2+"<td>FAILED</td></tr>";
 		//overall="FAILED";}
 		
