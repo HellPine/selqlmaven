@@ -1,5 +1,9 @@
 AUTOMATION APPLICATION CHANGELOG
 
+0.020
+
+- 	Now the payment would be picked from the database
+-	Added a try/catch to the username checking at the end of a withdrawal to increase stability
 
 
 

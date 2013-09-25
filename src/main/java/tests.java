@@ -2269,7 +2269,7 @@ public class tests {
 			
 		}
 		
-		while(!driver.getCurrentUrl().contains("#")){
+		do{
 		try{
 			
 			driver.findElement(By.cssSelector(phonecss)).clear();
@@ -2370,7 +2370,9 @@ public class tests {
 			result=result+"<p> Next Button Failed</p>";
 		}
 		
-		}//while page not contains # (That means that L2 Step1 is finished)
+		Thread.sleep(1000);
+		
+		}while(!driver.getPageSource().toLowerCase().contains("payment method"));//while page not contains # (That means that L2 Step1 is finished)
 		//if(overall.equals("FAILED")){result2=result2+"<td>FAILED</td></tr>";
 		//overall="FAILED";}
 		
