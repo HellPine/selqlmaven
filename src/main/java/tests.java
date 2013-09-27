@@ -2800,6 +2800,7 @@ public class tests {
 				System.out.println("looking for correct change card url");
 				
 				p++;
+				System.out.println(p);
 				if(p>=6){
 					
 					driver.navigate().back();
