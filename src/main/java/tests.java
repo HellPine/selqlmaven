@@ -2791,15 +2791,22 @@ public class tests {
 		
 			//if(batchid.contains("labels")){
 			
+				
+				try{
+				while(driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
 				try{
 				
 				driver.findElement(By.cssSelector("[qa='paymentback']")).click();
+				System.out.println("looking for correct change card url");
 				
 				
-				
-			}catch(Exception e23){
-				
-			}
+				}catch(Exception e23){
+					System.out.println("Still not");
+					System.out.println(driver.getCurrentUrl());
+				}}
+				}catch(Exception e){
+					System.out.println("ok");
+				}
 			
 			/*}else
 				
