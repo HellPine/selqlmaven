@@ -2791,7 +2791,7 @@ public class tests {
 		
 			//if(batchid.contains("labels")){
 			
-				
+				int p=0;
 				try{
 				while(driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
 				try{
@@ -2799,7 +2799,12 @@ public class tests {
 				driver.findElement(By.cssSelector("[qa='paymentback']")).click();
 				System.out.println("looking for correct change card url");
 				
-				
+				p++;
+				if(p>=6){
+					
+					driver.navigate().back();
+					break;
+				}
 				}catch(Exception e23){
 					System.out.println("Still not");
 					System.out.println(driver.getCurrentUrl());
