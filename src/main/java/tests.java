@@ -278,6 +278,7 @@ public class tests {
 			
 		}else{
 			
+			browser="firefox";
 			driver = new FirefoxDriver();
 		}
 		
@@ -300,14 +301,22 @@ public class tests {
 	    	
 	    }
 	    
-	    String source=driver.getPageSource();
-	    System.out.println("Acquiring Site Language");
-	    System.out.println("-----------------------------------");
+	    language="null";
+	    while(language.equals("null")){
+	    	
+	    	String source=driver.getPageSource();
+	    	System.out.println("Acquiring Site Language");
+	    	System.out.println("-----------------------------------");
 	    
-	    if (source.contains("ontact")||source.contains("esponsible")){ language="english";}
-	    if (source.contains("ontakt")){ language="norwegian";}
-	    if (source.contains("ö")){ language="swedish";}
+	    	if (source.contains("ontact")||source.contains("esponsible")){ language="english";}
+	    	if (source.contains("ontakt")){ language="norwegian";}
+	    	if (source.contains("ö")){ language="swedish";}
 	    
+	    	if(language.equals(null)){
+	    		driver.navigate().refresh();
+	    	}
+	    
+	    }
 	    
 	    System.out.println("Site Language=="+language);
 	    System.out.println("-----------------------------------");
@@ -3419,10 +3428,12 @@ public class tests {
 	    				}
 	    				String screenname=genlogin.replace("mrt", "");
 	    			
-	    				driver.findElement(By.cssSelector(screen)).clear(); 
-	    				driver.findElement(By.cssSelector(screen)).sendKeys(screenname); //Handle Screen name
-	    				driver.findElement(By.cssSelector(enterbutton)).click();
-	    				
+	    				while(driver.findElement(By.cssSelector(screen)).isDisplayed()){
+	    					driver.findElement(By.cssSelector(screen)).clear(); 
+	    					driver.findElement(By.cssSelector(screen)).sendKeys(screenname); //Handle Screen name
+	    					driver.findElement(By.cssSelector(enterbutton)).click();
+	    					Thread.sleep(3000);
+	    				}
 	    			}catch (Exception e){
 	    			
 	    				//System.out.println("No screen name required");
@@ -3430,6 +3441,7 @@ public class tests {
 	    				
 	    			
 	    			}
+	    			
 	    			
 	    			
     				//result=result+"<p> Click on the screenshot to see it larger <a href=../"+screenshot+"><img SRC=../"+screenshot+" width=100 height=100></a><p>";
