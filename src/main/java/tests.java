@@ -2594,6 +2594,7 @@ public class tests {
 									}
 									j++;
 									Thread.sleep(1000);
+									System.out.println(j);
 									if(j>=5){break;}
 								}
 									System.out.println("In payment page");
