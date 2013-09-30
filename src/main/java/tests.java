@@ -2584,8 +2584,19 @@ public class tests {
 						
 							try{
 								
-								wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[qia='dbutton']")));
-								System.out.println("In payment page");
+								int j=0;
+								while(!driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
+								
+									try{
+										driver.findElement(By.cssSelector(chkbutton)).click();
+									}catch(Exception e40){
+										
+									}
+									j++;
+									Thread.sleep(1000);
+									if(j>=5){break;}
+								}
+									System.out.println("In payment page");
 								
 							}catch(Exception e21){
 								
