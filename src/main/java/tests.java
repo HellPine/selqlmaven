@@ -2582,6 +2582,15 @@ public class tests {
 							System.out.println("looking button");
 							Thread.sleep(1000);
 						
+							try{
+								
+								wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[qa='dbutton']")));
+								System.out.println("In payment page");
+								
+							}catch(Exception e21){
+								
+							}
+							
 							String source=driver.getPageSource().toLowerCase();
 							chktext=chktext.toLowerCase();
 							if(source.contains(chktext)){
