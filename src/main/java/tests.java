@@ -2565,6 +2565,7 @@ public class tests {
 				result=result+"<p>"+chktext+" Payment Method Checking<p>";
 				result=result+"<p>-----------------------------<p>";
 				
+				System.out.println(chkbutton);
 				try{
 				
 					if(!chkbutton.contains("//")){
