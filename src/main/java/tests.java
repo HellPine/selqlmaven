@@ -2577,24 +2577,42 @@ public class tests {
 							if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 							System.out.println("looking icon");
 					
-						try{
-						
-							driver.findElement(By.cssSelector(chkbutton)).click();
-							System.out.println("looking button");
-							Thread.sleep(1000);
-							int j=0;
-							while(!driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
-								
 								try{
+						
 									driver.findElement(By.cssSelector(chkbutton)).click();
-								}catch(Exception e40){
+									System.out.println("looking button");
+									Thread.sleep(1000);
+									int j=0;
+									
+									
+									while(j<=5){
+									
+										try{
 										
-								}
-								j++;
-								Thread.sleep(1000);
-								System.out.println(j);
-								if(j>=5){break;}
-							}
+											if(!driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
+											
+												try{
+																								
+													driver.findElement(By.cssSelector(chkbutton)).click();
+											
+												}catch(Exception e21){
+												
+												
+												}
+										
+											}else{
+												break;
+											}
+									
+									
+										}catch(Exception e40){
+											System.out.println("deposit button not in ... try("+j+")");
+											driver.navigate().refresh();
+											j++;
+											Thread.sleep(1000);
+										}
+									}
+									
 							
 							System.out.println("In payment page");
 								
