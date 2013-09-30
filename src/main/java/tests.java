@@ -2584,7 +2584,7 @@ public class tests {
 						
 							try{
 								
-								wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[qa='dbutton']")));
+								wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[qia='dbutton']")));
 								System.out.println("In payment page");
 								
 							}catch(Exception e21){
