@@ -2589,6 +2589,8 @@ public class tests {
 								
 							}catch(Exception e21){
 								
+								System.out.println("Deposit button not present");
+								
 							}
 							
 							String source=driver.getPageSource().toLowerCase();
