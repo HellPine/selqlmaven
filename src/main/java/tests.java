@@ -2581,29 +2581,24 @@ public class tests {
 							driver.findElement(By.cssSelector(chkbutton)).click();
 							System.out.println("looking button");
 							Thread.sleep(1000);
-						
-							try{
+							int j=0;
+							while(!driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
 								
-								int j=0;
-								while(!driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
-								
-									try{
-										driver.findElement(By.cssSelector(chkbutton)).click();
-									}catch(Exception e40){
+								try{
+									driver.findElement(By.cssSelector(chkbutton)).click();
+								}catch(Exception e40){
 										
-									}
-									j++;
-									Thread.sleep(1000);
-									System.out.println(j);
-									if(j>=5){break;}
 								}
-									System.out.println("In payment page");
-								
-							}catch(Exception e21){
-								
-								System.out.println("Deposit button not present");
-								
+								j++;
+								Thread.sleep(1000);
+								System.out.println(j);
+								if(j>=5){break;}
 							}
+							
+							System.out.println("In payment page");
+								
+
+
 							
 							String source=driver.getPageSource().toLowerCase();
 							chktext=chktext.toLowerCase();
