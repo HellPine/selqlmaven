@@ -2579,14 +2579,16 @@ public class tests {
 					
 								try{
 						
-									driver.findElement(By.cssSelector(chkbutton)).click();
+									
 									System.out.println("looking button");
 									Thread.sleep(1000);
 									int j=0;
 									
 									
 									while(j<=5){
-									
+										
+										driver.findElement(By.cssSelector(chkbutton)).click();
+										
 										try{
 										
 											if(!driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
