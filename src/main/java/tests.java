@@ -3248,7 +3248,12 @@ public class tests {
 	    		}catch(Exception e){
 	    			success=1;
 	    		}*/
+	    		try{
 	    		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(next)));
+	    		
+	    		}catch(Exception e10){
+	    			
+	    		}
 	    		String genmail="QAautomation"+timesta+"@gtech.com";
 	    		try{
 	    		driver.findElement(By.cssSelector(email)).clear(); 
