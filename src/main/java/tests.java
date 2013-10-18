@@ -180,7 +180,7 @@ public class tests {
 		stat2= con.createStatement();
 		
 		System.out.println("-----------------------------------");
-		System.out.println("Automation Application Rev 0.020");
+		System.out.println("Automation Application Rev 0.021");
 		System.out.println("-----------------------------------");
 		
 		System.out.println("Now Acquiring Batch from Database");

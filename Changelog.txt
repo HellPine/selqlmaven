@@ -1,5 +1,11 @@
 AUTOMATION APPLICATION CHANGELOG
 
+0.021
+
+-	Paysafe payment and withdrawal implemented
+-	General Improvements to the code have made it more estable
+-	Now application stops if anything fails while in L1 registration
+
 0.020
 
 - 	Now the payment would be picked from the database
