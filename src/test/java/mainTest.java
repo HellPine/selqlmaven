@@ -47,6 +47,7 @@ import com.googlecode.jeeunit.concurrent.ConcurrentRunner;
 public class mainTest {
 	
 	String browser2=String.valueOf(System.getProperty("browser2"));
+	String browser3=String.valueOf(System.getProperty("browser3"));
 
 	
 	/**
@@ -56,6 +57,7 @@ public class mainTest {
 	
 	public int retry=0;
 	public int retry2=0;
+	public int retry3=0;
 	public int i=0;
 	public int o=0;
 	
@@ -96,6 +98,7 @@ public class mainTest {
 		//System.out.println(args.length);
 		tests test = new tests();
 		tests2 test3 = new tests2();
+		tests3 test4 = new tests3();
 		juega1 test2 = new juega1();
 		
 		
@@ -113,6 +116,12 @@ public class mainTest {
 				if(!browser2.equals("null")){
 					
 					test3.setUp(options);
+					
+				}
+				
+				if(!browser3.equals("null")){
+					
+					test4.setUp(options);
 					
 				}
 					
@@ -140,10 +149,18 @@ public class mainTest {
 		 	
 		 	tests test = new tests();	
 		 	tests2 test2 = new tests2();
+		 	tests3 test3 = new tests3();
 		 	
+		 	
+		 	if(test3.started==0){test3.overall="FAILED";}
+		 	if(test3.started!=test3.finished){test3.overall="FAILED";}
+		 	
+		 	if(test2.started==0){test2.overall="FAILED";}
+		 	if(test2.started!=test2.finished){test2.overall="FAILED";}
 		 	
 		 	if(test.started==0){test.overall="FAILED";}
 		 	if(test.started!=test.finished){test.overall="FAILED";}
+		 	
 		 	
 		 	String buildurl=String.valueOf(System.getProperty("buildurl"));
 		 	
@@ -162,7 +179,7 @@ public class mainTest {
 				System.out.println("Generating Reports");
 			    System.out.println("-----------------------------------");
 				
-		    	write2.write("<p><p><font color="+(char)34+"red"+(char)34+">FIRST ITERATION FAILED</font><p><p>USERNAME USED===>mrt" + test.timesta+"<p><p>");
+		    	write2.write("<p><p><font color="+(char)34+"red"+(char)34+">FIRST ITERATION FAILED</font><p><p>USERNAME USED===>" + test.genlogin+"<p><p>");
 		    	
 		    	String color=(char)34+"RED"+(char)34;
 		    	write2.write("<p><p><p><p><table border="+(char)34+"1"+(char)34+" bgcolor="+color+"><tr><th>TEST</th><th>STATUS</th></tr>");
@@ -177,6 +194,7 @@ public class mainTest {
 		    	}else{
 		    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ test.timesta + "it1brw1.html"+(char)34+"> LINK </a> for a full report for First Iteration<p>");
 		    	}
+		    	
 		    	
 		    	write.close();
 		    	
@@ -236,8 +254,12 @@ public class mainTest {
 	    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ test.timesta + "brw1.html"+(char)34+"> LINK </a> for a full report<p>");
 	    	}
 	    	
+	    	write2.write("--------------------------------------------");
+	    	write2.write("--------------------------------------------");
+	    	write2.write("--------------------------------------------");
 	    	
 			write3.close();
+			
 	    	
 			if(!browser2.equals("null")){
 				
@@ -249,7 +271,7 @@ public class mainTest {
 					System.out.println("Generating Reports");
 				    System.out.println("-----------------------------------");
 					
-			    	write2.write("<p><p><font color="+(char)34+"red"+(char)34+">FIRST ITERATION FAILED</font><p><p>USERNAME USED===>mrt" + test2.timesta2+"<p><p>");
+			    	write2.write("<p><p><font color="+(char)34+"red"+(char)34+">FIRST ITERATION FAILED</font><p><p>USERNAME USED===>" + test2.genlogin+"<p><p>");
 			    	
 			    	color=(char)34+"RED"+(char)34;
 			    	write2.write("<p><p><p><p><table border="+(char)34+"1"+(char)34+" bgcolor="+color+"><tr><th>TEST</th><th>STATUS</th></tr>");
@@ -317,12 +339,100 @@ public class mainTest {
 		    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ test2.timesta2 + "brw2.html"+(char)34+"> LINK </a> for a full report<p>");
 		    	}
 				
-		    	
+		    	write2.write("--------------------------------------------");
+		    	write2.write("--------------------------------------------");
+		    	write2.write("--------------------------------------------");
 		    	write4.close();
 				
 				
 			}
-	    		    	
+	    		
+			
+			if(!browser3.equals("null")){
+				
+				if(test3.overall.equals("FAILED")&&retry3==0){
+			    	
+			 		File file = new File("target/reports/"+test3.timesta3+"it1brw3.html");
+			 		FileWriter write = new FileWriter(file,true);
+			 		
+					System.out.println("Generating Reports");
+				    System.out.println("-----------------------------------");
+					
+			    	write2.write("<p><p><font color="+(char)34+"red"+(char)34+">FIRST ITERATION FAILED</font><p><p>USERNAME USED===>" + test2.genlogin+"<p><p>");
+			    	
+			    	color=(char)34+"RED"+(char)34;
+			    	write2.write("<p><p><p><p><table border="+(char)34+"1"+(char)34+" bgcolor="+color+"><tr><th>TEST</th><th>STATUS</th></tr>");
+			    	
+			    	write.write(test3.result5);
+			    	write2.write(test3.result6);
+			    	
+			    	write2.write("</tr></table></font>");
+			 		
+			    	if(!buildurl.equals("null")){
+			    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"artifact/target/reports/"+test2.timesta2 + "it1brw3.html"+(char)34+"> LINK </a> for a full report for First Iteration<p>");
+			    	}else{
+			    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ test2.timesta2 + "it1brw3.html"+(char)34+"> LINK </a> for a full report for First Iteration<p>");
+			    	}
+			    	
+			    	write.close();
+			    	
+			 		System.out.println("--------------------------------------");
+			 		System.out.println("  Starting 2nd Iteration on failure");
+			 		System.out.println("--------------------------------------");
+			 		test3.overall="PASSED";
+			 		test3.result5="";
+			 		test3.result6="";
+			 		test3.started=0;
+			 		test3.finished=0;
+			 		retry3=1;
+			 		String[] options=new String[1];
+					options[0]="nothing";
+					//test.driver.close();
+					test3.setUp(options);
+			 		
+			 	}
+			 	
+			 	color="";
+		    	
+		    	if(test3.overall.equals("FAILED")){color=(char)34+"RED"+(char)34;
+		    	}//else{
+		    		//color=(char)34+"BLACK"+(char)34;
+		    	//}
+			 
+		    	
+			 	
+			 	
+			 
+			 	File file5 = new File("target/reports/"+test3.timesta3+"brw3.html");
+				FileWriter write5 = new FileWriter(file5,true);
+				
+				System.out.println("Generating Reports");
+			    System.out.println("-----------------------------------");
+				
+		    	write2.write("<p><p><p><p><table border="+(char)34+"1"+(char)34+" bgcolor="+color+"><tr><th>TEST</th><th>STATUS</th></tr>");
+		    	
+		    	write5.write(test3.result5);
+		    	write2.write(test3.result6);
+		    	
+		    	write2.write("</tr></table></font>");
+		    	
+		    	
+		    	write2.write("<p> OVERALL STATUS=<font color="+ color+">"+test3.overall +"</font> <p>");
+		    	
+		    	if(!buildurl.equals("null")){
+		    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ buildurl+"artifact/target/reports/"+test3.timesta3 + "brw3.html"+(char)34+"> LINK </a> for a full report<p>");
+		    		write2.write("<p></p><p></p><p>Console Output can be found <a href="+(char)34+ buildurl+"console"+(char)34+"> HERE </a></p>");
+		    	}else{
+		    		write2.write("<p></p><p></p><p></p><p></p> Please follow this <a href="+(char)34+ test3.timesta3 + "brw3.html"+(char)34+"> LINK </a> for a full report<p>");
+		    	}
+				
+		    	write2.write("--------------------------------------------");
+		    	write2.write("--------------------------------------------");
+		    	write2.write("--------------------------------------------");
+		    	write5.close();
+				
+				
+			}
 			if(!buildurl.equals("null")){
 	    		
 				System.out.println("All Tests Finished, please refer to " + buildurl +"artifact/target/reports/result.html to see the report");
@@ -341,6 +451,7 @@ public class mainTest {
 		 write2.close();
 		 tests.driver.quit();
 		 if(!browser2.equals("null")){tests2.driver2.quit();}
+		 if(!browser3.equals("null")){tests3.driver3.quit();}
 	 }
 
 }

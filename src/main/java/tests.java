@@ -97,7 +97,7 @@ public class tests {
 	static String username="daniel";
 	static String db="automation_dev";
 	static String pass="daniel";
-	public String genlogin=""; //username to use in tests
+	public static String genlogin=""; //username to use in tests
 	public static ResultSet rs=null;
 	public static ResultSet ls=null;
 	public static ResultSet ss=null;
@@ -108,7 +108,7 @@ public class tests {
 	public static ResultSet l2rs1=null;
 	public static ResultSet l2rs2=null;
 	public static ResultSet l2rs3=null;
-	public long timesta=new Date().getTime()/1000;
+	public static long timesta=0;
 	public String batchid; 
 	public String language;
 	public boolean is64bit = false;
@@ -126,7 +126,8 @@ public class tests {
 		
 	public void readdatabase() throws Exception {
 		
-		
+		Date now = new Date();
+		timesta= now.getTime()/1000;
 		String tkind;
 		String tid;
 		timesta=timesta%1000000000;
