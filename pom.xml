@@ -72,6 +72,9 @@
         
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
+          <parallel>classes</parallel>
+
+		  <threadCount>3</threadCount>
         </configuration>
       </plugin>
       

@@ -143,6 +143,7 @@ public class tests2 {
 		//file2.delete();
 		//System.out.println(new Timestamp(date.getTime()));
 		
+		/*
 		if (System.getProperty("os.name").contains("Windows")) {
 		    is64bit = (System.getenv("ProgramFiles(x86)") != null);
 		} else {
@@ -161,7 +162,7 @@ public class tests2 {
 			System.out.println("Running on 64 bit system");
 			System.out.println("------------------------");
 			
-		}
+		}*/
 		
 		
 		try{
@@ -260,15 +261,15 @@ public class tests2 {
 				
 				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 				capabilities.setCapability("chrome.switches", Arrays.asList("--disable-loggin"));
-				System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+				//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 				driver2 = new ChromeDriver(capabilities);
 			
 			}
 			
 			if(browser.equals("ie")){
 				
-				File file = new File("IEDriverServer.exe");
-				System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+				//File file = new File("IEDriverServer.exe");
+				//System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
 				driver2 = new InternetExplorerDriver();
 			
 			}
