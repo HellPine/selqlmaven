@@ -47,6 +47,7 @@ import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
@@ -259,9 +260,13 @@ public class tests {
 		
 			if(browser.equals("chrome")){
 				
-				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+				/*DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 				capabilities.setCapability("chrome.switches", Arrays.asList("--disable-loggin"));
-				//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+				//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");*/
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--no-sandbox");
+				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 				driver = new ChromeDriver(capabilities);
 			
 			}
