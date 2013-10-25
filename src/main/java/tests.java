@@ -97,6 +97,7 @@ public class tests {
 	static String username="daniel";
 	static String db="automation_dev";
 	static String pass="daniel";
+	public String genlogin=""; //username to use in tests
 	public static ResultSet rs=null;
 	public static ResultSet ls=null;
 	public static ResultSet ss=null;
@@ -141,6 +142,7 @@ public class tests {
 		//file2.delete();
 		//System.out.println(new Timestamp(date.getTime()));
 		
+		/*
 		if (System.getProperty("os.name").contains("Windows")) {
 		    is64bit = (System.getenv("ProgramFiles(x86)") != null);
 		} else {
@@ -159,7 +161,7 @@ public class tests {
 			System.out.println("Running on 64 bit system");
 			System.out.println("------------------------");
 			
-		}
+		}*/
 		
 		
 		try{
@@ -258,15 +260,15 @@ public class tests {
 				
 				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 				capabilities.setCapability("chrome.switches", Arrays.asList("--disable-loggin"));
-				System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+				//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 				driver = new ChromeDriver(capabilities);
 			
 			}
 			
 			if(browser.equals("ie")){
 				
-				File file = new File("IEDriverServer.exe");
-				System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+				//File file = new File("IEDriverServer.exe");
+				//System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
 				driver = new InternetExplorerDriver();
 			
 			}
@@ -875,9 +877,9 @@ public class tests {
 			
 			if(success==1){
 				
-				System.out.println("SKRILL Commuication Failed");
+				System.out.println("PAYPAL Commuication Failed");
 				System.out.println("-----------------------------------");
-				result=result+"<p>SKRILL Commuication Failed<p>";
+				result=result+"<p>PAYPAL Commuication Failed<p>";
 				result2=result2+"<td>FAILED</td></tr>";
 				
 			}
@@ -1499,6 +1501,8 @@ public class tests {
 		String surname="//div[13]/label";
 		String ttype="//div[15]/label";
 		String tid="//div[17]/label";
+		String ukvoucher="";
+	
 		
 		String merchtxt="merchant name";
 		String emailtxt="mail";
@@ -1514,6 +1518,7 @@ public class tests {
 		String v3=null;
 		String v4=null;
 		
+		int success=0;
 		
 		if(language.equals("swedish")){
 			merchtxt="namn";
@@ -1672,6 +1677,90 @@ public class tests {
 			//};
 			}//if paymentcss contains paysafe
 			
+		int ukvid=0; //Initialize variable to store Ukash voucher id
+		
+		if(paymentcss.toLowerCase().contains("ukash")){
+			
+			if(batchid.toLowerCase().contains("live")){
+				
+				String currency="krs";
+				if(language.equals("english")){
+						currency="gbp";
+					}
+				stat3=con.createStatement();
+				stat3.clearBatch();
+				l2rs1= stat3.executeQuery("select * from ukashvoucher where currency='"+currency+"' and avaliable='yes' and usage='live'");
+			
+			}else{
+				
+				String currency="krs";
+				if(language.equals("english")){
+						currency="gbp";
+					}
+				stat3=con.createStatement();
+				stat3.clearBatch();
+				l2rs1= stat3.executeQuery("select * from ukashvoucher where currency='"+currency+"' and avaliable='yes' and usage='staging'");
+				
+				
+			}
+				try{
+										
+					l2rs1.first();
+					
+				}catch(Exception psv1){
+					
+				}
+				
+				
+				if(l2rs1.isFirst()){
+					
+					ukvoucher=l2rs1.getString("voucher");
+					ukvid=l2rs1.getInt("id");
+					
+				}else{
+					
+					System.out.println("No voucher has been found");
+					success=1;
+					result=result+"<p>There is no remaining Ukash Vouchers<p>";
+					
+				}
+							
+			
+			paymethod[1][0]="[qa='ukvalue']";
+			paymethod[1][1]="100";
+			paymethod[1][2]="text"; //Stage
+			paymethod[0][0]="[qa='ukvoucher]'";
+			paymethod[0][1]=ukvoucher;
+			paymethod[0][2]="text";
+			paymethod[2][0]="input[name='amount']"; //not used
+			paymethod[2][1]="100"; //not used
+			paymethod[2][2]="null"; //label for not be used
+			paymethod[3][0]="[qa='dbutton']";
+			paymethod[3][1]="";
+			paymethod[3][2]="button";
+			paymethod[4][0]="a#submit.btn";
+			paymethod[4][1]="";
+			paymethod[4][2]="null";
+			
+			
+									
+			//if(batchid.contains("labels")){
+				
+				//paymethod[0][0] ="[qa='nanumber']";
+				//paymethod[1][0]="[qa='nsnumber']";
+				//paymethod[2][0]="[qa='namount']";
+				//paymethod[3][0]="[qa='dbutton']";
+							 
+			//}
+			
+			if(language.equals("english")){
+				
+				paymethod[1][1] ="10";
+				
+			}
+			
+			//};
+			}//if paymentcss contains ukash
 		/*String[][] arr= new String[15][3];
 		
 		arr[0][0]="hola";
@@ -1707,7 +1796,7 @@ public class tests {
 		//System.out.println(paymentcss);
 		//System.out.println(paymethod.length);
 		
-		int success=0;
+		
 		
 		
 		for(int i=0;i<paymethod.length;i++){
@@ -2980,44 +3069,61 @@ public class tests {
 							wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(chkbutton)));
 							if(driver.findElement(By.cssSelector(chkicon)).isDisplayed()){
 							System.out.println("looking icon");
-					
+							
 								try{
 						
 									
 									System.out.println("looking button");
 									Thread.sleep(1000);
 									int j=0;
-									
+									int h=0;
 									
 									while(j<=5){
 										
+										h=0;
 										driver.findElement(By.cssSelector(chkbutton)).click();
-										
+										//System.out.println("Inside While Button Clicked");
 										try{
 										
 											if(!driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
 											
-												try{
-																								
-													driver.findElement(By.cssSelector(chkbutton)).click();
-											
-												}catch(Exception e21){
-												
-													System.out.println("Deposit button not reachable");
-												}
-										
+												h++;
 											}else{
 												break;
 											}
-									
-									
+										
+										}catch(Exception e39){
+											
+											h++;
+											
+										}
+										try{
+													
+											if(!driver.findElement(By.cssSelector("[id='submit']")).isDisplayed()){
+												h++;	
+											}else{
+												break;
+											}
 										}catch(Exception e40){
+											
+											h++;
+											
+										}
+										
+										if(h>=2){
+											
 											System.out.println("deposit button not in ... try("+j+")");
 											driver.navigate().refresh();
 											j++;
 											Thread.sleep(1000);
+										}else{
+											
+											break;
 										}
-									}
+										
+										
+										
+									}//while j<=5
 									
 							
 							System.out.println("In payment page");
@@ -3037,13 +3143,13 @@ public class tests {
 									System.out.println("User Name ==" + logname + "== Present");
 									System.out.println("Payment Name ==" + chktext + "== Present");
 									System.out.println("-----------------------------------");
+									screenshot = "target/screenshots/" + chktext + timesta + ".png";
+									takesc(screenshot);
 									success=paymenterrorcheck(chktext,success);
 									//System.out.println("Success after payment check===>"+success);
 									//result2=result2+"<td>PASS</td></tr>";
-									screenshot = "target/screenshots/" + chktext + timesta + ".png";
 									
-									takesc(screenshot);
-									
+			
 																		
 									if(success==0){
 									result=result+"<p>"+chktext+" Payment OK</p>";
@@ -3236,7 +3342,7 @@ public class tests {
 			
 				int p=0;
 				try{
-				while(driver.findElement(By.cssSelector("[qa='dbutton']")).isDisplayed()){
+				while(driver.findElement(By.cssSelector("[id='submit']")).isDisplayed()){
 				try{
 				
 				driver.findElement(By.cssSelector("[qa='paymentback']")).click();
@@ -3816,7 +3922,7 @@ public class tests {
 	    			}
 	    		}
 	    		
-	    		String genlogin="mrt"+timesta;
+	    		genlogin="mrt"+timesta;
 	    		//genlogin="okbingo7";
 	    		Thread.sleep(1000);
 	    		try{
