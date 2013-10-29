@@ -264,7 +264,7 @@ public class tests {
 				capabilities.setCapability("chrome.switches", Arrays.asList("--disable-loggin"));
 				//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");*/
 				ChromeOptions options = new ChromeOptions();
-				//options.addArguments("--no-sandbox");
+				options.addArguments("--no-sandbox");
 				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 				driver = new ChromeDriver(capabilities);
