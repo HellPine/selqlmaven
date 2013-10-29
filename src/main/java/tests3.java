@@ -353,7 +353,7 @@ public class tests3 {
 		//FileWriter write = new FileWriter(file,true);
 		//FileWriter write2 = new FileWriter(file2,true);
 		Date date = new Date();
-		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p><p>Date and Time:"+date+"</p><p></p><p>Browser=" + browser + "</FONT></strong></p>";
+		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+"></p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p><p>Date and Time:"+date+"</p><p></p><p>Browser=" + browser + "</FONT></strong></p>";
 		result5=result5+header;
 		result6=result6+header;
 		System.out.println("Acquiring tests from batch");
@@ -1292,7 +1292,7 @@ public class tests3 {
 							wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(nte)));
 							response= driver3.findElement(By.cssSelector(uke)).getText();
 						//System.out.println(response);
-				
+							it++;
 											
 								
 								
@@ -3140,7 +3140,8 @@ public class tests3 {
 							
 								System.out.println("Payment Method ==" + chktext + "== Present");
 								System.out.println("-----------------------------------");
-							
+								screenshot = "target/screenshots/" + chktext + timesta3 + ".png";
+
 								if(driver3.getPageSource().contains(logname)){
 								
 									System.out.println("User Name ==" + logname + "== Present");

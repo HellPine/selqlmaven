@@ -264,7 +264,7 @@ public class tests {
 				capabilities.setCapability("chrome.switches", Arrays.asList("--disable-loggin"));
 				//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");*/
 				ChromeOptions options = new ChromeOptions();
-				options.addArguments("--no-sandbox");
+				//options.addArguments("--no-sandbox");
 				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 				driver = new ChromeDriver(capabilities);
@@ -356,7 +356,7 @@ public class tests {
 		//FileWriter write = new FileWriter(file,true);
 		//FileWriter write2 = new FileWriter(file2,true);
 		Date date = new Date();
-		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+">\n------------------------------------------------------------------------------------------</p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p><p>Date and Time:"+date+"</p><p></p><p>Browser=" + browser + "</FONT></strong></p>";
+		String header="<p><FONT COLOR="+(char)34+"black"+(char)34+"></p>\n\n<strong>BATCH ID=" + batchid + "<p><p>URL= " + baseUrl + "<p><p>Date and Time:"+date+"</p><p></p><p>Browser=" + browser + "</FONT></strong></p>";
 		result=result+header;
 		result2=result2+header;
 		System.out.println("Acquiring tests from batch");
@@ -928,6 +928,7 @@ public class tests {
 			
 			
 			
+			
 			int timeCount=0;
 			
 			while ( driver.getWindowHandles().size() == 1 ){	
@@ -941,8 +942,12 @@ public class tests {
 			   }
 			}
 			
-			
-			
+			try{
+				
+				driver.switchTo().alert().accept();
+				
+			}catch(Exception pse5){
+			}
 			try{
 				
 				for(String winHandle : driver.getWindowHandles()){
@@ -1295,7 +1300,7 @@ public class tests {
 							wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(nte)));
 							response= driver.findElement(By.cssSelector(uke)).getText();
 						//System.out.println(response);
-				
+							it++;
 											
 								
 								
@@ -3143,7 +3148,7 @@ public class tests {
 							
 								System.out.println("Payment Method ==" + chktext + "== Present");
 								System.out.println("-----------------------------------");
-							
+								screenshot = "target/screenshots/" + chktext + timesta + ".png";
 								if(driver.getPageSource().contains(logname)){
 								
 									System.out.println("User Name ==" + logname + "== Present");
