@@ -32,7 +32,7 @@ import com.googlecode.jeeunit.concurrent.Concurrent;
 import com.googlecode.jeeunit.concurrent.ConcurrentRunner;
 
 //AUTOMATION APPLICATION
-//VERSION 0.021
+//VERSION 0.022
 
 
 
@@ -163,16 +163,16 @@ import com.googlecode.jeeunit.concurrent.ConcurrentRunner;
 			 	
 			 	
 			 	tests test = new tests();	
-			 	tests2 test2 = new tests2();
-			 	tests3 test3 = new tests3();
+			 	//tests2 test2 = new tests2();
+			 	//tests3 test3 = new tests3();
 			 	
 			 	
-			 	if(test3.started==0){test3.overall="FAILED";}
+			 	/*if(test3.started==0){test3.overall="FAILED";}
 			 	if(test3.started!=test3.finished){test3.overall="FAILED";}
 			 	
 			 	if(test2.started==0){test2.overall="FAILED";}
 			 	if(test2.started!=test2.finished){test2.overall="FAILED";}
-			 	
+			 	*/
 			 	if(test.started==0){test.overall="FAILED";}
 			 	if(test.started!=test.finished){test.overall="FAILED";}
 			 	

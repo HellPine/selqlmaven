@@ -184,7 +184,7 @@ public class tests2 {
 		stat2= con.createStatement();
 		
 		System.out.println("-----------------------------------");
-		System.out.println("Automation Application Rev 0.021");
+		System.out.println("Automation Application Rev 0.022");
 		System.out.println("-----------------------------------");
 		
 		System.out.println("Now Acquiring Batch from Database");
@@ -3146,8 +3146,9 @@ public class tests2 {
 									System.out.println("Payment Name ==" + chktext + "== Present");
 									System.out.println("-----------------------------------");
 									
-									takesc(screenshot);
+									if(chktext.equals("paypal")){takesc(screenshot);}
 									success=paymenterrorcheck(chktext,success);
+									if(!chktext.equals("paypal")){takesc(screenshot);}
 									//System.out.println("Success after payment check===>"+success);
 									//result4=result4+"<td>PASS</td></tr>";
 									
